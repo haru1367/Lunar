@@ -70,7 +70,7 @@ def login():
                         border="1px solid #eaeaea",
                         p=4,
                         max_width="400px",
-                        border_radius="lg",
+                        border_radius="20px",
                         background= 'rgb(255,255,255,0.7)'
                     ),
                     rx.container(height='10px'),

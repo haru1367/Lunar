@@ -63,9 +63,15 @@ export default function Component() {
   <Fragment/>
 )}
 </Fragment>
-  <Container centerContent={true} sx={{"background-image": "url('/space.jpg')", "background-size": "cover", "maxWidth": "auto", "maxHeight": "auto", "height": "100vh"}}>
+  <Container centerContent={true} sx={{"maxWidth": "auto", "maxHeight": "auto", "height": "100vh"}}>
   <Container sx={{"height": "150px"}}/>
-  <VStack sx={{"width": "600px", "height": "auto", "centerContent": true, "borderRadius": "40px", "boxShadow": "10px 10px 100px #79d0ed", "background": "rgb(255,255,255,0.7)"}}>
+  <HStack>
+  <VStack sx={{"width": "500px", "height": "100%"}}>
+  <Container sx={{"height": "30px"}}/>
+  <Image src={`/space2.jpg`}/>
+</VStack>
+  <Container sx={{"width": "30px"}}/>
+  <VStack sx={{"width": "500px", "height": "auto", "centerContent": true, "borderRadius": "40px", "boxShadow": "10px 10px 100px #79d0ed", "background": "rgb(255,255,255,0.7)"}}>
   <HStack>
   <VStack>
   <Container sx={{"height": "20px"}}/>
@@ -94,22 +100,25 @@ export default function Component() {
 </Button>
 </Container>
   <Container sx={{"height": "10px"}}/>
+  <VStack alignItems={`start`}>
   <Text sx={{"color": "gray.600"}}>
-  {`Forgot your password?   `}
+  {`Forgot your password?     `}
   <Link as={NextLink} href={`/findpassword`} sx={{"color": "green.500"}}>
   {`Find Password!`}
 </Link>
 </Text>
   <Text sx={{"color": "gray.600"}}>
-  {`Don't have an account yet?   `}
+  {`Don't have an account yet?     `}
   <Link as={NextLink} href={`/signup`} sx={{"color": "blue.500"}}>
   {`Sign up!`}
 </Link>
 </Text>
+</VStack>
   <Container sx={{"height": "30px"}}/>
 </VStack>
 </Container>
 </VStack>
+</HStack>
 </Container>
   <NextHead>
   <title>

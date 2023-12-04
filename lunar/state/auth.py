@@ -28,6 +28,7 @@ class AuthState(State):
     confirm_password: str
     user_email_address:str
 
+       
 
     def signup(self):
         """Sign up a user."""

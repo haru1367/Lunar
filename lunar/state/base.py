@@ -19,6 +19,11 @@ class Follows(rx.Model, table=True):
 class User(rx.Model, table=True):
     """A table of Users."""
 
+    user_realname : str = Field()
+    user_email : str = Field()
+    user_birthday_year : str = Field()
+    user_birthday_month : str = Field()
+    user_birthday_day : str = Field()
     username: str = Field()
     password: str = Field()
 

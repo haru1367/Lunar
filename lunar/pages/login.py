@@ -60,7 +60,7 @@ def login():
                 rx.container(
                     rx.vstack(
                         rx.container(
-                            rx.input(placeholder="Username", on_blur=AuthState.set_username, mb=4),
+                            rx.input(placeholder="Nickname", on_blur=AuthState.set_username, mb=4),
                             rx.input(
                                 type_="password",
                                 placeholder="Password",

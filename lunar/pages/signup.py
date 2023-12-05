@@ -58,20 +58,61 @@ def signup():
                 ),
                 rx.container(height='20px'),
                 rx.container(
-                    rx.input(placeholder="Nickname", on_blur=AuthState.set_username, mb=4),
-                    rx.input(
-                        type_="password",
-                        placeholder="Password",
-                        on_blur=AuthState.set_password,
-                        mb=4,
+                    rx.hstack(
+                        rx.input(placeholder="Nickname", on_blur=AuthState.set_username),
+                        rx.button(
+                            'Double check',
+                            on_click = AuthState.id_check,
+                            size='sm',
+                            border_radius="1em",
+                            box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",
+                            background_image="linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)",
+                            box_sizing="border-box",
+                            color="white",
+                            opacity="0.6",
+                            _hover={"opacity": 1},     
+                        ),
                     ),
+                    rx.container(height='16px'),
+                    rx.form_control(
+                        rx.input(
+                            placeholder="password",
+                            on_blur=AuthState.set_password,
+                            type_='password',
+                        ),
+                        rx.cond(
+                            AuthState.time_valid_password,
+                            rx.form_error_message(
+                                "The password must be 8 to 16 characters containing a combination of numbers and alphabets."
+                            ),
+                            rx.form_helper_text("password is valid"),
+                        ),
+                        is_invalid=AuthState.time_valid_password,
+                        is_required=True,
+                    ),
+                    rx.container(height='16px'),
                     rx.input(
                         type_="password",
                         placeholder="Confirm password",
                         on_blur=AuthState.set_confirm_password,
                         mb=4,
                     ),
-                    rx.input(placeholder = "your name", on_blur = AuthState.set_user_realname, mb=4),
+                    rx.form_control(
+                        rx.input(
+                            placeholder="your name",
+                            on_blur=AuthState.set_user_realname,
+                        ),
+                        rx.cond(
+                            AuthState.time_valid_username,
+                            rx.form_error_message(
+                                "The name must be between 2 and 20 characters."
+                            ),
+                            rx.form_helper_text("name is valid"),
+                        ),
+                        is_invalid=AuthState.time_valid_username,
+                        is_required=True,
+                    ),
+                    rx.container(height='16px'),
                     rx.input(placeholder = "your email address", on_blur = AuthState.set_user_email_address,mb=4),
                     rx.hstack(
                         rx.select(

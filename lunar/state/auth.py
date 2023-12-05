@@ -1,8 +1,8 @@
 """The authentication state."""
 import reflex as rx
 from sqlmodel import select
-
 from .base import State, User
+import re
 
 
 class AuthState(State):
@@ -27,16 +27,48 @@ class AuthState(State):
     user_birthday_day : str
     confirm_password: str
     user_email_address:str
+    user_id_valid:bool=False
 
-       
+    # 설정한 회원가입정보 입력값이 유효한지 실시간으로 확인하는 함수
+    @rx.var
+    def time_valid_user(self)->bool:
+        return self.user_id_valid
+    
+    @rx.var
+    def time_valid_username(self)->bool:
+        return len(self.user_realname)>20 or len(self.user_realname)<2
+    
+    @rx.var
+    def time_valid_password(self)->bool:
+        pattern = re.compile(r'^[a-zA-Z0-9]{8,16}$')
+        return not bool(pattern.match(self.password))
+    
+    # 설정한 아이디가 유효한 값인지 확인하는 함수
+    def is_valid_string(self,text):
+        pattern = re.compile("^[a-z][a-z0-9]*$")
+        return bool(pattern.match(text))
+
+    # 아이디 중복체크를 하는 함수
+    def id_check(self):
+        if len(self.username) < 6 :
+            return rx.window_alert('The Nickname must contain at least 6 characters.')
+        if self.username.islower() == False:
+            return rx.window_alert('The Nickname must be composed of lowercase letters or a combination of lowercase letters and numbers.')
+        if self.username.isalnum() == False:
+            return rx.window_alert('Special characters and spaces cannot be included.')
+        if self.is_valid_string(self.username) == False:
+            return rx.window_alert('Characters other than alphabets and numbers cannot be entered.')
+        with rx.session() as session:
+            if session.exec(select(User).where(User.username == self.username)).first():
+                return rx.window_alert('User nickname already exists.')
+        self.user_id_valid=True # 모든 id중복체크를 통과했을때 True값으로 변경
+
 
     def signup(self):
         """Sign up a user."""
         with rx.session() as session:
             if self.password != self.confirm_password:
                 return rx.window_alert("Passwords do not match.")
-            if session.exec(select(User).where(User.username == self.username)).first():
-                return rx.window_alert("Username already exists.")
             self.user = User(username=self.username, password=self.password)
             session.add(self.user)
             session.expire_on_commit = False

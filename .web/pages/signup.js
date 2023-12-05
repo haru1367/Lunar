@@ -67,11 +67,6 @@ export default function Component() {
   <Container sx={{"height": "100px"}}/>
   <HStack>
   <VStack sx={{"width": "500px", "height": "100%"}}>
-  <Container sx={{"height": "60px"}}/>
-  <Image src={`/space2.jpg`}/>
-</VStack>
-  <Container sx={{"width": "30px"}}/>
-  <VStack sx={{"width": "500px", "height": "auto", "centerContent": true, "borderRadius": "40px", "boxShadow": "10px 10px 100px #79d0ed", "background": "rgb(255,255,255,0.7)"}}>
   <HStack>
   <VStack>
   <Container sx={{"height": "20px"}}/>
@@ -89,6 +84,11 @@ export default function Component() {
 </Container>
 </VStack>
 </HStack>
+  <Container sx={{"height": "40px"}}/>
+  <Image src={`/space2.jpg`}/>
+</VStack>
+  <Container sx={{"width": "30px"}}/>
+  <VStack sx={{"width": "500px", "height": "auto", "centerContent": true, "borderRadius": "40px", "boxShadow": "10px 10px 100px #79d0ed", "background": "rgb(255,255,255,0.7)"}}>
   <Container sx={{"height": "20px"}}/>
   <Container sx={{"alignItems": "left", "bg": "white", "border": "1px solid #eaeaea", "p": 4, "maxWidth": "400px", "borderRadius": "lg"}}>
   <HStack>
@@ -117,7 +117,25 @@ export default function Component() {
 </Fragment>
 </FormControl>
   <Container sx={{"height": "16px"}}/>
-  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_confirm_password", {value:_e0.target.value})], (_e0), {})} placeholder={`Confirm password`} sx={{"mb": 4}} type={`password`}/>
+  <FormControl isInvalid={state.auth_state.time_valid_confirm_password} isRequired={true}>
+  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_confirm_password", {value:_e0.target.value})], (_e0), {})} placeholder={`password`} type={`password`}/>
+  <Fragment>
+  {isTrue(state.auth_state.time_valid_confirm_password) ? (
+  <Fragment>
+  <FormErrorMessage>
+  {`Please check your password again.`}
+</FormErrorMessage>
+</Fragment>
+) : (
+  <Fragment>
+  <FormHelperText>
+  {`The passwords match.`}
+</FormHelperText>
+</Fragment>
+)}
+</Fragment>
+</FormControl>
+  <Container sx={{"height": "16px"}}/>
   <FormControl isInvalid={state.auth_state.time_valid_username} isRequired={true}>
   <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_realname", {value:_e0.target.value})], (_e0), {})} placeholder={`your name`} type={`text`}/>
   <Fragment>
@@ -137,26 +155,44 @@ export default function Component() {
 </Fragment>
 </FormControl>
   <Container sx={{"height": "16px"}}/>
-  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_email_address", {value:_e0.target.value})], (_e0), {})} placeholder={`your email address`} sx={{"mb": 4}} type={`text`}/>
+  <FormControl isInvalid={state.auth_state.time_valid_email_address} isRequired={true}>
+  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_email_address", {value:_e0.target.value})], (_e0), {})} placeholder={`your email address`} type={`text`}/>
+  <Fragment>
+  {isTrue(state.auth_state.time_valid_email_address) ? (
+  <Fragment>
+  <FormErrorMessage>
+  {`Please enter correct email.`}
+</FormErrorMessage>
+</Fragment>
+) : (
+  <Fragment>
+  <FormHelperText>
+  {`check`}
+</FormHelperText>
+</Fragment>
+)}
+</Fragment>
+</FormControl>
+  <Container sx={{"height": "16px"}}/>
   <HStack>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_year", {value:_e0.target.value})], (_e0), {})} placeholder={`birth year`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.year.map((aneryjkk, dfsnmgbg) => (
-  <option key={dfsnmgbg} value={aneryjkk}>
-  {aneryjkk}
+  {state.auth_state.year.map((akvcwkfv, ccrqcjfs) => (
+  <option key={ccrqcjfs} value={akvcwkfv}>
+  {akvcwkfv}
 </option>
 ))}
 </Select>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_month", {value:_e0.target.value})], (_e0), {})} placeholder={`birth month`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.month.map((anmlhtkp, jmidxxte) => (
-  <option key={jmidxxte} value={anmlhtkp}>
-  {anmlhtkp}
+  {state.auth_state.month.map((ipozdgex, pvqdueih) => (
+  <option key={pvqdueih} value={ipozdgex}>
+  {ipozdgex}
 </option>
 ))}
 </Select>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_day", {value:_e0.target.value})], (_e0), {})} placeholder={`birth day`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.day.map((dxfkbzov, kpfnigki) => (
-  <option key={kpfnigki} value={dxfkbzov}>
-  {dxfkbzov}
+  {state.auth_state.day.map((qbduzaik, wnsqqwgo) => (
+  <option key={wnsqqwgo} value={qbduzaik}>
+  {qbduzaik}
 </option>
 ))}
 </Select>

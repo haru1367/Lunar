@@ -27,20 +27,43 @@ class AuthState(State):
     user_birthday_day : str
     confirm_password: str
     user_email_address:str
-    user_id_valid:bool=False
+    user_password_valid:bool=False
+    user_realname_valid:bool=False
 
     # 설정한 회원가입정보 입력값이 유효한지 실시간으로 확인하는 함수
     @rx.var
-    def time_valid_user(self)->bool:
-        return self.user_id_valid
+    def time_valid_user_password(self)->bool:
+        return self.user_password_valid
     
     @rx.var
+    def time_valid_user_realname(self)->bool:
+        return self.user_realname_valid
+    
+    @rx.var
+    def time_valid_confirm_password(self)->bool:
+        return self.confirm_password != self.password
+    
+    @rx.var
+    def time_valid_email_address(self)->bool:
+        return '@' not in self.user_email_address
+    
+    # 유저의 실제 이름 입력값이 유효한지 실시간으로 확인하는 함수
+    @rx.var
     def time_valid_username(self)->bool:
+        if len(self.user_realname) >=2 and len(self.user_realname)<=20:
+            self.user_realname_valid=True
+        else :
+            self.user_realname_valid=False
         return len(self.user_realname)>20 or len(self.user_realname)<2
     
+    # 유저가 입력한 비밀번호가 유효한지 실시간으로 확인하는 함수
     @rx.var
     def time_valid_password(self)->bool:
         pattern = re.compile(r'^[a-zA-Z0-9]{8,16}$')
+        if bool(pattern.match(self.password)) == True:
+            self.user_password_valid=True
+        else:
+            self.user_password_valid=False
         return not bool(pattern.match(self.password))
     
     # 설정한 아이디가 유효한 값인지 확인하는 함수
@@ -58,10 +81,10 @@ class AuthState(State):
             return rx.window_alert('Special characters and spaces cannot be included.')
         if self.is_valid_string(self.username) == False:
             return rx.window_alert('Characters other than alphabets and numbers cannot be entered.')
+        self.user_id_valid=False
         with rx.session() as session:
             if session.exec(select(User).where(User.username == self.username)).first():
                 return rx.window_alert('User nickname already exists.')
-        self.user_id_valid=True # 모든 id중복체크를 통과했을때 True값으로 변경
 
 
     def signup(self):

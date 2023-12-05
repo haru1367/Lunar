@@ -8,15 +8,6 @@ def signup():
         rx.container(height='100px'),
         rx.hstack( 
             rx.vstack(
-                rx.container(height='60px'),
-                rx.image(
-                    src = '/space2.jpg',
-                ),
-                width = '500px',
-                height= '100%',
-            ),
-            rx.container(width='30px'),
-            rx.vstack(
                 rx.hstack(
                     rx.vstack(
                         rx.container(height='20px'),
@@ -56,6 +47,15 @@ def signup():
 
                     ),
                 ),
+                rx.container(height='40px'),
+                rx.image(
+                    src = '/space2.jpg',
+                ),
+                width = '500px',
+                height= '100%',
+            ),
+            rx.container(width='30px'),
+            rx.vstack(
                 rx.container(height='20px'),
                 rx.container(
                     rx.hstack(
@@ -91,12 +91,23 @@ def signup():
                         is_required=True,
                     ),
                     rx.container(height='16px'),
-                    rx.input(
-                        type_="password",
-                        placeholder="Confirm password",
-                        on_blur=AuthState.set_confirm_password,
-                        mb=4,
+                    rx.form_control(
+                        rx.input(
+                            placeholder="password",
+                            on_blur=AuthState.set_confirm_password,
+                            type_='password',
+                        ),
+                        rx.cond(
+                            AuthState.time_valid_confirm_password,
+                            rx.form_error_message(
+                                "Please check your password again."
+                            ),
+                            rx.form_helper_text("The passwords match."),
+                        ),
+                        is_invalid=AuthState.time_valid_confirm_password,
+                        is_required=True,
                     ),
+                    rx.container(height='16px'),
                     rx.form_control(
                         rx.input(
                             placeholder="your name",
@@ -113,7 +124,22 @@ def signup():
                         is_required=True,
                     ),
                     rx.container(height='16px'),
-                    rx.input(placeholder = "your email address", on_blur = AuthState.set_user_email_address,mb=4),
+                    rx.form_control(
+                        rx.input(
+                            placeholder="your email address",
+                            on_blur=AuthState.set_user_email_address,
+                        ),
+                        rx.cond(
+                            AuthState.time_valid_email_address,
+                            rx.form_error_message(
+                                "Please enter correct email."
+                            ),
+                            rx.form_helper_text("check"),
+                        ),
+                        is_invalid=AuthState.time_valid_email_address,
+                        is_required=True,
+                    ),
+                    rx.container(height='16px'),
                     rx.hstack(
                         rx.select(
                             AuthState.year,

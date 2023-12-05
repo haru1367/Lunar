@@ -94,7 +94,7 @@ export default function Component() {
   <HStack>
   <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_username", {value:_e0.target.value})], (_e0), {})} placeholder={`Nickname`} type={`text`}/>
   <Button onClick={(_e) => addEvents([Event("state.auth_state.id_check", {})], (_e), {})} size={`sm`} sx={{"borderRadius": "1em", "boxShadow": "rgba(151, 65, 252, 0.8) 0 15px 30px -10px", "backgroundImage": "linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)", "boxSizing": "border-box", "color": "white", "opacity": "0.6", "_hover": {"opacity": 1}}}>
-  {`Double check`}
+  {`duplicate check`}
 </Button>
 </HStack>
   <Container sx={{"height": "16px"}}/>
@@ -176,23 +176,23 @@ export default function Component() {
   <Container sx={{"height": "16px"}}/>
   <HStack>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_year", {value:_e0.target.value})], (_e0), {})} placeholder={`birth year`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.year.map((akvcwkfv, ccrqcjfs) => (
-  <option key={ccrqcjfs} value={akvcwkfv}>
-  {akvcwkfv}
+  {state.auth_state.year.map((ataazhsz, nrqxgufb) => (
+  <option key={nrqxgufb} value={ataazhsz}>
+  {ataazhsz}
 </option>
 ))}
 </Select>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_month", {value:_e0.target.value})], (_e0), {})} placeholder={`birth month`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.month.map((ipozdgex, pvqdueih) => (
-  <option key={pvqdueih} value={ipozdgex}>
-  {ipozdgex}
+  {state.auth_state.month.map((efpuywun, fvuvuwtr) => (
+  <option key={fvuvuwtr} value={efpuywun}>
+  {efpuywun}
 </option>
 ))}
 </Select>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_day", {value:_e0.target.value})], (_e0), {})} placeholder={`birth day`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.day.map((qbduzaik, wnsqqwgo) => (
-  <option key={wnsqqwgo} value={qbduzaik}>
-  {qbduzaik}
+  {state.auth_state.day.map((msmylvdp, mwvgkvqh) => (
+  <option key={mwvgkvqh} value={msmylvdp}>
+  {msmylvdp}
 </option>
 ))}
 </Select>

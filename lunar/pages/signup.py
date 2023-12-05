@@ -61,7 +61,7 @@ def signup():
                     rx.hstack(
                         rx.input(placeholder="Nickname", on_blur=AuthState.set_username),
                         rx.button(
-                            'Double check',
+                            'duplicate check',
                             on_click = AuthState.id_check,
                             size='sm',
                             border_radius="1em",

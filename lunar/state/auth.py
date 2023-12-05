@@ -29,6 +29,11 @@ class AuthState(State):
     user_email_address:str
     user_password_valid:bool=False
     user_realname_valid:bool=False
+    user_confirm_password_valid:bool=False
+    user_email_address_valid:bool=False
+    user_birthday_year_valid:bool = False
+    user_birthday_month_valid:bool = False
+    user_birthday_day_valid:bool = False
 
     # 설정한 회원가입정보 입력값이 유효한지 실시간으로 확인하는 함수
     @rx.var
@@ -41,11 +46,43 @@ class AuthState(State):
     
     @rx.var
     def time_valid_confirm_password(self)->bool:
-        return self.confirm_password != self.password
+        if (self.confirm_password != self.password) or self.confirm_password=='':
+            self.user_confirm_password_valid=False
+        else:
+            self.user_confirm_password_valid=True
+        return (self.confirm_password != self.password) or self.confirm_password==''
     
     @rx.var
     def time_valid_email_address(self)->bool:
+        if '@' not in self.user_email_address:
+            self.user_email_address_valid = False
+        else :
+            self.user_email_address_valid = True
         return '@' not in self.user_email_address
+    
+    @rx.var
+    def time_valid_user_birthday_year(self)->bool:
+        if self.user_birthday_year == '':
+            self.user_birthday_year_valid = False
+        else :
+            self.user_birthday_year_valid = True
+        return self.user_birthday_year==''
+    
+    @rx.var
+    def time_valid_user_birthday_month(self)->bool:
+        if self.user_birthday_month == '':
+            self.user_birthday_month_valid = False
+        else :
+            self.user_birthday_month_valid = True
+        return self.user_birthday_month==''
+    
+    @rx.var
+    def time_valid_user_birthday_day(self)->bool:
+        if self.user_birthday_day == '':
+            self.user_birthday_day_valid = False
+        else :
+            self.user_birthday_day_valid = True
+        return self.user_birthday_day==''
     
     # 유저의 실제 이름 입력값이 유효한지 실시간으로 확인하는 함수
     @rx.var
@@ -85,18 +122,31 @@ class AuthState(State):
         with rx.session() as session:
             if session.exec(select(User).where(User.username == self.username)).first():
                 return rx.window_alert('User nickname already exists.')
+            else :
+                return rx.window_alert('Username is available.')
 
 
     def signup(self):
-        """Sign up a user."""
-        with rx.session() as session:
-            if self.password != self.confirm_password:
-                return rx.window_alert("Passwords do not match.")
-            self.user = User(username=self.username, password=self.password)
-            session.add(self.user)
-            session.expire_on_commit = False
-            session.commit()
-            return rx.redirect("/")
+        if (self.user_password_valid == True) and (self.user_confirm_password_valid == True) and (self.user_realname_valid==True) and (self.user_email_address_valid == True) and (self.user_birthday_year_valid == True) and (self.user_birthday_month_valid==True) and (self.user_birthday_day_valid == True):
+            with rx.session() as session:
+                if session.exec(select(User).where(User.username == self.username)).first():
+                    return rx.window_alert('The ID that already exists. Please check ID duplicates first.')
+                self.user = User(
+                    username=self.username, 
+                    password=self.password,
+                    user_realname=self.user_realname,
+                    user_email = self.user_email_address,
+                    user_birthday_year = self.user_birthday_year,
+                    user_birthday_month = self.user_birthday_month,
+                    user_birthday_day= self.user_birthday_day
+                    )
+                session.add(self.user)
+                session.expire_on_commit = False
+                session.commit()
+                return rx.redirect("/")
+        else :
+            return rx.window_alert('Please enter the information accurately')
+
 
     def login(self):
         """Log in a user."""

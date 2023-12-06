@@ -66,6 +66,12 @@ def findpassword():
                                 on_blur=AuthState.set_user_find_password_email_address,
                                 mb=4,
                             ),
+                            rx.hstack(
+                              rx.input(placeholder='birth year', on_blur=AuthState.set_user_find_password_year),
+                              rx.input(placeholder='birth month', on_blur=AuthState.set_user_find_password_month),
+                              rx.input(placeholder='birth day', on_blur=AuthState.set_user_find_password_day),
+                            ),
+                            rx.container(height='10px'),
                             rx.button(
                                 "Find password",
                                 on_click=AuthState.find_user_password,
@@ -87,6 +93,11 @@ def findpassword():
                             rx.text(
                                 "Don't have an account yet?     ",
                                 rx.link("Sign up!", href="/signup", color="blue.500"),
+                                color="gray.600",
+                            ),
+                            rx.text(
+                                "Already have an account? ",
+                                rx.link("Sign in here.", href="/", color="blue.500"),
                                 color="gray.600",
                             ),
                             align_items='start',

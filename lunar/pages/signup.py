@@ -180,7 +180,7 @@ def signup():
                 ),
                 rx.text(
                     "Already have an account? ",
-                    rx.link("Sign in here.", href="/", color="blue.500"),
+                    rx.link("Sign in here.", href="/", color="yellow.500"),
                     color="gray.600",
                 ),
                 rx.container(height='10px'),

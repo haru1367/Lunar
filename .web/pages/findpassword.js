@@ -93,7 +93,7 @@ export default function Component() {
   <Container>
   <VStack>
   <Container centerContent={true} sx={{"alignItems": "left", "bg": "white", "border": "1px solid #eaeaea", "p": 4, "maxWidth": "400px", "borderRadius": "20px", "background": "rgb(255,255,255,0.7)"}}>
-  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_find_password_id", {value:_e0.target.value})], (_e0), {})} placeholder={`Nickname`} sx={{"mb": 4}} type={`text`}/>
+  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_find_password_id", {value:_e0.target.value})], (_e0), {})} placeholder={`id`} sx={{"mb": 4}} type={`text`}/>
   <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_find_password_email_address", {value:_e0.target.value})], (_e0), {})} placeholder={`email`} sx={{"mb": 4}} type={`text`}/>
   <HStack>
   <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_find_password_year", {value:_e0.target.value})], (_e0), {})} placeholder={`birth year`} type={`text`}/>
@@ -115,7 +115,7 @@ export default function Component() {
 </Text>
   <Text sx={{"color": "gray.600"}}>
   {`Already have an account? `}
-  <Link as={NextLink} href={`/`} sx={{"color": "blue.500"}}>
+  <Link as={NextLink} href={`/`} sx={{"color": "yellow.500"}}>
   {`Sign in here.`}
 </Link>
 </Text>

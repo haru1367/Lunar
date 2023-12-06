@@ -23,6 +23,21 @@ class AuthState(State):
     # 비밀번호 찾기 화면에서 유저가 입력한 생일을 저장할 변수3
     user_find_password_day:str
 
+    # 아이디 찾기 화면에서 유저가 입력한 이름을 저장할 변수
+    user_find_id_name:str
+
+    # 아이디 찾기 화면에서 유저가 입력한 이메일을 저장할 변수
+    user_find_id_email:str
+
+    # 아이디 찾기 화면에서 유저가 입력한 생일을 저장할 변수1
+    user_find_id_year:str
+
+    # 아이디 찾기 화면에서 유저가 입력한 생일을 저장할 변수2
+    user_find_id_month:str
+
+    # 아이디 찾기 화면에서 유저가 입력한 생일을 저장할 변수3
+    user_find_id_day:str 
+
 
     # 태어난 연도를 선택하기 위한 리스트
     year : list[str] = ['1960','1961','1962','1963','1964','1965','1966','1967','1968','1969','1970',
@@ -197,6 +212,18 @@ class AuthState(State):
                 return rx.redirect("/")
         else :
             return rx.window_alert('Please enter the information accurately')
+        
+    # 유저 아이디를 찾는 함수
+    def find_user_id(self):
+        with rx.session() as session:
+            user_query = select(User).where(and_(User.user_realname == self.user_find_id_name, User.user_email == self.user_find_id_email
+                                                 ,User.user_birthday_year == self.user_find_id_year,User.user_birthday_month == self.user_find_id_month,
+                                                 User.user_birthday_day == self.user_find_id_day))
+            found_user = session.exec(user_query).one_or_none()
+            if found_user:
+                return rx.window_alert(f'your id : {found_user.username}')
+            else :
+                return rx.window_alert('There is no matching user information.')
         
     # 유저 비밀번호를 찾는 함수
     def find_user_password(self):

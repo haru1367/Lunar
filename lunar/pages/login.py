@@ -86,6 +86,11 @@ def login():
                         rx.container(height='10px'),
                         rx.vstack(
                             rx.text(
+                                'Forgot your id?     ',
+                                rx.link('Find Id!',href="/findid",color='red.500'),
+                                color='gray.600', 
+                            ),
+                            rx.text(
                                 'Forgot your password?     ',
                                 rx.link('Find Password!',href="/findpassword",color='green.500'),
                                 color="gray.600",

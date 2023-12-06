@@ -67,11 +67,6 @@ export default function Component() {
   <Container sx={{"height": "150px"}}/>
   <HStack>
   <VStack sx={{"width": "500px", "height": "100%"}}>
-  <Container sx={{"height": "30px"}}/>
-  <Image src={`/space2.jpg`}/>
-</VStack>
-  <Container sx={{"width": "30px"}}/>
-  <VStack sx={{"width": "500px", "height": "auto", "centerContent": true, "borderRadius": "40px", "boxShadow": "10px 10px 100px #79d0ed", "background": "rgb(255,255,255,0.7)"}}>
   <HStack>
   <VStack>
   <Container sx={{"height": "20px"}}/>
@@ -89,34 +84,45 @@ export default function Component() {
 </Container>
 </VStack>
 </HStack>
+  <Container sx={{"height": "30px"}}/>
+  <Image src={`/space2.jpg`}/>
+</VStack>
+  <Container sx={{"width": "30px"}}/>
+  <VStack sx={{"width": "500px", "height": "auto", "centerContent": true, "borderRadius": "40px", "boxShadow": "10px 10px 100px #79d0ed", "background": "rgb(255,255,255,0.7)"}}>
   <Container sx={{"height": "20px"}}/>
   <Container>
   <VStack>
   <Container centerContent={true} sx={{"alignItems": "left", "bg": "white", "border": "1px solid #eaeaea", "p": 4, "maxWidth": "400px", "borderRadius": "20px", "background": "rgb(255,255,255,0.7)"}}>
-  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_username", {value:_e0.target.value})], (_e0), {})} placeholder={`Nickname`} sx={{"mb": 4}} type={`text`}/>
-  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_password", {value:_e0.target.value})], (_e0), {})} placeholder={`Password`} sx={{"mb": 4}} type={`password`}/>
-  <Button onClick={(_e) => addEvents([Event("state.auth_state.login", {})], (_e), {})} sx={{"bg": "#212963", "color": "white", "_hover": {"bg": "blue.600"}}}>
-  {`Log in`}
+  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_find_id_name", {value:_e0.target.value})], (_e0), {})} placeholder={`your name`} sx={{"mb": 4}} type={`text`}/>
+  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_find_id_email", {value:_e0.target.value})], (_e0), {})} placeholder={`email`} sx={{"mb": 4}} type={`text`}/>
+  <HStack>
+  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_find_id_year", {value:_e0.target.value})], (_e0), {})} placeholder={`birth year`} type={`text`}/>
+  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_find_id_month", {value:_e0.target.value})], (_e0), {})} placeholder={`birth month`} type={`text`}/>
+  <Input onBlur={(_e0) => addEvents([Event("state.auth_state.set_user_find_id_day", {value:_e0.target.value})], (_e0), {})} placeholder={`birth day`} type={`text`}/>
+</HStack>
+  <Container sx={{"height": "10px"}}/>
+  <Button onClick={(_e) => addEvents([Event("state.auth_state.find_user_id", {})], (_e), {})} sx={{"bg": "#212963", "color": "white", "_hover": {"bg": "blue.600"}}}>
+  {`Find id`}
 </Button>
 </Container>
   <Container sx={{"height": "10px"}}/>
   <VStack alignItems={`start`}>
   <Text sx={{"color": "gray.600"}}>
-  {`Forgot your id?     `}
-  <Link as={NextLink} href={`/findid`} sx={{"color": "red.500"}}>
-  {`Find Id!`}
-</Link>
-</Text>
-  <Text sx={{"color": "gray.600"}}>
-  {`Forgot your password?     `}
-  <Link as={NextLink} href={`/findpassword`} sx={{"color": "green.500"}}>
-  {`Find Password!`}
-</Link>
-</Text>
-  <Text sx={{"color": "gray.600"}}>
   {`Don't have an account yet?     `}
   <Link as={NextLink} href={`/signup`} sx={{"color": "blue.500"}}>
   {`Sign up!`}
+</Link>
+</Text>
+  <Text sx={{"color": "gray.600"}}>
+  {`Already have an account? `}
+  <Link as={NextLink} href={`/`} sx={{"color": "yellow.500"}}>
+  {`Sign in here.`}
+</Link>
+</Text>
+  <Text sx={{"color": "gray.600"}}>
+  {`Forgot your password? `}
+  <Link as={NextLink} href={`/findpassword`} sx={{"color": "green.500"}}>
+  {`Find Password!`}
 </Link>
 </Text>
 </VStack>

@@ -1,9 +1,9 @@
-"""findpassword page. Uses auth_layout to render UI shared with the sign up page."""
+"""findid page. Uses auth_layout to render UI shared with the sign up page."""
 import reflex as rx
 
 from lunar.state.auth import AuthState
 
-def findpassword():
+def findid():
     return rx.container(
         rx.container(height='150px'),
         rx.hstack( 
@@ -60,21 +60,21 @@ def findpassword():
                 rx.container(
                     rx.vstack(
                         rx.container(
-                            rx.input(placeholder="id", on_blur=AuthState.set_user_find_password_id, mb=4),
+                            rx.input(placeholder="your name", on_blur=AuthState.set_user_find_id_name, mb=4),
                             rx.input(
                                 placeholder="email",
-                                on_blur=AuthState.set_user_find_password_email_address,
+                                on_blur=AuthState.set_user_find_id_email,
                                 mb=4,
                             ),
                             rx.hstack(
-                              rx.input(placeholder='birth year', on_blur=AuthState.set_user_find_password_year),
-                              rx.input(placeholder='birth month', on_blur=AuthState.set_user_find_password_month),
-                              rx.input(placeholder='birth day', on_blur=AuthState.set_user_find_password_day),
+                              rx.input(placeholder='birth year', on_blur=AuthState.set_user_find_id_year),
+                              rx.input(placeholder='birth month', on_blur=AuthState.set_user_find_id_month),
+                              rx.input(placeholder='birth day', on_blur=AuthState.set_user_find_id_day),
                             ),
                             rx.container(height='10px'),
                             rx.button(
-                                "Find password",
-                                on_click=AuthState.find_user_password,
+                                "Find id",
+                                on_click=AuthState.find_user_id,
                                 bg="#212963",
                                 color="white",
                                 _hover={"bg": "blue.600"},
@@ -99,6 +99,11 @@ def findpassword():
                                 "Already have an account? ",
                                 rx.link("Sign in here.", href="/", color="yellow.500"),
                                 color="gray.600",
+                            ),
+                            rx.text(
+                                'Forgot your password? ',
+                                rx.link('Find Password!',href='/findpassword', color='green.500'),
+                                color='gray.600',
                             ),
                             align_items='start',
                         ),

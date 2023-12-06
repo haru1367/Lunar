@@ -1,4 +1,4 @@
-"""Login page. Uses auth_layout to render UI shared with the sign up page."""
+"""findpassword page. Uses auth_layout to render UI shared with the sign up page."""
 import reflex as rx
 
 from lunar.state.auth import AuthState

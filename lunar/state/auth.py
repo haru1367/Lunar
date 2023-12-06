@@ -196,7 +196,7 @@ class AuthState(State):
 
             if found_user:
                 password_list = list(found_user.password)
-                for i in range(4, len(password_list)):
+                for i in range(3, len(password_list)):
                     password_list[i] = '*'
                 password_hint = "".join(password_list)
                 return rx.window_alert(f'Password Hint: {password_hint}')

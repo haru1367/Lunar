@@ -1,6 +1,6 @@
 """The authentication state."""
 import reflex as rx
-from sqlmodel import select
+from sqlmodel import select,and_,or_
 from .base import State, User
 import re
 
@@ -187,6 +187,22 @@ class AuthState(State):
                 return rx.redirect("/")
         else :
             return rx.window_alert('Please enter the information accurately')
+        
+    # 유저 비밀번호를 찾는 함수
+    def find_user_password(self):
+        with rx.session() as session:
+            user_query = select(User).where(and_(User.username == self.user_find_password_id, User.user_email == self.user_find_password_email_address))
+            found_user = session.exec(user_query).one_or_none()
+
+            if found_user:
+                password_list = list(found_user.password)
+                for i in range(4, len(password_list)):
+                    password_list[i] = '*'
+                password_hint = "".join(password_list)
+                return rx.window_alert(f'Password Hint: {password_hint}')
+            else:
+                return rx.window_alert('There is no matching user information.')
+
 
 
     def login(self):

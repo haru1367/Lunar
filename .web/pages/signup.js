@@ -176,30 +176,30 @@ export default function Component() {
   <Container sx={{"height": "16px"}}/>
   <HStack>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_year", {value:_e0.target.value})], (_e0), {})} placeholder={`birth year`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.year.map((pshpxcdl, muuhzyvf) => (
-  <option key={muuhzyvf} value={pshpxcdl}>
-  {pshpxcdl}
+  {state.auth_state.year.map((dqtthzme, breqsjnv) => (
+  <option key={breqsjnv} value={dqtthzme}>
+  {dqtthzme}
 </option>
 ))}
 </Select>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_month", {value:_e0.target.value})], (_e0), {})} placeholder={`birth month`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.month.map((hybnglqa, kzwzvcdu) => (
-  <option key={kzwzvcdu} value={hybnglqa}>
-  {hybnglqa}
+  {state.auth_state.month.map((woreoiod, wbxtzhts) => (
+  <option key={wbxtzhts} value={woreoiod}>
+  {woreoiod}
 </option>
 ))}
 </Select>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_day", {value:_e0.target.value})], (_e0), {})} placeholder={`birth day`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.day.map((ylesirtd, imrflokr) => (
-  <option key={imrflokr} value={ylesirtd}>
-  {ylesirtd}
+  {state.auth_state.day.map((idgmqewy, lqgnbliw) => (
+  <option key={lqgnbliw} value={idgmqewy}>
+  {idgmqewy}
 </option>
 ))}
 </Select>
 </HStack>
   <VStack alignItems={`left`} sx={{"centerContent": true, "bg": "white", "maxWidth": "400px", "borderRadius": "20px", "background": "rgb(255,255,255,0.7)"}}>
   <Container sx={{"height": "20px"}}/>
-  <Button onClick={(_e) => addEvents([Event("state.auth_state.login", {})], (_e), {})} sx={{"bg": "#212963", "color": "white", "_hover": {"bg": "blue.600"}}}>
+  <Button onClick={(_e) => addEvents([Event("state.auth_state.signup", {})], (_e), {})} sx={{"bg": "#212963", "color": "white", "_hover": {"bg": "blue.600"}}}>
   {`Sign up`}
 </Button>
 </VStack>

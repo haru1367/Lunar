@@ -68,6 +68,7 @@ def findpassword():
                             ),
                             rx.button(
                                 "Find password",
+                                on_click=AuthState.find_user_password,
                                 bg="#212963",
                                 color="white",
                                 _hover={"bg": "blue.600"},

@@ -159,7 +159,7 @@ def signup():
                         rx.container(height='20px'),
                         rx.button(
                             "Sign up",
-                            on_click=AuthState.login,
+                            on_click=AuthState.signup,
                             bg="#212963",
                             color="white",
                             _hover={"bg": "blue.600"},

@@ -147,12 +147,25 @@ class AuthState(State):
             else :
                 return rx.window_alert('Username is available.')
 
-
+    # 회원가입을 하는 버튼
     def signup(self):
+        # 사용자가 입력한 모든 정보가 유효한 값일때때
         if (self.user_password_valid == True) and (self.user_confirm_password_valid == True) and (self.user_realname_valid==True) and (self.user_email_address_valid == True) and (self.user_birthday_year_valid == True) and (self.user_birthday_month_valid==True) and (self.user_birthday_day_valid == True):
+            year = int(self.user_birthday_year)
+            month = int(self.user_birthday_month)
+            day = int(self.user_birthday_day)
+            if year%4==0 and month ==2 and day >=29:
+                return rx.window_alert('invalid birthday')
+            if month in [2,4,6,9,11] and day ==31:
+                return rx.window_alert('invalid birthday') 
+            
             with rx.session() as session:
+
+                # 아이디 중복체크를 했는지 판별
                 if session.exec(select(User).where(User.username == self.username)).first():
                     return rx.window_alert('The ID that already exists. Please check ID duplicates first.')
+                
+                # 서버에 데이터 저장
                 self.user = User(
                     username=self.username, 
                     password=self.password,

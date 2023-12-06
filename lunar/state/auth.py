@@ -8,6 +8,12 @@ import re
 class AuthState(State):
     """The authentication state for sign up and login page."""
 
+    # 비밀번호 찾기 화면에서 유저가 입력한 아이디를 저장할 변수
+    user_find_password_id:str
+
+    # 비밀번호 찾기 화면에서 유저가 입력한 이메일을 저장할 변수
+    user_find_password_email_address:str
+
     # 태어난 연도를 선택하기 위한 리스트
     year : list[str] = ['1960','1961','1962','1963','1964','1965','1966','1967','1968','1969','1970',
                         '1971','1972','1973','1974','1975','1976','1977','1978','1979','1980',

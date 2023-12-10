@@ -30,7 +30,11 @@ def tabs():
         rx.vstack(
             rx.container(
                 rx.hstack(
-                    rx.icon(tag="moon", mr=4, color='yellow',size='20px'),  # 달 모양 아이콘
+                    rx.image(
+                        src='/moon.png',
+                        height='60px',
+                        width='60px',         
+                    ),
                     rx.text(
                         "Lunar", 
                         style={
@@ -46,8 +50,37 @@ def tabs():
                 ),
             ),
             rx.vstack(
+                rx.container(
+                    rx.hstack(
+                        rx.image(src='/human.png',height='40px',width='40px'),
+                        rx.text(
+                            'Recommended freinds',
+                            style={
+                                'fontSize':'25px',
+                                'fontWeight':'bolder',
+                                'fontFamily':'Calibri, Calibri',
+                                "background": "-webkit-linear-gradient(-45deg, #8ea6e6, #ad3ce6)",
+                                '-webkit-background-clip':'text',
+                                'color':'transparent',
+                            },
+                        ),
+                    ),
+                    rx.container(height='10px'),
+                    rx.vstack(
+                        rx.container(height='200px'),
+                        border = '2px solid #000000',
+                        border_radius='30px',
+                    ),
+                ),
+                align_items='start',
             ),
-            rx.button("Sign out", on_click=State.logout),  # 로그아웃 버튼
+            rx.button(
+                "Sign out",
+                on_click=State.logout,
+                bg="#212963",
+                color="white",
+                _hover={"bg": "blue.600"},
+            ),
             rx.container(height='200px'),
             align_items="left",
             gap=4,
@@ -59,12 +92,16 @@ def tabs():
 def sidebar(HomeState):
     """The sidebar displayed on the right."""
     return rx.vstack(
-        rx.input(
-            on_change=HomeState.set_friend,
-            placeholder="Search users",  # 사용자 검색을 위한 입력 상자
-            width="100%",
-            border = "3px solid #000000",
+        rx.hstack(
+            rx.image(src='/find2.png',height='35px',width='35px'),
+            rx.input(
+                on_change=HomeState.set_friend,
+                placeholder="Search users",  # 사용자 검색을 위한 입력 상자
+                width="100%",
+                border = "3px solid #000000",
+            ),
         ),
+        rx.container(height='10px'),
         rx.foreach(
             HomeState.search_users,
             lambda user: rx.vstack(
@@ -92,14 +129,14 @@ def sidebar(HomeState):
 def feed_header(HomeState):
     """The header of the feed."""
     return rx.hstack(
-        rx.heading("Story", size="md"),  # 피드의 제목
-        rx.input(on_change=HomeState.set_search, placeholder="Search tweets"),  # 트윗 검색을 위한 입력 상자
+        rx.image(src='/find1.png',height='35px',width='35px'),
+        rx.input(on_change=HomeState.set_search, placeholder="Search contents"),  # 콘텐츠 검색을 위한 입력 상자
         justify="space-between",
         p=4,
         border_bottom="3px solid #000000",
     )
 
-# 새로운 트윗을 작성하는 컴포저
+# 새로운 게시물을 작성하는 컴포저
 def composer(HomeState):
     """The composer for new tweets."""
     return rx.vstack(

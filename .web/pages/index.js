@@ -3,10 +3,10 @@ import { useRouter } from "next/router"
 import { Event, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventDefault, refs, set_val, spreadArraysOrObjects, uploadFiles, useEventLoop } from "/utils/state"
 import { ColorModeContext, EventLoopContext, initialEvents, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
-import { Avatar, Box, Button, Container, Grid, Heading, HStack, Image, Input, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Spacer, Text, Textarea, VStack } from "@chakra-ui/react"
+import { Avatar, Box, Button, Container, Grid, HStack, Image, Input, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Spacer, Text, Textarea, VStack } from "@chakra-ui/react"
 import { getEventURL } from "/utils/state.js"
-import { AddIcon, MoonIcon, RepeatIcon } from "@chakra-ui/icons"
 import { DebounceInput } from "react-debounce-input"
+import { AddIcon, RepeatIcon } from "@chakra-ui/icons"
 import NextLink from "next/link"
 import NextHead from "next/head"
 
@@ -71,14 +71,27 @@ export default function Component() {
   <VStack alignItems={`left`} sx={{"gap": 4}}>
   <Container>
   <HStack>
-  <MoonIcon sx={{"mr": 4, "color": "yellow", "size": "20px"}}/>
+  <Image src={`/moon.png`} sx={{"height": "60px", "width": "60px"}}/>
   <Text sx={{"fontSize": "40px", "fontWeight": "bolder", "fontFamily": "Calibri, Calibri", "background": "-webkit-linear-gradient(-45deg, #e04a3f, #4e8be6)", "-webkit-background-clip": "text", "color": "transparent", "centerContent": true}}>
   {`Lunar`}
 </Text>
 </HStack>
 </Container>
-  <VStack/>
-  <Button onClick={(_e) => addEvents([Event("state.logout", {})], (_e), {})}>
+  <VStack alignItems={`start`}>
+  <Container>
+  <HStack>
+  <Image src={`/human.png`} sx={{"height": "40px", "width": "40px"}}/>
+  <Text sx={{"fontSize": "25px", "fontWeight": "bolder", "fontFamily": "Calibri, Calibri", "background": "-webkit-linear-gradient(-45deg, #8ea6e6, #ad3ce6)", "-webkit-background-clip": "text", "color": "transparent"}}>
+  {`Recommended freinds`}
+</Text>
+</HStack>
+  <Container sx={{"height": "10px"}}/>
+  <VStack sx={{"border": "2px solid #000000", "borderRadius": "30px"}}>
+  <Container sx={{"height": "200px"}}/>
+</VStack>
+</Container>
+</VStack>
+  <Button onClick={(_e) => addEvents([Event("state.logout", {})], (_e), {})} sx={{"bg": "#212963", "color": "white", "_hover": {"bg": "blue.600"}}}>
   {`Sign out`}
 </Button>
   <Container sx={{"height": "200px"}}/>
@@ -86,9 +99,7 @@ export default function Component() {
 </Box>
   <Box sx={{"h": "100%"}}>
   <HStack justify={`space-between`} sx={{"p": 4, "borderBottom": "3px solid #000000"}}>
-  <Heading size={`md`}>
-  {`Story`}
-</Heading>
+  <Image src={`/find1.png`} sx={{"height": "35px", "width": "35px"}}/>
   <Input onChange={(_e0) => addEvents([Event("state.home_state.set_search", {search:_e0.target.value})], (_e0), {})} placeholder={`Search tweets`} type={`text`}/>
 </HStack>
   <VStack>
@@ -110,24 +121,24 @@ export default function Component() {
   <Fragment>
   {isTrue(state.home_state.tweets) ? (
   <Fragment>
-  {state.home_state.tweets.map((cwuwwhbn, mnmrfppv) => (
-  <VStack alignItems={`start`} key={mnmrfppv} sx={{"marginLeft": "15px", "width": "auto"}}>
+  {state.home_state.tweets.map((lksfoyce, jzpgqilt) => (
+  <VStack alignItems={`start`} key={jzpgqilt} sx={{"marginLeft": "15px", "width": "auto"}}>
   <HStack sx={{"py": 4, "gap": 1, "border": "3px solid #3498db", "borderRadius": "10px", "width": "98%"}}>
   <Container sx={{"width": "5px"}}/>
   <VStack>
-  <Avatar name={cwuwwhbn.author} size={`sm`}/>
+  <Avatar name={lksfoyce.author} size={`sm`}/>
 </VStack>
   <Box sx={{"width": "100%"}}>
   <HStack>
   <Text sx={{"fontWeight": "bold"}}>
-  {("@" + cwuwwhbn.author)}
+  {("@" + lksfoyce.author)}
 </Text>
   <Text>
-  {(("[" + cwuwwhbn.created_at) + "]")}
+  {(("[" + lksfoyce.created_at) + "]")}
 </Text>
 </HStack>
   <Text sx={{"width": "100%"}}>
-  {cwuwwhbn.content}
+  {lksfoyce.content}
 </Text>
 </Box>
 </HStack>
@@ -150,16 +161,20 @@ export default function Component() {
 </Fragment>
 </Box>
   <VStack alignItems={`start`} sx={{"gap": 4, "h": "100%", "py": 4}}>
+  <HStack>
+  <Image src={`/find2.png`} sx={{"height": "35px", "width": "35px"}}/>
   <Input onChange={(_e0) => addEvents([Event("state.home_state.set_friend", {value:_e0.target.value})], (_e0), {})} placeholder={`Search users`} sx={{"width": "100%", "border": "3px solid #000000"}} type={`text`}/>
-  {state.home_state.search_users.map((oxensgvb, szydycsw) => (
-  <VStack key={szydycsw} sx={{"py": 2, "width": "100%"}}>
+</HStack>
+  <Container sx={{"height": "10px"}}/>
+  {state.home_state.search_users.map((krtnebxz, qpglnhcd) => (
+  <VStack key={qpglnhcd} sx={{"py": 2, "width": "100%"}}>
   <HStack sx={{"width": "100%"}}>
-  <Avatar name={oxensgvb.username} size={`sm`}/>
+  <Avatar name={krtnebxz.username} size={`sm`}/>
   <Text>
-  {oxensgvb.username}
+  {krtnebxz.username}
 </Text>
   <Spacer/>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:oxensgvb.username})], (_e), {})}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:krtnebxz.username})], (_e), {})}>
   <AddIcon/>
 </Button>
 </HStack>

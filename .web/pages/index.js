@@ -3,10 +3,11 @@ import { useRouter } from "next/router"
 import { Event, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventDefault, refs, set_val, spreadArraysOrObjects, uploadFiles, useEventLoop } from "/utils/state"
 import { ColorModeContext, EventLoopContext, initialEvents, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
-import { Avatar, Box, Button, Grid, Heading, HStack, Input, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Spacer, Text, Textarea, VStack } from "@chakra-ui/react"
+import { Avatar, Box, Button, Container, Grid, Heading, HStack, Image, Input, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Spacer, Text, Textarea, VStack } from "@chakra-ui/react"
 import { getEventURL } from "/utils/state.js"
+import { AddIcon, MoonIcon, RepeatIcon } from "@chakra-ui/icons"
+import { DebounceInput } from "react-debounce-input"
 import NextLink from "next/link"
-import { AddIcon, RepeatIcon, StarIcon } from "@chakra-ui/icons"
 import NextHead from "next/head"
 
 
@@ -64,74 +65,74 @@ export default function Component() {
   <Fragment/>
 )}
 </Fragment>
-  <Box sx={{"width": "100%", "maxWidth": "1300px", "bg": "white", "h": "100%", "px": [4, 12], "margin": "0 auto", "position": "relative"}}>
-  <Grid sx={{"gridTemplateColumns": "1fr 2fr 1fr", "h": "100vh", "gap": 4}}>
+  <VStack sx={{"width": "100%"}}>
+  <Grid sx={{"gridTemplateColumns": "2fr 5fr 2fr", "width": "97%", "h": "90vh", "gap": 4}}>
   <Box sx={{"py": 4}}>
   <VStack alignItems={`left`} sx={{"gap": 4}}>
-  <Heading size={`md`}>
-  {`PySocial`}
-</Heading>
-  <Link as={NextLink} href={`/`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 6, "border": "1px solid #eaeaea", "fontWeight": "semibold", "borderRadius": "full"}}>
-  <StarIcon sx={{"mr": 2}}/>
-  {`Home`}
-</Link>
-  <Box sx={{"p": 4, "borderRadius": "md", "border": "1px solid #eaeaea"}}>
-  <Heading size={`sm`}>
-  {`Followers`}
-</Heading>
-  {state.home_state.followers.map((gnuxevhc, olaorlcy) => (
-  <VStack key={olaorlcy} sx={{"padding": "1em"}}>
+  <Container>
   <HStack>
-  <Avatar name={gnuxevhc.follower_username} size={`sm`}/>
-  <Text>
-  {gnuxevhc.follower_username}
+  <MoonIcon sx={{"mr": 4, "color": "yellow", "size": "20px"}}/>
+  <Text sx={{"fontSize": "40px", "fontWeight": "bolder", "fontFamily": "Calibri, Calibri", "background": "-webkit-linear-gradient(-45deg, #e04a3f, #4e8be6)", "-webkit-background-clip": "text", "color": "transparent", "centerContent": true}}>
+  {`Lunar`}
 </Text>
 </HStack>
-</VStack>
-))}
-</Box>
+</Container>
+  <VStack/>
   <Button onClick={(_e) => addEvents([Event("state.logout", {})], (_e), {})}>
   {`Sign out`}
 </Button>
+  <Container sx={{"height": "200px"}}/>
 </VStack>
 </Box>
-  <Box sx={{"borderX": "1px solid #ededed", "h": "100%"}}>
-  <HStack justify={`space-between`} sx={{"p": 4, "borderBottom": "1px solid #ededed"}}>
+  <Box sx={{"h": "100%"}}>
+  <HStack justify={`space-between`} sx={{"p": 4, "borderBottom": "3px solid #000000"}}>
   <Heading size={`md`}>
-  {`Home`}
+  {`Story`}
 </Heading>
   <Input onChange={(_e0) => addEvents([Event("state.home_state.set_search", {search:_e0.target.value})], (_e0), {})} placeholder={`Search tweets`} type={`text`}/>
 </HStack>
-  <Grid sx={{"gridTemplateColumns": "1fr 5fr", "borderBottom": "1px solid #ededed"}}>
-  <VStack sx={{"p": 4}}>
+  <VStack>
+  <Container sx={{"height": "5px"}}/>
+  <VStack sx={{"marginLeft": "5px", "width": "97%", "borderRadius": "20px", "border": "3px solid #000000"}}>
+  <HStack sx={{"width": "95%", "marginLeft": "30px"}}>
   <Avatar size={`md`}/>
-</VStack>
-  <Box>
-  <Textarea onBlur={(_e0) => addEvents([Event("state.home_state.set_tweet", {value:_e0.target.value})], (_e0), {})} placeholder={`What's happening?`} sx={{"w": "100%", "border": 0, "resize": "none", "py": 4, "px": 0, "_focus": {"border": 0, "outline": 0, "boxShadow": "none"}}}/>
-  <HStack justifyContent={`flex-end`} sx={{"borderTop": "1px solid #ededed", "px": 4, "py": 2}}>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.post_tweet", {})], (_e), {})} sx={{"bg": "rgb(29 161 242)", "color": "white", "borderRadius": "full"}}>
+  <Container sx={{"width": "30px"}}/>
+  <DebounceInput debounceTimeout={50} element={Textarea} onChange={(_e0) => addEvents([Event("state.home_state.set_tweet", {value:_e0.target.value})], (_e0), {})} placeholder={`What's happening?`} sx={{"w": "100%", "border": 2, "resize": "none", "py": 4, "px": 0, "_focus": {"border": 0, "outline": 0, "boxShadow": "none"}}} value={state.home_state.tweet}/>
+</HStack>
+  <HStack justifyContent={`flex-end`} sx={{"px": 4, "py": 2, "width": "100%"}}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.post_tweet", {})], (_e), {})} sx={{"margin-left": "auto", "borderRadius": "1em", "boxShadow": "rgba(151, 65, 252, 0.8) 0 15px 30px -10px", "backgroundImage": "linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)", "boxSizing": "border-box", "color": "white", "opacity": "0.6", "_hover": {"opacity": 1}}}>
   {`Tweet`}
 </Button>
 </HStack>
-</Box>
-</Grid>
+</VStack>
+</VStack>
+  <Container sx={{"height": "10px"}}/>
   <Fragment>
   {isTrue(state.home_state.tweets) ? (
   <Fragment>
-  {state.home_state.tweets.map((myprhxdm, zilebato) => (
-  <Grid key={zilebato} sx={{"gridTemplateColumns": "1fr 5fr", "py": 4, "gap": 1, "borderBottom": "1px solid #ededed"}}>
+  {state.home_state.tweets.map((cwuwwhbn, mnmrfppv) => (
+  <VStack alignItems={`start`} key={mnmrfppv} sx={{"marginLeft": "15px", "width": "auto"}}>
+  <HStack sx={{"py": 4, "gap": 1, "border": "3px solid #3498db", "borderRadius": "10px", "width": "98%"}}>
+  <Container sx={{"width": "5px"}}/>
   <VStack>
-  <Avatar name={myprhxdm.author} size={`sm`}/>
+  <Avatar name={cwuwwhbn.author} size={`sm`}/>
 </VStack>
-  <Box>
+  <Box sx={{"width": "100%"}}>
+  <HStack>
   <Text sx={{"fontWeight": "bold"}}>
-  {("@" + myprhxdm.author)}
+  {("@" + cwuwwhbn.author)}
 </Text>
+  <Text>
+  {(("[" + cwuwwhbn.created_at) + "]")}
+</Text>
+</HStack>
   <Text sx={{"width": "100%"}}>
-  {myprhxdm.content}
+  {cwuwwhbn.content}
 </Text>
 </Box>
-</Grid>
+</HStack>
+  <Container sx={{"height": "5px"}}/>
+</VStack>
 ))}
 </Fragment>
 ) : (
@@ -149,39 +150,29 @@ export default function Component() {
 </Fragment>
 </Box>
   <VStack alignItems={`start`} sx={{"gap": 4, "h": "100%", "py": 4}}>
-  <Input onChange={(_e0) => addEvents([Event("state.home_state.set_friend", {value:_e0.target.value})], (_e0), {})} placeholder={`Search users`} sx={{"width": "100%"}} type={`text`}/>
-  {state.home_state.search_users.map((dwgaiddv, kurqttvr) => (
-  <VStack key={kurqttvr} sx={{"py": 2, "width": "100%"}}>
+  <Input onChange={(_e0) => addEvents([Event("state.home_state.set_friend", {value:_e0.target.value})], (_e0), {})} placeholder={`Search users`} sx={{"width": "100%", "border": "3px solid #000000"}} type={`text`}/>
+  {state.home_state.search_users.map((oxensgvb, szydycsw) => (
+  <VStack key={szydycsw} sx={{"py": 2, "width": "100%"}}>
   <HStack sx={{"width": "100%"}}>
-  <Avatar name={dwgaiddv.username} size={`sm`}/>
+  <Avatar name={oxensgvb.username} size={`sm`}/>
   <Text>
-  {dwgaiddv.username}
+  {oxensgvb.username}
 </Text>
   <Spacer/>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:dwgaiddv.username})], (_e), {})}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:oxensgvb.username})], (_e), {})}>
   <AddIcon/>
 </Button>
 </HStack>
 </VStack>
 ))}
-  <Box sx={{"p": 4, "borderRadius": "md", "border": "1px solid #eaeaea", "w": "100%"}}>
-  <Heading size={`sm`}>
-  {`Following`}
-</Heading>
-  {state.home_state.following.map((ouvxsvzz, otutlpou) => (
-  <VStack key={otutlpou} sx={{"padding": "1em"}}>
-  <HStack>
-  <Avatar name={ouvxsvzz.followed_username} size={`sm`}/>
-  <Text>
-  {ouvxsvzz.followed_username}
-</Text>
-</HStack>
-</VStack>
-))}
-</Box>
 </VStack>
 </Grid>
-</Box>
+  <HStack>
+  <Link as={NextLink} href={`/`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 6, "border": "1px solid #000000", "fontWeight": "semibold", "borderRadius": "full"}}>
+  <Image src={`/Home.png`} sx={{"width": "30px", "height": "30px"}}/>
+</Link>
+</HStack>
+</VStack>
   <NextHead>
   <title>
   {`Reflex App`}

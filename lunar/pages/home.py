@@ -8,19 +8,19 @@ from ..components import container
 
 color = "rgb(107,99,246)"
 # 탭 버튼을 생성하는 함수
-def tab_button(name, href,tags):
+def tab_button(imagepath, href):
     """A tab switcher button."""
     return rx.link(
-        rx.icon(tag=tags, mr=2),  # 별 모양 아이콘
-        name,  # 버튼 텍스트
+        rx.image(
+            src=imagepath,
+            height='40px',
+            width='40px',
+        ),
         display="inline-flex",
         align_items="center",
         py=3,
-        px=6,
+        px=2,
         href=href,  # 버튼 클릭 시 이동할 경로
-        border="1px solid #000000",
-        font_weight="semibold",
-        border_radius="full",
     )
 
 # 왼쪽에 표시되는 탭 스위처
@@ -161,7 +161,18 @@ def composer(HomeState):
             ),
             rx.hstack(
                 rx.button(
-                    "Tweet",
+                    "Select File",
+                    border_radius="1em",
+                    box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",
+                    background_image="linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)",
+                    box_sizing="border-box",
+                    color="white",
+                    opacity="0.6",
+                    _hover={"opacity": 1},
+                    on_click=HomeState.handle_file_selection,
+                ),
+                rx.button(
+                    "Upload",
                     on_click= HomeState.post_tweet,
                     border_radius="1em",
                     box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",
@@ -177,6 +188,53 @@ def composer(HomeState):
                 py=2,
                 width='100%',
             ),
+            rx.modal(
+                rx.modal_overlay(
+                    rx.modal_content(
+                        rx.modal_header("File upload"),
+                        rx.modal_body(
+                            rx.responsive_grid(
+                                rx.foreach(
+                                    HomeState.img,
+                                    lambda img: rx.vstack(
+                                        rx.image(src=img),
+                                        rx.text(img),
+                                    ),
+                                ),
+                                columns=[2],
+                                spacing="5px",
+                            ),
+                        ),
+                        rx.modal_footer(
+                            rx.button(
+                                "Confirm", on_click=HomeState.change
+                            ),
+                            rx.button(
+                                "Cancel",
+                                on_click=HomeState.file_select_cancel,
+                                border_radius="1em",
+                                box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",
+                                background_image="linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)",
+                                box_sizing="border-box",
+                                color="white",
+                                opacity="0.6",
+                                _hover={"opacity": 1},
+                            ),
+                        ),
+                    )
+                ),
+                is_open=HomeState.imgshow,
+            ),
+            rx.responsive_grid(
+                rx.foreach(
+                    HomeState.img,
+                    lambda img: rx.vstack(
+                        rx.text(img),
+                    ),
+                ),
+                columns=[2],
+                spacing="5px",
+            ),
             margin_left='5px',
             width='97%',
             border_radius='20px',
@@ -187,6 +245,14 @@ def composer(HomeState):
 
 # 개별 트윗을 표시하는 함수
 def tweet(tweet):
+    image_tags = rx.cond(
+        tweet.image_content,
+        rx.foreach(
+            tweet.image_content.split(", "),
+            lambda image: rx.image(src=f"/{image}", alt="tweet image")
+        ),
+        rx.box()  # 이미지가 없는 경우 빈 리스트를 반환합니다.
+    ),
 
     return rx.vstack(
         rx.hstack(
@@ -200,6 +266,7 @@ def tweet(tweet):
                     rx.text("["+ tweet.created_at +"]"),
                 ),
                 rx.text(tweet.content, width="100%"),  # 트윗 내용
+                *image_tags,
                 width = '100%',
             ),
             py=4,
@@ -233,7 +300,7 @@ def feed(HomeState):
                         tag="repeat",
                         mr=1,
                     ),
-                    rx.text("Click to load tweets"),
+                    rx.text("Click to load story"),
                     on_click=HomeState.get_tweets,
                 ),  # 트윗을 불러오는 버튼
                 p=4,
@@ -256,21 +323,18 @@ def home():
             gap=4,
         ),
         rx.hstack(
-            rx.link(
-                rx.image(
-                    src='/Home.png',
-                    width='30px',
-                    height='30px',
-                ),
-                display="inline-flex",
-                align_items="center",
-                py=3,
-                px=6,
-                href='/',  # 버튼 클릭 시 이동할 경로
-                border="1px solid #000000",
-                font_weight="semibold",
-                border_radius="full",
-            ),
+            tab_button('/Home.png','/'),
+            tab_button('/profile.png','/profile'),
+            tab_button('/map.png','/map'),
+            tab_button('/chat.png','/chat'),
+            tab_button('/Aichat.png','/aichat'),
+            tab_button('/diary.png','/diary'),
+            tab_button('/video.png','/video'),
+            tab_button('/game.png','/game'),
+            tab_button('/setting.png','/setting'),
+            margin_right='5px',
+            border="1px solid #000000",
+            border_radius="full",
         ),
         width='100%',
     )

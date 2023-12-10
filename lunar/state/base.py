@@ -1,8 +1,6 @@
 """Base state for Twitter example. Schema is inspired by https://drawsql.app/templates/twitter."""
-from typing import Optional
-
+from typing import Optional,List,Union
 from sqlmodel import Field
-
 import reflex as rx
 
 
@@ -33,9 +31,10 @@ class Tweet(rx.Model, table=True):
 
     content: str = Field()
     created_at: str = Field()
-
     author: str = Field()
-
+    image_content: str = Field()
+    good_list: list[str] = Field()
+    comment_list:list[str,list[str]] = Field()
 
 class State(rx.State):
     """The base state for the app."""

@@ -3,7 +3,7 @@ import { useRouter } from "next/router"
 import { Event, getAllLocalStorageItems, getRefValue, getRefValues, isTrue, preventDefault, refs, set_val, spreadArraysOrObjects, uploadFiles, useEventLoop } from "/utils/state"
 import { ColorModeContext, EventLoopContext, initialEvents, StateContext } from "/utils/context.js"
 import "focus-visible/dist/focus-visible"
-import { Avatar, Box, Button, Container, Grid, HStack, Image, Input, Link, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, Spacer, Text, Textarea, VStack } from "@chakra-ui/react"
+import { Avatar, Box, Button, Container, Grid, HStack, Image, Input, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, Spacer, Text, Textarea, VStack } from "@chakra-ui/react"
 import { getEventURL } from "/utils/state.js"
 import { DebounceInput } from "react-debounce-input"
 import { AddIcon, RepeatIcon } from "@chakra-ui/icons"
@@ -111,35 +111,89 @@ export default function Component() {
   <DebounceInput debounceTimeout={50} element={Textarea} onChange={(_e0) => addEvents([Event("state.home_state.set_tweet", {value:_e0.target.value})], (_e0), {})} placeholder={`What's happening?`} sx={{"w": "100%", "border": 2, "resize": "none", "py": 4, "px": 0, "_focus": {"border": 0, "outline": 0, "boxShadow": "none"}}} value={state.home_state.tweet}/>
 </HStack>
   <HStack justifyContent={`flex-end`} sx={{"px": 4, "py": 2, "width": "100%"}}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.handle_file_selection", {})], (_e), {})} sx={{"borderRadius": "1em", "boxShadow": "rgba(151, 65, 252, 0.8) 0 15px 30px -10px", "backgroundImage": "linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)", "boxSizing": "border-box", "color": "white", "opacity": "0.6", "_hover": {"opacity": 1}}}>
+  {`Select File`}
+</Button>
   <Button onClick={(_e) => addEvents([Event("state.home_state.post_tweet", {})], (_e), {})} sx={{"margin-left": "auto", "borderRadius": "1em", "boxShadow": "rgba(151, 65, 252, 0.8) 0 15px 30px -10px", "backgroundImage": "linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)", "boxSizing": "border-box", "color": "white", "opacity": "0.6", "_hover": {"opacity": 1}}}>
-  {`Tweet`}
+  {`Upload`}
 </Button>
 </HStack>
+  <Modal isOpen={state.home_state.imgshow}>
+  <ModalOverlay>
+  <ModalContent>
+  <ModalHeader>
+  {`File upload`}
+</ModalHeader>
+  <ModalBody>
+  <SimpleGrid columns={[2]} spacing={`5px`}>
+  {state.home_state.img.map((rtazfenw, cagneurz) => (
+  <VStack key={cagneurz}>
+  <Image src={rtazfenw}/>
+  <Text>
+  {rtazfenw}
+</Text>
+</VStack>
+))}
+</SimpleGrid>
+</ModalBody>
+  <ModalFooter>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.change", {})], (_e), {})}>
+  {`Confirm`}
+</Button>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.file_select_cancel", {})], (_e), {})} sx={{"borderRadius": "1em", "boxShadow": "rgba(151, 65, 252, 0.8) 0 15px 30px -10px", "backgroundImage": "linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)", "boxSizing": "border-box", "color": "white", "opacity": "0.6", "_hover": {"opacity": 1}}}>
+  {`Cancel`}
+</Button>
+</ModalFooter>
+</ModalContent>
+</ModalOverlay>
+</Modal>
+  <SimpleGrid columns={[2]} spacing={`5px`}>
+  {state.home_state.img.map((ntjkgtxd, ikhirsee) => (
+  <VStack key={ikhirsee}>
+  <Text>
+  {ntjkgtxd}
+</Text>
+</VStack>
+))}
+</SimpleGrid>
 </VStack>
 </VStack>
   <Container sx={{"height": "10px"}}/>
   <Fragment>
   {isTrue(state.home_state.tweets) ? (
   <Fragment>
-  {state.home_state.tweets.map((bosfjlun, rcsqhcgf) => (
-  <VStack alignItems={`start`} key={rcsqhcgf} sx={{"marginLeft": "15px", "width": "auto"}}>
+  {state.home_state.tweets.map((xuudjqho, xtgazyuv) => (
+  <VStack alignItems={`start`} key={xtgazyuv} sx={{"marginLeft": "15px", "width": "auto"}}>
   <HStack sx={{"py": 4, "gap": 1, "border": "3px solid #3498db", "borderRadius": "10px", "width": "98%"}}>
   <Container sx={{"width": "5px"}}/>
   <VStack>
-  <Avatar name={bosfjlun.author} size={`sm`}/>
+  <Avatar name={xuudjqho.author} size={`sm`}/>
 </VStack>
   <Box sx={{"width": "100%"}}>
   <HStack>
   <Text sx={{"fontWeight": "bold"}}>
-  {("@" + bosfjlun.author)}
+  {("@" + xuudjqho.author)}
 </Text>
   <Text>
-  {(("[" + bosfjlun.created_at) + "]")}
+  {(("[" + xuudjqho.created_at) + "]")}
 </Text>
 </HStack>
   <Text sx={{"width": "100%"}}>
-  {bosfjlun.content}
+  {xuudjqho.content}
 </Text>
+  <Fragment>
+  {isTrue(xuudjqho.image_content) ? (
+  <Fragment>
+  {xuudjqho.image_content.split(", ").map((zwlfdndm, xqabfztd) => (
+  <Image alt={`tweet image`} key={xqabfztd} src={`/${zwlfdndm}`}/>
+))}
+</Fragment>
+) : (
+  <Fragment>
+  <Box/>
+</Fragment>
+)}
+</Fragment>
 </Box>
 </HStack>
   <Container sx={{"height": "5px"}}/>
@@ -152,7 +206,7 @@ export default function Component() {
   <Button onClick={(_e) => addEvents([Event("state.home_state.get_tweets", {})], (_e), {})}>
   <RepeatIcon sx={{"mr": 1}}/>
   <Text>
-  {`Click to load tweets`}
+  {`Click to load story`}
 </Text>
 </Button>
 </VStack>
@@ -166,15 +220,15 @@ export default function Component() {
   <Input onChange={(_e0) => addEvents([Event("state.home_state.set_friend", {value:_e0.target.value})], (_e0), {})} placeholder={`Search users`} sx={{"width": "100%", "border": "3px solid #000000"}} type={`text`}/>
 </HStack>
   <Container sx={{"height": "10px"}}/>
-  {state.home_state.search_users.map((danvzjng, rdjunimk) => (
-  <VStack key={rdjunimk} sx={{"py": 2, "width": "100%"}}>
+  {state.home_state.search_users.map((vxyoeevf, drzcnkpk) => (
+  <VStack key={drzcnkpk} sx={{"py": 2, "width": "100%"}}>
   <HStack sx={{"width": "100%"}}>
-  <Avatar name={danvzjng.username} size={`sm`}/>
+  <Avatar name={vxyoeevf.username} size={`sm`}/>
   <Text>
-  {danvzjng.username}
+  {vxyoeevf.username}
 </Text>
   <Spacer/>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:danvzjng.username})], (_e), {})}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:vxyoeevf.username})], (_e), {})}>
   <AddIcon/>
 </Button>
 </HStack>
@@ -182,9 +236,33 @@ export default function Component() {
 ))}
 </VStack>
 </Grid>
-  <HStack>
-  <Link as={NextLink} href={`/`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 6, "border": "1px solid #000000", "fontWeight": "semibold", "borderRadius": "full"}}>
-  <Image src={`/Home.png`} sx={{"width": "30px", "height": "30px"}}/>
+  <HStack sx={{"marginRight": "5px", "border": "1px solid #000000", "borderRadius": "full"}}>
+  <Link as={NextLink} href={`/`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 2}}>
+  <Image src={`/Home.png`} sx={{"height": "40px", "width": "40px"}}/>
+</Link>
+  <Link as={NextLink} href={`/profile`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 2}}>
+  <Image src={`/profile.png`} sx={{"height": "40px", "width": "40px"}}/>
+</Link>
+  <Link as={NextLink} href={`/map`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 2}}>
+  <Image src={`/map.png`} sx={{"height": "40px", "width": "40px"}}/>
+</Link>
+  <Link as={NextLink} href={`/chat`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 2}}>
+  <Image src={`/chat.png`} sx={{"height": "40px", "width": "40px"}}/>
+</Link>
+  <Link as={NextLink} href={`/aichat`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 2}}>
+  <Image src={`/Aichat.png`} sx={{"height": "40px", "width": "40px"}}/>
+</Link>
+  <Link as={NextLink} href={`/diary`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 2}}>
+  <Image src={`/diary.png`} sx={{"height": "40px", "width": "40px"}}/>
+</Link>
+  <Link as={NextLink} href={`/video`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 2}}>
+  <Image src={`/video.png`} sx={{"height": "40px", "width": "40px"}}/>
+</Link>
+  <Link as={NextLink} href={`/game`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 2}}>
+  <Image src={`/game.png`} sx={{"height": "40px", "width": "40px"}}/>
+</Link>
+  <Link as={NextLink} href={`/setting`} sx={{"display": "inline-flex", "alignItems": "center", "py": 3, "px": 2}}>
+  <Image src={`/setting.png`} sx={{"height": "40px", "width": "40px"}}/>
 </Link>
 </HStack>
 </VStack>

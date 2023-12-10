@@ -100,7 +100,7 @@ export default function Component() {
   <Box sx={{"h": "100%"}}>
   <HStack justify={`space-between`} sx={{"p": 4, "borderBottom": "3px solid #000000"}}>
   <Image src={`/find1.png`} sx={{"height": "35px", "width": "35px"}}/>
-  <Input onChange={(_e0) => addEvents([Event("state.home_state.set_search", {search:_e0.target.value})], (_e0), {})} placeholder={`Search tweets`} type={`text`}/>
+  <Input onChange={(_e0) => addEvents([Event("state.home_state.set_search", {search:_e0.target.value})], (_e0), {})} placeholder={`Search contents`} type={`text`}/>
 </HStack>
   <VStack>
   <Container sx={{"height": "5px"}}/>
@@ -121,24 +121,24 @@ export default function Component() {
   <Fragment>
   {isTrue(state.home_state.tweets) ? (
   <Fragment>
-  {state.home_state.tweets.map((lksfoyce, jzpgqilt) => (
-  <VStack alignItems={`start`} key={jzpgqilt} sx={{"marginLeft": "15px", "width": "auto"}}>
+  {state.home_state.tweets.map((bosfjlun, rcsqhcgf) => (
+  <VStack alignItems={`start`} key={rcsqhcgf} sx={{"marginLeft": "15px", "width": "auto"}}>
   <HStack sx={{"py": 4, "gap": 1, "border": "3px solid #3498db", "borderRadius": "10px", "width": "98%"}}>
   <Container sx={{"width": "5px"}}/>
   <VStack>
-  <Avatar name={lksfoyce.author} size={`sm`}/>
+  <Avatar name={bosfjlun.author} size={`sm`}/>
 </VStack>
   <Box sx={{"width": "100%"}}>
   <HStack>
   <Text sx={{"fontWeight": "bold"}}>
-  {("@" + lksfoyce.author)}
+  {("@" + bosfjlun.author)}
 </Text>
   <Text>
-  {(("[" + lksfoyce.created_at) + "]")}
+  {(("[" + bosfjlun.created_at) + "]")}
 </Text>
 </HStack>
   <Text sx={{"width": "100%"}}>
-  {lksfoyce.content}
+  {bosfjlun.content}
 </Text>
 </Box>
 </HStack>
@@ -166,15 +166,15 @@ export default function Component() {
   <Input onChange={(_e0) => addEvents([Event("state.home_state.set_friend", {value:_e0.target.value})], (_e0), {})} placeholder={`Search users`} sx={{"width": "100%", "border": "3px solid #000000"}} type={`text`}/>
 </HStack>
   <Container sx={{"height": "10px"}}/>
-  {state.home_state.search_users.map((krtnebxz, qpglnhcd) => (
-  <VStack key={qpglnhcd} sx={{"py": 2, "width": "100%"}}>
+  {state.home_state.search_users.map((danvzjng, rdjunimk) => (
+  <VStack key={rdjunimk} sx={{"py": 2, "width": "100%"}}>
   <HStack sx={{"width": "100%"}}>
-  <Avatar name={krtnebxz.username} size={`sm`}/>
+  <Avatar name={danvzjng.username} size={`sm`}/>
   <Text>
-  {krtnebxz.username}
+  {danvzjng.username}
 </Text>
   <Spacer/>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:krtnebxz.username})], (_e), {})}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:danvzjng.username})], (_e), {})}>
   <AddIcon/>
 </Button>
 </HStack>

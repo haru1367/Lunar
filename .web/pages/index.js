@@ -97,7 +97,7 @@ export default function Component() {
   <Container sx={{"height": "200px"}}/>
 </VStack>
 </Box>
-  <Box sx={{"h": "100%"}}>
+  <Box sx={{"h": "100%", "borderX": "3px solid #000000", "overflow": "auto"}}>
   <HStack justify={`space-between`} sx={{"p": 4, "borderBottom": "3px solid #000000"}}>
   <Image src={`/find1.png`} sx={{"height": "35px", "width": "35px"}}/>
   <Input onChange={(_e0) => addEvents([Event("state.home_state.set_search", {search:_e0.target.value})], (_e0), {})} placeholder={`Search contents`} type={`text`}/>
@@ -129,11 +129,11 @@ export default function Component() {
 </ModalHeader>
   <ModalBody>
   <SimpleGrid columns={[2]} spacing={`5px`}>
-  {state.home_state.img.map((ncdvrjlb, fdfotndj) => (
-  <VStack key={fdfotndj}>
-  <Image src={ncdvrjlb}/>
+  {state.home_state.img.map((eruwanag, zgiskcvn) => (
+  <VStack key={zgiskcvn}>
+  <Image src={eruwanag}/>
   <Text>
-  {ncdvrjlb}
+  {eruwanag}
 </Text>
 </VStack>
 ))}
@@ -151,10 +151,10 @@ export default function Component() {
 </ModalOverlay>
 </Modal>
   <SimpleGrid columns={[2]} spacing={`5px`}>
-  {state.home_state.img.map((kpdhesdy, gorcxpak) => (
-  <VStack key={gorcxpak}>
+  {state.home_state.img.map((nnhbdpya, lradhzsc) => (
+  <VStack key={lradhzsc}>
   <Text>
-  {kpdhesdy}
+  {nnhbdpya}
 </Text>
 </VStack>
 ))}
@@ -165,30 +165,25 @@ export default function Component() {
   <Fragment>
   {isTrue(state.home_state.craters) ? (
   <Fragment>
-  {state.home_state.craters.map((zbbwnwxn, ihlpngda) => (
-  <VStack alignItems={`start`} key={ihlpngda} sx={{"marginLeft": "15px", "width": "auto"}}>
-  <HStack sx={{"py": 4, "gap": 1, "border": "3px solid #3498db", "borderRadius": "10px", "width": "98%"}}>
-  <Container sx={{"width": "5px"}}/>
-  <VStack>
-  <Avatar name={zbbwnwxn.author} size={`sm`}/>
-</VStack>
-  <Box sx={{"width": "100%"}}>
+  {state.home_state.craters.map((shmqphyc, vgrbcjtf) => (
+  <VStack alignItems={`start`} key={vgrbcjtf} sx={{"marginLeft": "25px", "width": "auto"}}>
   <HStack>
-  <Text sx={{"fontWeight": "bold"}}>
-  {("@" + zbbwnwxn.author)}
+  <Avatar name={shmqphyc.author} size={`md`}/>
+  <Text sx={{"fontWeight": "bold", "fontSize": "20px"}}>
+  {("@" + shmqphyc.author)}
 </Text>
   <Text>
-  {(("[" + zbbwnwxn.created_at) + "]")}
+  {(("[" + shmqphyc.created_at) + "]")}
 </Text>
 </HStack>
-  <Text sx={{"width": "100%"}}>
-  {zbbwnwxn.content}
-</Text>
+  <HStack sx={{"py": 4, "gap": 1, "width": "98%"}}>
+  <Container sx={{"width": "50px"}}/>
+  <Box sx={{"width": "100%"}}>
   <Fragment>
-  {isTrue(zbbwnwxn.image_content) ? (
+  {isTrue(shmqphyc.image_content) ? (
   <Fragment>
-  {zbbwnwxn.image_content.split(", ").map((cjdidtpu, yzifggmo) => (
-  <Image alt={`crater image`} key={yzifggmo} src={`/${cjdidtpu}`}/>
+  {shmqphyc.image_content.split(", ").map((vbeyzxwc, sfynzova) => (
+  <Image alt={`crater image`} key={sfynzova} src={`/${vbeyzxwc}`} sx={{"maxWidth": "500px"}}/>
 ))}
 </Fragment>
 ) : (
@@ -197,14 +192,19 @@ export default function Component() {
 </Fragment>
 )}
 </Fragment>
-  <HStack>
-  <Image src={`/heart.png`} sx={{"height": "20px", "width": "20px"}}/>
-  <Text>
-  {`${zbbwnwxn.heart_num}`}
+  <Container sx={{"height": "5px"}}/>
+  <Text sx={{"width": "100%", "fontSize": "15px"}}>
+  {shmqphyc.content}
 </Text>
-  <Image src={`/comment.png`} sx={{"height": "20px", "width": "20px"}}/>
+  <Container sx={{"height": "10px"}}/>
+  <HStack>
+  <Image src={`/heart2.png`} sx={{"height": "30px", "width": "30px"}}/>
   <Text>
-  {`${zbbwnwxn.comment_num}`}
+  {`${shmqphyc.heart_num}`}
+</Text>
+  <Image src={`/comment.png`} sx={{"height": "30px", "width": "30px"}}/>
+  <Text>
+  {`${shmqphyc.comment_num}`}
 </Text>
 </HStack>
 </Box>
@@ -233,15 +233,15 @@ export default function Component() {
   <Input onChange={(_e0) => addEvents([Event("state.home_state.set_friend", {value:_e0.target.value})], (_e0), {})} placeholder={`Search users`} sx={{"width": "100%", "border": "3px solid #000000"}} type={`text`}/>
 </HStack>
   <Container sx={{"height": "10px"}}/>
-  {state.home_state.search_users.map((pxtcmgvu, thexxtha) => (
-  <VStack key={thexxtha} sx={{"py": 2, "width": "100%"}}>
+  {state.home_state.search_users.map((pdvvwfcv, ndfrnxpz) => (
+  <VStack key={ndfrnxpz} sx={{"py": 2, "width": "100%"}}>
   <HStack sx={{"width": "100%"}}>
-  <Avatar name={pxtcmgvu.username} size={`sm`}/>
+  <Avatar name={pdvvwfcv.username} size={`sm`}/>
   <Text>
-  {pxtcmgvu.username}
+  {pdvvwfcv.username}
 </Text>
   <Spacer/>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:pxtcmgvu.username})], (_e), {})}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:pdvvwfcv.username})], (_e), {})}>
   <AddIcon/>
 </Button>
 </HStack>

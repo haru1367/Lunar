@@ -69,7 +69,8 @@ class HomeState(State):
     async def file_select_cancel(self):
         self.img=[]
         self.files=[]
-        self.change()
+        if len(self.img)>0:
+            self.change()
     
 
     #게시물 업로드 함수

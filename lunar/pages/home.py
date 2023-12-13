@@ -241,40 +241,38 @@ def crater(crater):
         crater.image_content,
         rx.foreach(
             crater.image_content.split(", "),
-            lambda image: rx.image(src=f"/{image}", alt="crater image")
+            lambda image: rx.image(src=f"/{image}", alt="crater image",max_width = '500px')
         ),
         rx.box()  # 이미지가 없는 경우 빈 리스트를 반환합니다.
     ),
 
     return rx.vstack(
         rx.hstack(
-            rx.container(width='5px'),
-            rx.vstack(
-                rx.avatar(name=crater.author, size="sm"),  # 트윗 작성자의 아바타 이미지
-            ),
+            rx.avatar(name=crater.author, size="md"),  # 트윗 작성자의 아바타 이미지
+            rx.text("@" + crater.author, font_weight="bold",fontSize = '20px'),  # 트윗 작성자의 사용자 이름
+            rx.text("["+ crater.created_at +"]"),
+        ),
+        rx.hstack(
+            rx.container(width='50px'),
             rx.box(
-                rx.hstack(
-                    rx.text("@" + crater.author, font_weight="bold"),  # 트윗 작성자의 사용자 이름
-                    rx.text("["+ crater.created_at +"]"),
-                ),
-                rx.text(crater.content, width="100%"),  # 트윗 내용
                 *image_tags,
+                rx.container(height='5px'),
+                rx.text(crater.content, width="100%",fontSize = '15px'),  # 트윗 내용
+                rx.container(height='10px'),
                 rx.hstack(
-                    rx.image(src='/heart.png',height='20px',width='20px'),
+                    rx.image(src='/heart2.png',height='30px',width='30px'),
                     rx.text(f'{crater.heart_num}'),
-                    rx.image(src='/comment.png',height='20px',width='20px'),
+                    rx.image(src='/comment.png',height='30px',width='30px'),
                     rx.text(f'{crater.comment_num}'),
                 ),
                 width = '100%',
             ),
             py=4,
             gap=1,
-            border="3px solid #3498db",
-            border_radius='10px',
             width='98%',
         ),
         rx.container(height='5px'),
-        margin_left='15px',
+        margin_left = '25px',
         align_items='start',
         width='auto',
     )
@@ -305,6 +303,8 @@ def feed(HomeState):
             ),
         ),
         h="100%",
+        border_x = '3px solid #000000',
+        overflow = 'auto',
     )
 
 # 홈 페이지

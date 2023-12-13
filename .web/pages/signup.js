@@ -176,23 +176,23 @@ export default function Component() {
   <Container sx={{"height": "16px"}}/>
   <HStack>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_year", {value:_e0.target.value})], (_e0), {})} placeholder={`birth year`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.year.map((smjccjab, cngauide) => (
-  <option key={cngauide} value={smjccjab}>
-  {smjccjab}
+  {state.auth_state.year.map((vjfkcgho, jrpseejk) => (
+  <option key={jrpseejk} value={vjfkcgho}>
+  {vjfkcgho}
 </option>
 ))}
 </Select>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_month", {value:_e0.target.value})], (_e0), {})} placeholder={`birth month`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.month.map((udiqcydy, fnozdlft) => (
-  <option key={fnozdlft} value={udiqcydy}>
-  {udiqcydy}
+  {state.auth_state.month.map((arbxmtxu, pmfsyyrk) => (
+  <option key={pmfsyyrk} value={arbxmtxu}>
+  {arbxmtxu}
 </option>
 ))}
 </Select>
   <Select onChange={(_e0) => addEvents([Event("state.auth_state.set_user_birthday_day", {value:_e0.target.value})], (_e0), {})} placeholder={`birth day`} sx={{"colorSchemes": "twitter"}}>
-  {state.auth_state.day.map((xcmhbfta, opqqvqzf) => (
-  <option key={opqqvqzf} value={xcmhbfta}>
-  {xcmhbfta}
+  {state.auth_state.day.map((yemjtsjp, hbyvpwrv) => (
+  <option key={hbyvpwrv} value={yemjtsjp}>
+  {yemjtsjp}
 </option>
 ))}
 </Select>

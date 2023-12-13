@@ -6,7 +6,7 @@ import "focus-visible/dist/focus-visible"
 import { Avatar, Box, Button, Container, Grid, HStack, Image, Input, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, Spacer, Text, Textarea, VStack } from "@chakra-ui/react"
 import { getEventURL } from "/utils/state.js"
 import { DebounceInput } from "react-debounce-input"
-import { AddIcon, RepeatIcon, StarIcon } from "@chakra-ui/icons"
+import { AddIcon, RepeatIcon } from "@chakra-ui/icons"
 import NextLink from "next/link"
 import NextHead from "next/head"
 
@@ -129,11 +129,11 @@ export default function Component() {
 </ModalHeader>
   <ModalBody>
   <SimpleGrid columns={[2]} spacing={`5px`}>
-  {state.home_state.img.map((jrxvhxud, zppevquf) => (
-  <VStack key={zppevquf}>
-  <Image src={jrxvhxud}/>
+  {state.home_state.img.map((ncdvrjlb, fdfotndj) => (
+  <VStack key={fdfotndj}>
+  <Image src={ncdvrjlb}/>
   <Text>
-  {jrxvhxud}
+  {ncdvrjlb}
 </Text>
 </VStack>
 ))}
@@ -151,10 +151,10 @@ export default function Component() {
 </ModalOverlay>
 </Modal>
   <SimpleGrid columns={[2]} spacing={`5px`}>
-  {state.home_state.img.map((gvdmnqfi, xtajrqfr) => (
-  <VStack key={xtajrqfr}>
+  {state.home_state.img.map((kpdhesdy, gorcxpak) => (
+  <VStack key={gorcxpak}>
   <Text>
-  {gvdmnqfi}
+  {kpdhesdy}
 </Text>
 </VStack>
 ))}
@@ -165,30 +165,30 @@ export default function Component() {
   <Fragment>
   {isTrue(state.home_state.craters) ? (
   <Fragment>
-  {state.home_state.craters.map((cnajwbsk, jkmuaqzu) => (
-  <VStack alignItems={`start`} key={jkmuaqzu} sx={{"marginLeft": "15px", "width": "auto"}}>
+  {state.home_state.craters.map((zbbwnwxn, ihlpngda) => (
+  <VStack alignItems={`start`} key={ihlpngda} sx={{"marginLeft": "15px", "width": "auto"}}>
   <HStack sx={{"py": 4, "gap": 1, "border": "3px solid #3498db", "borderRadius": "10px", "width": "98%"}}>
   <Container sx={{"width": "5px"}}/>
   <VStack>
-  <Avatar name={cnajwbsk.author} size={`sm`}/>
+  <Avatar name={zbbwnwxn.author} size={`sm`}/>
 </VStack>
   <Box sx={{"width": "100%"}}>
   <HStack>
   <Text sx={{"fontWeight": "bold"}}>
-  {("@" + cnajwbsk.author)}
+  {("@" + zbbwnwxn.author)}
 </Text>
   <Text>
-  {(("[" + cnajwbsk.created_at) + "]")}
+  {(("[" + zbbwnwxn.created_at) + "]")}
 </Text>
 </HStack>
   <Text sx={{"width": "100%"}}>
-  {cnajwbsk.content}
+  {zbbwnwxn.content}
 </Text>
   <Fragment>
-  {isTrue(cnajwbsk.image_content) ? (
+  {isTrue(zbbwnwxn.image_content) ? (
   <Fragment>
-  {cnajwbsk.image_content.split(", ").map((pfdnpaay, rucxgklt) => (
-  <Image alt={`crater image`} key={rucxgklt} src={`/${pfdnpaay}`}/>
+  {zbbwnwxn.image_content.split(", ").map((cjdidtpu, yzifggmo) => (
+  <Image alt={`crater image`} key={yzifggmo} src={`/${cjdidtpu}`}/>
 ))}
 </Fragment>
 ) : (
@@ -198,7 +198,14 @@ export default function Component() {
 )}
 </Fragment>
   <HStack>
-  <StarIcon/>
+  <Image src={`/heart.png`} sx={{"height": "20px", "width": "20px"}}/>
+  <Text>
+  {`${zbbwnwxn.heart_num}`}
+</Text>
+  <Image src={`/comment.png`} sx={{"height": "20px", "width": "20px"}}/>
+  <Text>
+  {`${zbbwnwxn.comment_num}`}
+</Text>
 </HStack>
 </Box>
 </HStack>
@@ -226,15 +233,15 @@ export default function Component() {
   <Input onChange={(_e0) => addEvents([Event("state.home_state.set_friend", {value:_e0.target.value})], (_e0), {})} placeholder={`Search users`} sx={{"width": "100%", "border": "3px solid #000000"}} type={`text`}/>
 </HStack>
   <Container sx={{"height": "10px"}}/>
-  {state.home_state.search_users.map((mnrofafm, tfdbumim) => (
-  <VStack key={tfdbumim} sx={{"py": 2, "width": "100%"}}>
+  {state.home_state.search_users.map((pxtcmgvu, thexxtha) => (
+  <VStack key={thexxtha} sx={{"py": 2, "width": "100%"}}>
   <HStack sx={{"width": "100%"}}>
-  <Avatar name={mnrofafm.username} size={`sm`}/>
+  <Avatar name={pxtcmgvu.username} size={`sm`}/>
   <Text>
-  {mnrofafm.username}
+  {pxtcmgvu.username}
 </Text>
   <Spacer/>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:mnrofafm.username})], (_e), {})}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:pxtcmgvu.username})], (_e), {})}>
   <AddIcon/>
 </Button>
 </HStack>

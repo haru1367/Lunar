@@ -260,7 +260,10 @@ def crater(crater):
                 rx.text(crater.content, width="100%"),  # 트윗 내용
                 *image_tags,
                 rx.hstack(
-                    rx.icon(tag='star')
+                    rx.image(src='/heart.png',height='20px',width='20px'),
+                    rx.text(f'{crater.heart_num}'),
+                    rx.image(src='/comment.png',height='20px',width='20px'),
+                    rx.text(f'{crater.comment_num}'),
                 ),
                 width = '100%',
             ),

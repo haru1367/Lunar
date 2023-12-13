@@ -89,6 +89,11 @@ class HomeState(State):
                 content=self.crater,                                                  # content : 유저 story 입력 내용
                 created_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),             # created_at : stroy 작성 시간
                 image_content=", ".join(self.files),                                 # image_content : 이미지 파일
+                heart_list='',
+                comment_list='',
+                heart_num=0,
+                comment_num=0,
+                
             )
             
             session.add(crater)
@@ -111,6 +116,7 @@ class HomeState(State):
                 )
             else:
                 self.craters = session.query(Crater).all()[::-1]                       # session에 저장된 모든 story를 가져옴
+        
 
     def set_search(self, search):
         """Set the search query."""

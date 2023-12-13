@@ -138,7 +138,7 @@ def feed_header(HomeState):
 
 # 새로운 게시물을 작성하는 컴포저
 def composer(HomeState):
-    """The composer for new tweets."""
+    """The composer for new craters."""
     return rx.vstack(
         rx.container(height='5px'),
         rx.vstack(
@@ -146,7 +146,7 @@ def composer(HomeState):
                 rx.avatar(size="md"),  # 사용자의 아바타 이미지
                 rx.container(width='30px'),
                 rx.text_area(
-                    value=HomeState.tweet,
+                    value=HomeState.crater,
                     w='100%',
                     border=2,
                     placeholder="What's happening?",  # 트윗을 작성하는 입력 상자
@@ -154,34 +154,26 @@ def composer(HomeState):
                     py=4,
                     px=0,
                     _focus={"border": 0, "outline": 0, "boxShadow": "none"},
-                    on_change=HomeState.set_tweet,
+                    on_change=HomeState.set_crater,
                 ),
                 width='95%',
                 margin_left = '30px',
             ),
             rx.hstack(
                 rx.button(
-                    "Select File",
-                    border_radius="1em",
-                    box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",
-                    background_image="linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)",
-                    box_sizing="border-box",
-                    color="white",
-                    opacity="0.6",
-                    _hover={"opacity": 1},
+                    rx.image(src='/fileselect.png',height='35px',width='35px'),
                     on_click=HomeState.handle_file_selection,
+                    border_radius = '1em',
                 ),
                 rx.button(
-                    "Upload",
-                    on_click= HomeState.post_tweet,
+                    rx.image(src='/selectcancel.png',height='35px',width='35px'),
+                    on_click=HomeState.file_select_cancel,
+                    border_radius = '1em',
+                ),
+                rx.button(
+                    rx.image(src='/write.png',height='30px',width='30px'),
+                    on_click= HomeState.post_crater,
                     border_radius="1em",
-                    box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",
-                    background_image="linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)",
-                    box_sizing="border-box",
-                    color="white",
-                    opacity="0.6",
-                    _hover={"opacity": 1},
-                    style={"margin-left": "auto"},  # Align to the right
                 ),  # 트윗을 게시하는 버튼
                 justify_content="flex-end",
                 px=4,
@@ -244,12 +236,12 @@ def composer(HomeState):
 
 
 # 개별 트윗을 표시하는 함수
-def tweet(tweet):
+def crater(crater):
     image_tags = rx.cond(
-        tweet.image_content,
+        crater.image_content,
         rx.foreach(
-            tweet.image_content.split(", "),
-            lambda image: rx.image(src=f"/{image}", alt="tweet image")
+            crater.image_content.split(", "),
+            lambda image: rx.image(src=f"/{image}", alt="crater image")
         ),
         rx.box()  # 이미지가 없는 경우 빈 리스트를 반환합니다.
     ),
@@ -258,15 +250,18 @@ def tweet(tweet):
         rx.hstack(
             rx.container(width='5px'),
             rx.vstack(
-                rx.avatar(name=tweet.author, size="sm"),  # 트윗 작성자의 아바타 이미지
+                rx.avatar(name=crater.author, size="sm"),  # 트윗 작성자의 아바타 이미지
             ),
             rx.box(
                 rx.hstack(
-                    rx.text("@" + tweet.author, font_weight="bold"),  # 트윗 작성자의 사용자 이름
-                    rx.text("["+ tweet.created_at +"]"),
+                    rx.text("@" + crater.author, font_weight="bold"),  # 트윗 작성자의 사용자 이름
+                    rx.text("["+ crater.created_at +"]"),
                 ),
-                rx.text(tweet.content, width="100%"),  # 트윗 내용
+                rx.text(crater.content, width="100%"),  # 트윗 내용
                 *image_tags,
+                rx.hstack(
+                    rx.icon(tag='star')
+                ),
                 width = '100%',
             ),
             py=4,
@@ -289,10 +284,10 @@ def feed(HomeState):
         composer(HomeState),
         rx.container(height='10px'),
         rx.cond(
-            HomeState.tweets,
+            HomeState.craters,
             rx.foreach(
-                HomeState.tweets,
-                tweet
+                HomeState.craters,
+                crater
             ),
             rx.vstack(
                 rx.button(
@@ -301,7 +296,7 @@ def feed(HomeState):
                         mr=1,
                     ),
                     rx.text("Click to load story"),
-                    on_click=HomeState.get_tweets,
+                    on_click=HomeState.get_craters,
                 ),  # 트윗을 불러오는 버튼
                 p=4,
             ),

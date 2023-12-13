@@ -26,15 +26,15 @@ class User(rx.Model, table=True):
     password: str = Field()
 
 
-class Tweet(rx.Model, table=True):
+class Crater(rx.Model, table=True):
     """A table of Tweets."""
 
     content: str = Field()
     created_at: str = Field()
     author: str = Field()
     image_content: str = Field()
-    good_list: list[str] = Field()
-    comment_list:list[str,list[str]] = Field()
+    star_list: str = Field()
+    comment_list : str = Field()
 
 class State(rx.State):
     """The base state for the app."""

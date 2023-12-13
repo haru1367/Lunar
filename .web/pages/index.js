@@ -6,7 +6,7 @@ import "focus-visible/dist/focus-visible"
 import { Avatar, Box, Button, Container, Grid, HStack, Image, Input, Link, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, ModalOverlay, SimpleGrid, Spacer, Text, Textarea, VStack } from "@chakra-ui/react"
 import { getEventURL } from "/utils/state.js"
 import { DebounceInput } from "react-debounce-input"
-import { AddIcon, RepeatIcon } from "@chakra-ui/icons"
+import { AddIcon, RepeatIcon, StarIcon } from "@chakra-ui/icons"
 import NextLink from "next/link"
 import NextHead from "next/head"
 
@@ -108,14 +108,17 @@ export default function Component() {
   <HStack sx={{"width": "95%", "marginLeft": "30px"}}>
   <Avatar size={`md`}/>
   <Container sx={{"width": "30px"}}/>
-  <DebounceInput debounceTimeout={50} element={Textarea} onChange={(_e0) => addEvents([Event("state.home_state.set_tweet", {value:_e0.target.value})], (_e0), {})} placeholder={`What's happening?`} sx={{"w": "100%", "border": 2, "resize": "none", "py": 4, "px": 0, "_focus": {"border": 0, "outline": 0, "boxShadow": "none"}}} value={state.home_state.tweet}/>
+  <DebounceInput debounceTimeout={50} element={Textarea} onChange={(_e0) => addEvents([Event("state.home_state.set_crater", {value:_e0.target.value})], (_e0), {})} placeholder={`What's happening?`} sx={{"w": "100%", "border": 2, "resize": "none", "py": 4, "px": 0, "_focus": {"border": 0, "outline": 0, "boxShadow": "none"}}} value={state.home_state.crater}/>
 </HStack>
   <HStack justifyContent={`flex-end`} sx={{"px": 4, "py": 2, "width": "100%"}}>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.handle_file_selection", {})], (_e), {})} sx={{"borderRadius": "1em", "boxShadow": "rgba(151, 65, 252, 0.8) 0 15px 30px -10px", "backgroundImage": "linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)", "boxSizing": "border-box", "color": "white", "opacity": "0.6", "_hover": {"opacity": 1}}}>
-  {`Select File`}
+  <Button onClick={(_e) => addEvents([Event("state.home_state.handle_file_selection", {})], (_e), {})} sx={{"borderRadius": "1em"}}>
+  <Image src={`/fileselect.png`} sx={{"height": "35px", "width": "35px"}}/>
 </Button>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.post_tweet", {})], (_e), {})} sx={{"margin-left": "auto", "borderRadius": "1em", "boxShadow": "rgba(151, 65, 252, 0.8) 0 15px 30px -10px", "backgroundImage": "linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)", "boxSizing": "border-box", "color": "white", "opacity": "0.6", "_hover": {"opacity": 1}}}>
-  {`Upload`}
+  <Button onClick={(_e) => addEvents([Event("state.home_state.file_select_cancel", {})], (_e), {})} sx={{"borderRadius": "1em"}}>
+  <Image src={`/selectcancel.png`} sx={{"height": "35px", "width": "35px"}}/>
+</Button>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.post_crater", {})], (_e), {})} sx={{"borderRadius": "1em"}}>
+  <Image src={`/write.png`} sx={{"height": "30px", "width": "30px"}}/>
 </Button>
 </HStack>
   <Modal isOpen={state.home_state.imgshow}>
@@ -126,11 +129,11 @@ export default function Component() {
 </ModalHeader>
   <ModalBody>
   <SimpleGrid columns={[2]} spacing={`5px`}>
-  {state.home_state.img.map((rtazfenw, cagneurz) => (
-  <VStack key={cagneurz}>
-  <Image src={rtazfenw}/>
+  {state.home_state.img.map((jrxvhxud, zppevquf) => (
+  <VStack key={zppevquf}>
+  <Image src={jrxvhxud}/>
   <Text>
-  {rtazfenw}
+  {jrxvhxud}
 </Text>
 </VStack>
 ))}
@@ -148,10 +151,10 @@ export default function Component() {
 </ModalOverlay>
 </Modal>
   <SimpleGrid columns={[2]} spacing={`5px`}>
-  {state.home_state.img.map((ntjkgtxd, ikhirsee) => (
-  <VStack key={ikhirsee}>
+  {state.home_state.img.map((gvdmnqfi, xtajrqfr) => (
+  <VStack key={xtajrqfr}>
   <Text>
-  {ntjkgtxd}
+  {gvdmnqfi}
 </Text>
 </VStack>
 ))}
@@ -160,32 +163,32 @@ export default function Component() {
 </VStack>
   <Container sx={{"height": "10px"}}/>
   <Fragment>
-  {isTrue(state.home_state.tweets) ? (
+  {isTrue(state.home_state.craters) ? (
   <Fragment>
-  {state.home_state.tweets.map((xuudjqho, xtgazyuv) => (
-  <VStack alignItems={`start`} key={xtgazyuv} sx={{"marginLeft": "15px", "width": "auto"}}>
+  {state.home_state.craters.map((cnajwbsk, jkmuaqzu) => (
+  <VStack alignItems={`start`} key={jkmuaqzu} sx={{"marginLeft": "15px", "width": "auto"}}>
   <HStack sx={{"py": 4, "gap": 1, "border": "3px solid #3498db", "borderRadius": "10px", "width": "98%"}}>
   <Container sx={{"width": "5px"}}/>
   <VStack>
-  <Avatar name={xuudjqho.author} size={`sm`}/>
+  <Avatar name={cnajwbsk.author} size={`sm`}/>
 </VStack>
   <Box sx={{"width": "100%"}}>
   <HStack>
   <Text sx={{"fontWeight": "bold"}}>
-  {("@" + xuudjqho.author)}
+  {("@" + cnajwbsk.author)}
 </Text>
   <Text>
-  {(("[" + xuudjqho.created_at) + "]")}
+  {(("[" + cnajwbsk.created_at) + "]")}
 </Text>
 </HStack>
   <Text sx={{"width": "100%"}}>
-  {xuudjqho.content}
+  {cnajwbsk.content}
 </Text>
   <Fragment>
-  {isTrue(xuudjqho.image_content) ? (
+  {isTrue(cnajwbsk.image_content) ? (
   <Fragment>
-  {xuudjqho.image_content.split(", ").map((zwlfdndm, xqabfztd) => (
-  <Image alt={`tweet image`} key={xqabfztd} src={`/${zwlfdndm}`}/>
+  {cnajwbsk.image_content.split(", ").map((pfdnpaay, rucxgklt) => (
+  <Image alt={`crater image`} key={rucxgklt} src={`/${pfdnpaay}`}/>
 ))}
 </Fragment>
 ) : (
@@ -194,6 +197,9 @@ export default function Component() {
 </Fragment>
 )}
 </Fragment>
+  <HStack>
+  <StarIcon/>
+</HStack>
 </Box>
 </HStack>
   <Container sx={{"height": "5px"}}/>
@@ -203,7 +209,7 @@ export default function Component() {
 ) : (
   <Fragment>
   <VStack sx={{"p": 4}}>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.get_tweets", {})], (_e), {})}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.get_craters", {})], (_e), {})}>
   <RepeatIcon sx={{"mr": 1}}/>
   <Text>
   {`Click to load story`}
@@ -220,15 +226,15 @@ export default function Component() {
   <Input onChange={(_e0) => addEvents([Event("state.home_state.set_friend", {value:_e0.target.value})], (_e0), {})} placeholder={`Search users`} sx={{"width": "100%", "border": "3px solid #000000"}} type={`text`}/>
 </HStack>
   <Container sx={{"height": "10px"}}/>
-  {state.home_state.search_users.map((vxyoeevf, drzcnkpk) => (
-  <VStack key={drzcnkpk} sx={{"py": 2, "width": "100%"}}>
+  {state.home_state.search_users.map((mnrofafm, tfdbumim) => (
+  <VStack key={tfdbumim} sx={{"py": 2, "width": "100%"}}>
   <HStack sx={{"width": "100%"}}>
-  <Avatar name={vxyoeevf.username} size={`sm`}/>
+  <Avatar name={mnrofafm.username} size={`sm`}/>
   <Text>
-  {vxyoeevf.username}
+  {mnrofafm.username}
 </Text>
   <Spacer/>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:vxyoeevf.username})], (_e), {})}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:mnrofafm.username})], (_e), {})}>
   <AddIcon/>
 </Button>
 </HStack>

@@ -4,15 +4,15 @@ import tkinter as tk
 import reflex as rx
 from sqlmodel import select
 import os
-from .base import Follows, State, Tweet, User
+from .base import Follows, State, Crater, User
 from tkinter import filedialog
 
 
 class HomeState(State):
     """The state for the home page."""
 
-    tweet: str
-    tweets: list[Tweet] = []
+    crater: str
+    craters: list[Crater] = []
 
     friend: str
     search: str
@@ -73,49 +73,49 @@ class HomeState(State):
     
 
     #게시물 업로드 함수
-    async def post_tweet(self):
+    async def post_crater(self):
         if not self.logged_in:
-            return rx.window_alert("Please log in to post a tweet.")                 # 로그인이 되어있지 않을 시 경고 메시지
-        if len(self.tweet)==0:
+            return rx.window_alert("Please log in to post a crater.")                 # 로그인이 되어있지 않을 시 경고 메시지
+        if len(self.crater)==0:
             return rx.window_alert('Please write at least one character!')           # story 추가시 최소 한 글자 입력 경고 메시지
-        if len(self.tweet)>70:
+        if len(self.crater)>70:
             return rx.window_alert('Please enter within 70 characters!')            # 150글자 이내로 입력제한
         
         await self.handle_upload(rx.upload_files())                                  # 이미지 추가
         
         with rx.session() as session:                                                # session에 생성한 story 모델 저장
-            tweet = Tweet(
+            crater = Crater(
                 author=self.user.username,                                           # author : 유저 아이디
-                content=self.tweet,                                                  # content : 유저 story 입력 내용
+                content=self.crater,                                                  # content : 유저 story 입력 내용
                 created_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),             # created_at : stroy 작성 시간
                 image_content=", ".join(self.files),                                 # image_content : 이미지 파일
             )
             
-            session.add(tweet)
+            session.add(crater)
             session.commit()
-            self.tweet = ""                                                          # session에 저장 후 story내용 초기화
+            self.crater = ""                                                          # session에 저장 후 story내용 초기화
             self.img=[]
             self.files=[]
             
-        return self.get_tweets()
+        return self.get_craters()
 
     #story 내용 불러오는 함수
-    def get_tweets(self):
-        """Get tweets from the database."""
+    def get_craters(self):
+        """Get craters from the database."""
         with rx.session() as session:
             if self.search:                                                          # story 검색 입력어가 있을경우
-                self.tweets = (
-                    session.query(Tweet)
-                    .filter(Tweet.content.contains(self.search))                     # story 검색 입력단어가 포함된 story를 모두 가져옴
+                self.craters = (
+                    session.query(Crater)
+                    .filter(Crater.content.contains(self.search))                     # story 검색 입력단어가 포함된 story를 모두 가져옴
                     .all()[::-1]
                 )
             else:
-                self.tweets = session.query(Tweet).all()[::-1]                       # session에 저장된 모든 story를 가져옴
+                self.craters = session.query(Crater).all()[::-1]                       # session에 저장된 모든 story를 가져옴
 
     def set_search(self, search):
         """Set the search query."""
         self.search = search
-        return self.get_tweets()
+        return self.get_craters()
 
     def follow_user(self, username):
         """Follow a user."""

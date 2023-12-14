@@ -47,7 +47,7 @@ class HomeState(State):
         if len(self.img)>0:
             self.change()
 
-    #파일 업로드 함수
+    # 파일 업로드 함수
     async def handle_upload(                                                 
         self, files: list[rx.UploadFile]
     ):
@@ -62,10 +62,11 @@ class HomeState(State):
             # Update the img var.
             self.img.append(file.filename)
 
+    # 파일선택창 화면띄우는 함수
     def change(self):
         self.imgshow = not (self.imgshow)
 
-    #story 파일 선택 취소 함수        
+    # Crater 파일 선택 취소 함수        
     async def file_select_cancel(self):
         self.img=[]
         self.files=[]
@@ -73,7 +74,7 @@ class HomeState(State):
             self.change()
     
 
-    #게시물 업로드 함수
+    # Crater 업로드 함수
     async def post_crater(self):
         if not self.logged_in:
             return rx.window_alert("Please log in to post a crater.")                 # 로그인이 되어있지 않을 시 경고 메시지
@@ -105,7 +106,7 @@ class HomeState(State):
             
         return self.get_craters()
 
-    #story 내용 불러오는 함수
+    # Crater 내용 불러오는 함수
     def get_craters(self):
         """Get craters from the database."""
         with rx.session() as session:
@@ -118,6 +119,21 @@ class HomeState(State):
             else:
                 self.craters = session.query(Crater).all()[::-1]                       # session에 저장된 모든 story를 가져옴
         
+    # Crater 공감 기능 함수
+    def crater_heart(self,crater_id,username):
+        with rx.session() as session:
+            crater = session.query(Crater).get(crater_id)
+            heart_users = crater.heart_list.split(',')
+            if username in heart_users:
+                crater.heart_num -=1
+                heart_users.remove(f'{username}')
+                crater.heart_list = ''
+                crater.heart_list = ",".join(heart_users)
+            else :
+                crater.heart_num+=1
+                crater.heart_list+=f',{username}'
+            session.commit()
+
 
     def set_search(self, search):
         """Set the search query."""

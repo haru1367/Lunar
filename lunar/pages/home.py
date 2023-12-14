@@ -260,10 +260,11 @@ def crater(crater):
                 rx.text(crater.content, width="100%",fontSize = '15px'),  # 트윗 내용
                 rx.container(height='10px'),
                 rx.hstack(
-                    rx.image(src='/heart2.png',height='30px',width='30px'),
-                    rx.text(f'{crater.heart_num}'),
+                    rx.button(
+                        rx.image(src='/heart2.png',height='30px',width='30px'),
+                        on_click = HomeState.crater_heart(crater.id,HomeState.user.username),
+                    ),
                     rx.image(src='/comment.png',height='30px',width='30px'),
-                    rx.text(f'{crater.comment_num}'),
                 ),
                 width = '100%',
             ),

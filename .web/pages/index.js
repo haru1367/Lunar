@@ -129,11 +129,11 @@ export default function Component() {
 </ModalHeader>
   <ModalBody>
   <SimpleGrid columns={[2]} spacing={`5px`}>
-  {state.home_state.img.map((eruwanag, zgiskcvn) => (
-  <VStack key={zgiskcvn}>
-  <Image src={eruwanag}/>
+  {state.home_state.img.map((deluzffr, qgjxwecc) => (
+  <VStack key={qgjxwecc}>
+  <Image src={deluzffr}/>
   <Text>
-  {eruwanag}
+  {deluzffr}
 </Text>
 </VStack>
 ))}
@@ -151,10 +151,10 @@ export default function Component() {
 </ModalOverlay>
 </Modal>
   <SimpleGrid columns={[2]} spacing={`5px`}>
-  {state.home_state.img.map((nnhbdpya, lradhzsc) => (
-  <VStack key={lradhzsc}>
+  {state.home_state.img.map((adcgbazq, qskzgyyh) => (
+  <VStack key={qskzgyyh}>
   <Text>
-  {nnhbdpya}
+  {adcgbazq}
 </Text>
 </VStack>
 ))}
@@ -165,25 +165,25 @@ export default function Component() {
   <Fragment>
   {isTrue(state.home_state.craters) ? (
   <Fragment>
-  {state.home_state.craters.map((shmqphyc, vgrbcjtf) => (
-  <VStack alignItems={`start`} key={vgrbcjtf} sx={{"marginLeft": "25px", "width": "auto"}}>
+  {state.home_state.craters.map((gevptxhz, jlmjbgvg) => (
+  <VStack alignItems={`start`} key={jlmjbgvg} sx={{"marginLeft": "25px", "width": "auto"}}>
   <HStack>
-  <Avatar name={shmqphyc.author} size={`md`}/>
+  <Avatar name={gevptxhz.author} size={`md`}/>
   <Text sx={{"fontWeight": "bold", "fontSize": "20px"}}>
-  {("@" + shmqphyc.author)}
+  {("@" + gevptxhz.author)}
 </Text>
   <Text>
-  {(("[" + shmqphyc.created_at) + "]")}
+  {(("[" + gevptxhz.created_at) + "]")}
 </Text>
 </HStack>
   <HStack sx={{"py": 4, "gap": 1, "width": "98%"}}>
   <Container sx={{"width": "50px"}}/>
   <Box sx={{"width": "100%"}}>
   <Fragment>
-  {isTrue(shmqphyc.image_content) ? (
+  {isTrue(gevptxhz.image_content) ? (
   <Fragment>
-  {shmqphyc.image_content.split(", ").map((vbeyzxwc, sfynzova) => (
-  <Image alt={`crater image`} key={sfynzova} src={`/${vbeyzxwc}`} sx={{"maxWidth": "500px"}}/>
+  {gevptxhz.image_content.split(", ").map((ubbzvwue, nxajttep) => (
+  <Image alt={`crater image`} key={nxajttep} src={`/${ubbzvwue}`} sx={{"maxWidth": "500px"}}/>
 ))}
 </Fragment>
 ) : (
@@ -194,17 +194,17 @@ export default function Component() {
 </Fragment>
   <Container sx={{"height": "5px"}}/>
   <Text sx={{"width": "100%", "fontSize": "15px"}}>
-  {shmqphyc.content}
+  {gevptxhz.content}
 </Text>
   <Container sx={{"height": "10px"}}/>
   <HStack>
   <Image src={`/heart2.png`} sx={{"height": "30px", "width": "30px"}}/>
   <Text>
-  {`${shmqphyc.heart_num}`}
+  {`${gevptxhz.heart_num}`}
 </Text>
   <Image src={`/comment.png`} sx={{"height": "30px", "width": "30px"}}/>
   <Text>
-  {`${shmqphyc.comment_num}`}
+  {`${gevptxhz.comment_num}`}
 </Text>
 </HStack>
 </Box>
@@ -233,15 +233,15 @@ export default function Component() {
   <Input onChange={(_e0) => addEvents([Event("state.home_state.set_friend", {value:_e0.target.value})], (_e0), {})} placeholder={`Search users`} sx={{"width": "100%", "border": "3px solid #000000"}} type={`text`}/>
 </HStack>
   <Container sx={{"height": "10px"}}/>
-  {state.home_state.search_users.map((pdvvwfcv, ndfrnxpz) => (
-  <VStack key={ndfrnxpz} sx={{"py": 2, "width": "100%"}}>
+  {state.home_state.search_users.map((tqzcfeot, codphjiv) => (
+  <VStack key={codphjiv} sx={{"py": 2, "width": "100%"}}>
   <HStack sx={{"width": "100%"}}>
-  <Avatar name={pdvvwfcv.username} size={`sm`}/>
+  <Avatar name={tqzcfeot.username} size={`sm`}/>
   <Text>
-  {pdvvwfcv.username}
+  {tqzcfeot.username}
 </Text>
   <Spacer/>
-  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:pdvvwfcv.username})], (_e), {})}>
+  <Button onClick={(_e) => addEvents([Event("state.home_state.follow_user", {username:tqzcfeot.username})], (_e), {})}>
   <AddIcon/>
 </Button>
 </HStack>

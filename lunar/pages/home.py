@@ -259,6 +259,7 @@ def crater(crater):
                 rx.container(height='5px'),
                 rx.text(crater.content, width="100%",fontSize = '15px'),  # 트윗 내용
                 rx.container(height='10px'),
+                width = '100%',
             ),
             py=4,
             gap=1,

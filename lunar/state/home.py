@@ -31,6 +31,7 @@ class HomeState(State):
     imgshow:bool=False
 
     # map 키워드 검색
+    map_count:int=1
     map_search_input:str=''
     map_html:str
     map_iframe:str
@@ -262,13 +263,14 @@ class HomeState(State):
     # 키워드로 지도검색하는 함수
     def map_search(self):
         if self.map_search_input == "":                                                          
-            return rx.window_alert('Please enter your search term!')                        
+            return rx.window_alert('Please enter your search term!')
+        self.map_count+=1                        
         self.locations = self.map_search_input.split(',')                                         
         self.df = self.keywords()
         self.df = self.df.drop_duplicates(['ID'])                                           
         self.df['place url'] = self.df['place_url']
         m = self.make_map(self.df)
-        m.save('assets/map.html')
-        self.map_html = '/map.html'
+        m.save(f'assets/map.html')
+        self.map_html = f'/map.html'
         self.map_iframe = f'<iframe src="{self.map_html}" width="100%" height="600"></iframe>'                                           
 

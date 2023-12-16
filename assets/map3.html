@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_a531d975bebbeac66c72c8ed7c83efd9 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_a531d975bebbeac66c72c8ed7c83efd9" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_a531d975bebbeac66c72c8ed7c83efd9 = L.map(
+                "map_a531d975bebbeac66c72c8ed7c83efd9",
+                {
+                    center: [37.5518911, 126.9917937],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 12,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_625334157b1a6c62ce7d0d846fb9a38d = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+            var tile_layer_b3c47385e8c53474c4c3a960c2f5196e = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_5d0f84172f1141e858d2b2006ff49ad3 = new L.Control.MiniMap(
+                tile_layer_b3c47385e8c53474c4c3a960c2f5196e,
+                {"autoToggleDisplay": false, "centerFixed": false, "collapsedHeight": 25, "collapsedWidth": 25, "height": 150, "minimized": false, "position": "bottomright", "toggleDisplay": false, "width": 150, "zoomAnimation": false, "zoomLevelOffset": -5}
+            );
+            map_a531d975bebbeac66c72c8ed7c83efd9.addControl(mini_map_5d0f84172f1141e858d2b2006ff49ad3);
+        
+    
+            var marker_882be0f53c5812faf0695f8104c43d84 = L.marker(
+                [36.36881378319206, 127.34687598476853],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_3bad08e7e63ab296c49e35626544ca08 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_724462dc619d8b5e2fdb688c512971a4 = $(`<div id="html_724462dc619d8b5e2fdb688c512971a4" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/12520707</div>`)[0];
+                popup_3bad08e7e63ab296c49e35626544ca08.setContent(html_724462dc619d8b5e2fdb688c512971a4);
+            
+        
+
+        marker_882be0f53c5812faf0695f8104c43d84.bindPopup(popup_3bad08e7e63ab296c49e35626544ca08)
+        ;
+
+        
+    
+    
+            marker_882be0f53c5812faf0695f8104c43d84.bindTooltip(
+                `<div>
+                     충남대학교 대덕캠퍼스
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_58473a42a3dd6e686fcdb57242709442 = L.marker(
+                [36.3626682241436, 127.344854269273],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_306c72718afa6bdc6dcca9d6f9b9283d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_38b219866842c0503e8406ef43d1a071 = $(`<div id="html_38b219866842c0503e8406ef43d1a071" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/27072926</div>`)[0];
+                popup_306c72718afa6bdc6dcca9d6f9b9283d.setContent(html_38b219866842c0503e8406ef43d1a071);
+            
+        
+
+        marker_58473a42a3dd6e686fcdb57242709442.bindPopup(popup_306c72718afa6bdc6dcca9d6f9b9283d)
+        ;
+
+        
+    
+    
+            marker_58473a42a3dd6e686fcdb57242709442.bindTooltip(
+                `<div>
+                     충남대학교 정문
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_46c5e41ab4e61b6c1a5302ae929e7a36 = L.marker(
+                [36.3628700163623, 127.346125364374],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_ec7173200c48792bae71a8f800c483be = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6d06fb70480b9a5202096e6e061a5391 = $(`<div id="html_6d06fb70480b9a5202096e6e061a5391" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/235927735</div>`)[0];
+                popup_ec7173200c48792bae71a8f800c483be.setContent(html_6d06fb70480b9a5202096e6e061a5391);
+            
+        
+
+        marker_46c5e41ab4e61b6c1a5302ae929e7a36.bindPopup(popup_ec7173200c48792bae71a8f800c483be)
+        ;
+
+        
+    
+    
+            marker_46c5e41ab4e61b6c1a5302ae929e7a36.bindTooltip(
+                `<div>
+                     충남대학교 정심화국제문화회관 정심화홀
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_6f7f265a6a9e051809bf82acae09673d = L.marker(
+                [36.3702455521552, 127.346010942599],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_094e69134c29f69e12a0c642f10c70e8 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_fd713477e0d595ff2abb1cd68434537c = $(`<div id="html_fd713477e0d595ff2abb1cd68434537c" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8105719</div>`)[0];
+                popup_094e69134c29f69e12a0c642f10c70e8.setContent(html_fd713477e0d595ff2abb1cd68434537c);
+            
+        
+
+        marker_6f7f265a6a9e051809bf82acae09673d.bindPopup(popup_094e69134c29f69e12a0c642f10c70e8)
+        ;
+
+        
+    
+    
+            marker_6f7f265a6a9e051809bf82acae09673d.bindTooltip(
+                `<div>
+                     충남대학교 중앙도서관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f06f5f0d6f63f0b3bc3779eeb140f96c = L.marker(
+                [36.3698829306565, 127.34048679286],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_2d35c886c94e1b73ea3a609884b91a4b = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f206e9f34d1863c4dbece22563bc6bbd = $(`<div id="html_f206e9f34d1863c4dbece22563bc6bbd" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/27219310</div>`)[0];
+                popup_2d35c886c94e1b73ea3a609884b91a4b.setContent(html_f206e9f34d1863c4dbece22563bc6bbd);
+            
+        
+
+        marker_f06f5f0d6f63f0b3bc3779eeb140f96c.bindPopup(popup_2d35c886c94e1b73ea3a609884b91a4b)
+        ;
+
+        
+    
+    
+            marker_f06f5f0d6f63f0b3bc3779eeb140f96c.bindTooltip(
+                `<div>
+                     충남대학교 서문
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_7c1775c3b82ed64559c262aabfeef776 = L.marker(
+                [36.3679150337849, 127.340393532437],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_85c6cd617b11c749846d6da8762de512 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_915478ea14d68f34eba1f975dd7502c0 = $(`<div id="html_915478ea14d68f34eba1f975dd7502c0" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17555953</div>`)[0];
+                popup_85c6cd617b11c749846d6da8762de512.setContent(html_915478ea14d68f34eba1f975dd7502c0);
+            
+        
+
+        marker_7c1775c3b82ed64559c262aabfeef776.bindPopup(popup_85c6cd617b11c749846d6da8762de512)
+        ;
+
+        
+    
+    
+            marker_7c1775c3b82ed64559c262aabfeef776.bindTooltip(
+                `<div>
+                     충남대학교 백마교양교육관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2791b3c21fa993baae261ab510a3ff64 = L.marker(
+                [36.366379655778154, 127.34220866772435],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_deca0417c3ee7d3afe94394cafcde2ef = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e7b1df07167fcf89af66c9649f0638d1 = $(`<div id="html_e7b1df07167fcf89af66c9649f0638d1" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/10834940</div>`)[0];
+                popup_deca0417c3ee7d3afe94394cafcde2ef.setContent(html_e7b1df07167fcf89af66c9649f0638d1);
+            
+        
+
+        marker_2791b3c21fa993baae261ab510a3ff64.bindPopup(popup_deca0417c3ee7d3afe94394cafcde2ef)
+        ;
+
+        
+    
+    
+            marker_2791b3c21fa993baae261ab510a3ff64.bindTooltip(
+                `<div>
+                     충남대학교 사회과학대학
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b9e0b43ebdfa23e01b9256c4e871b0b3 = L.marker(
+                [36.3684716915641, 127.342379401826],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_c05aece29325752f5f3212b357891149 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_2c0ba5f756981e57a97cbda36fe82b23 = $(`<div id="html_2c0ba5f756981e57a97cbda36fe82b23" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17558393</div>`)[0];
+                popup_c05aece29325752f5f3212b357891149.setContent(html_2c0ba5f756981e57a97cbda36fe82b23);
+            
+        
+
+        marker_b9e0b43ebdfa23e01b9256c4e871b0b3.bindPopup(popup_c05aece29325752f5f3212b357891149)
+        ;
+
+        
+    
+    
+            marker_b9e0b43ebdfa23e01b9256c4e871b0b3.bindTooltip(
+                `<div>
+                     충남대학교 인문대학
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_a6d4bb49308305c24cfde5f2a9a178ca = L.marker(
+                [36.3629168509923, 127.346134485504],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_45ff8c31e13406e16a59577e6c1d2ecf = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0da90774bdac4d5aadac9420c17a8f6d = $(`<div id="html_0da90774bdac4d5aadac9420c17a8f6d" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/22986777</div>`)[0];
+                popup_45ff8c31e13406e16a59577e6c1d2ecf.setContent(html_0da90774bdac4d5aadac9420c17a8f6d);
+            
+        
+
+        marker_a6d4bb49308305c24cfde5f2a9a178ca.bindPopup(popup_45ff8c31e13406e16a59577e6c1d2ecf)
+        ;
+
+        
+    
+    
+            marker_a6d4bb49308305c24cfde5f2a9a178ca.bindTooltip(
+                `<div>
+                     충남대학교 정심화국제문화회관 백마홀
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_59eca3f501d23ae7a9da2e9e6e86cc32 = L.marker(
+                [36.3629204685537, 127.346130044663],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_bb6ff6b201f8f7e4b88782ec42cfa82f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_bf14b50cff0aea2fb6b74c91833a117f = $(`<div id="html_bf14b50cff0aea2fb6b74c91833a117f" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8105717</div>`)[0];
+                popup_bb6ff6b201f8f7e4b88782ec42cfa82f.setContent(html_bf14b50cff0aea2fb6b74c91833a117f);
+            
+        
+
+        marker_59eca3f501d23ae7a9da2e9e6e86cc32.bindPopup(popup_bb6ff6b201f8f7e4b88782ec42cfa82f)
+        ;
+
+        
+    
+    
+            marker_59eca3f501d23ae7a9da2e9e6e86cc32.bindTooltip(
+                `<div>
+                     충남대학교 정심화국제문화회관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_60e07759964fe148dc625a15661bc597 = L.marker(
+                [36.3722519915474, 127.345239784072],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_4669d61ae1b63af0764cf3a4485838e4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e990a2f335d42f3fec20077cf121500b = $(`<div id="html_e990a2f335d42f3fec20077cf121500b" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/268689803</div>`)[0];
+                popup_4669d61ae1b63af0764cf3a4485838e4.setContent(html_e990a2f335d42f3fec20077cf121500b);
+            
+        
+
+        marker_60e07759964fe148dc625a15661bc597.bindPopup(popup_4669d61ae1b63af0764cf3a4485838e4)
+        ;
+
+        
+    
+    
+            marker_60e07759964fe148dc625a15661bc597.bindTooltip(
+                `<div>
+                     충남대학교 학생생활관13동
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3583f1831decf3c86ab242b55eac30d2 = L.marker(
+                [36.3769074396486, 127.344618454386],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_53ead5bc0741fc28bb7dc40b519e5357 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6a975a726b8789d73dc86ef836b126dd = $(`<div id="html_6a975a726b8789d73dc86ef836b126dd" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/13049374</div>`)[0];
+                popup_53ead5bc0741fc28bb7dc40b519e5357.setContent(html_6a975a726b8789d73dc86ef836b126dd);
+            
+        
+
+        marker_3583f1831decf3c86ab242b55eac30d2.bindPopup(popup_53ead5bc0741fc28bb7dc40b519e5357)
+        ;
+
+        
+    
+    
+            marker_3583f1831decf3c86ab242b55eac30d2.bindTooltip(
+                `<div>
+                     충남대학교 법학전문대학원
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3134ab4ad19f3c9e31b4298c31807848 = L.marker(
+                [36.3674868814362, 127.342633600128],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_ee7c7d5604a114d65c392fae891e1767 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_b1b1b464cfe6275a178999009e692c2d = $(`<div id="html_b1b1b464cfe6275a178999009e692c2d" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/10836014</div>`)[0];
+                popup_ee7c7d5604a114d65c392fae891e1767.setContent(html_b1b1b464cfe6275a178999009e692c2d);
+            
+        
+
+        marker_3134ab4ad19f3c9e31b4298c31807848.bindPopup(popup_ee7c7d5604a114d65c392fae891e1767)
+        ;
+
+        
+    
+    
+            marker_3134ab4ad19f3c9e31b4298c31807848.bindTooltip(
+                `<div>
+                     충남대학교 우편취급국
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e52c8e3799e9945beff37d61315d02a5 = L.marker(
+                [36.3653929653236, 127.345619525624],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_aee47fa7aae674740b4e0eaad0dd71fb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_73ab252f7d509231774bc4329f5cfa58 = $(`<div id="html_73ab252f7d509231774bc4329f5cfa58" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/1116645450</div>`)[0];
+                popup_aee47fa7aae674740b4e0eaad0dd71fb.setContent(html_73ab252f7d509231774bc4329f5cfa58);
+            
+        
+
+        marker_e52c8e3799e9945beff37d61315d02a5.bindPopup(popup_aee47fa7aae674740b4e0eaad0dd71fb)
+        ;
+
+        
+    
+    
+            marker_e52c8e3799e9945beff37d61315d02a5.bindTooltip(
+                `<div>
+                     충남대학교 대덕캠퍼스 융합교육혁신센터
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f948a5d1bca1886af8905046c2aad506 = L.marker(
+                [36.3705153595536, 127.352363781765],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_3ae7068629d8a9b2af1145ce64eb1e0a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_9ebf8bda0055f4b2337488e6001a41ca = $(`<div id="html_9ebf8bda0055f4b2337488e6001a41ca" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8093775</div>`)[0];
+                popup_3ae7068629d8a9b2af1145ce64eb1e0a.setContent(html_9ebf8bda0055f4b2337488e6001a41ca);
+            
+        
+
+        marker_f948a5d1bca1886af8905046c2aad506.bindPopup(popup_3ae7068629d8a9b2af1145ce64eb1e0a)
+        ;
+
+        
+    
+    
+            marker_f948a5d1bca1886af8905046c2aad506.bindTooltip(
+                `<div>
+                     충남대학교 농업생명과학대학
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_edf734652c11ccd87573caa910e29a90 = L.marker(
+                [36.3689955914964, 127.343210738086],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_6aa66d0a991ea6afec3e5fc15b8ec0ed = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_02a1f2ea76a9e652f64b6566c2c8b47d = $(`<div id="html_02a1f2ea76a9e652f64b6566c2c8b47d" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/10835308</div>`)[0];
+                popup_6aa66d0a991ea6afec3e5fc15b8ec0ed.setContent(html_02a1f2ea76a9e652f64b6566c2c8b47d);
+            
+        
+
+        marker_edf734652c11ccd87573caa910e29a90.bindPopup(popup_6aa66d0a991ea6afec3e5fc15b8ec0ed)
+        ;
+
+        
+    
+    
+            marker_edf734652c11ccd87573caa910e29a90.bindTooltip(
+                `<div>
+                     충남대학교 약학대학
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_f39428797df457e898c4426d199546fe = L.marker(
+                [36.3694162206472, 127.343600364807],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_ca64cb3088d3ef4dda9504ca4a3a1a6f = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d5c733d8154aeb8cbdc865a75328c342 = $(`<div id="html_d5c733d8154aeb8cbdc865a75328c342" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17558394</div>`)[0];
+                popup_ca64cb3088d3ef4dda9504ca4a3a1a6f.setContent(html_d5c733d8154aeb8cbdc865a75328c342);
+            
+        
+
+        marker_f39428797df457e898c4426d199546fe.bindPopup(popup_ca64cb3088d3ef4dda9504ca4a3a1a6f)
+        ;
+
+        
+    
+    
+            marker_f39428797df457e898c4426d199546fe.bindTooltip(
+                `<div>
+                     충남대학교 자연과학대학 1호관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_ac51c78eff11912246e53b9fa7814efa = L.marker(
+                [36.3642934139241, 127.346283204052],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_888a0fe26e70ff45bf0302ec4859e4d5 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_72ee006e2d6461f1b67c3efe6e0d5ee4 = $(`<div id="html_72ee006e2d6461f1b67c3efe6e0d5ee4" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17564190</div>`)[0];
+                popup_888a0fe26e70ff45bf0302ec4859e4d5.setContent(html_72ee006e2d6461f1b67c3efe6e0d5ee4);
+            
+        
+
+        marker_ac51c78eff11912246e53b9fa7814efa.bindPopup(popup_888a0fe26e70ff45bf0302ec4859e4d5)
+        ;
+
+        
+    
+    
+            marker_ac51c78eff11912246e53b9fa7814efa.bindTooltip(
+                `<div>
+                     충남대학교 공과대학 2호관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_64a7a4b91f73e985987c168a5fa50b6a = L.marker(
+                [36.3698905336576, 127.340348650933],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_29a9af578144b8490cd786b8acc12f49 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_48c7e04075934a79ecbc98dfd314a231 = $(`<div id="html_48c7e04075934a79ecbc98dfd314a231" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/27074633</div>`)[0];
+                popup_29a9af578144b8490cd786b8acc12f49.setContent(html_48c7e04075934a79ecbc98dfd314a231);
+            
+        
+
+        marker_64a7a4b91f73e985987c168a5fa50b6a.bindPopup(popup_29a9af578144b8490cd786b8acc12f49)
+        ;
+
+        
+    
+    
+            marker_64a7a4b91f73e985987c168a5fa50b6a.bindTooltip(
+                `<div>
+                     충남대학교 후문
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_af6d6e5738556c7b2402ef66237b2c43 = L.marker(
+                [36.377250856133, 127.34302857784],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_18a12ff940cdf9dc8c6bbb7e0a3766c7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a3084f405bfb450cc0997d9e576e323f = $(`<div id="html_a3084f405bfb450cc0997d9e576e323f" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17567302</div>`)[0];
+                popup_18a12ff940cdf9dc8c6bbb7e0a3766c7.setContent(html_a3084f405bfb450cc0997d9e576e323f);
+            
+        
+
+        marker_af6d6e5738556c7b2402ef66237b2c43.bindPopup(popup_18a12ff940cdf9dc8c6bbb7e0a3766c7)
+        ;
+
+        
+    
+    
+            marker_af6d6e5738556c7b2402ef66237b2c43.bindTooltip(
+                `<div>
+                     충남대학교 수의과대학 부속동물병원
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_50d166ff8d5e98b64336159b59bba0c3 = L.marker(
+                [36.3742238340004, 127.342080324575],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_a3d43c4057cb60c591c206793da4e6fb = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_4b02fdbe326033f732ccc793cff7b796 = $(`<div id="html_4b02fdbe326033f732ccc793cff7b796" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/217163180</div>`)[0];
+                popup_a3d43c4057cb60c591c206793da4e6fb.setContent(html_4b02fdbe326033f732ccc793cff7b796);
+            
+        
+
+        marker_50d166ff8d5e98b64336159b59bba0c3.bindPopup(popup_a3d43c4057cb60c591c206793da4e6fb)
+        ;
+
+        
+    
+    
+            marker_50d166ff8d5e98b64336159b59bba0c3.bindTooltip(
+                `<div>
+                     충남대학교 대덕캠퍼스 풋살경기장
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3220763ce9f58f03096216378462ba97 = L.marker(
+                [36.3657689174811, 127.344627271876],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_f31e83ebec88a4f48b073d78a60a3692 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3099aad39d2193d8ee79b6f8dfab2362 = $(`<div id="html_3099aad39d2193d8ee79b6f8dfab2362" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/9503123</div>`)[0];
+                popup_f31e83ebec88a4f48b073d78a60a3692.setContent(html_3099aad39d2193d8ee79b6f8dfab2362);
+            
+        
+
+        marker_3220763ce9f58f03096216378462ba97.bindPopup(popup_f31e83ebec88a4f48b073d78a60a3692)
+        ;
+
+        
+    
+    
+            marker_3220763ce9f58f03096216378462ba97.bindTooltip(
+                `<div>
+                     충남대학교 산학연교육연구관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b41f5bc925787ba4a35b5598b046a0a0 = L.marker(
+                [36.3710731695173, 127.345270234001],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_4245daa367926ff8ef0c8265ee2f5d4a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6c563a354a1ff6a3ccaefcd2cf3b2dbb = $(`<div id="html_6c563a354a1ff6a3ccaefcd2cf3b2dbb" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8105551</div>`)[0];
+                popup_4245daa367926ff8ef0c8265ee2f5d4a.setContent(html_6c563a354a1ff6a3ccaefcd2cf3b2dbb);
+            
+        
+
+        marker_b41f5bc925787ba4a35b5598b046a0a0.bindPopup(popup_4245daa367926ff8ef0c8265ee2f5d4a)
+        ;
+
+        
+    
+    
+            marker_b41f5bc925787ba4a35b5598b046a0a0.bindTooltip(
+                `<div>
+                     충남대학교 박물관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e9c927a8f688762e8e71aa0438382ac4 = L.marker(
+                [36.3715777807093, 127.341523827672],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_3e4239ab069f9cdd4cd666ba4de7e6cd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_972c050c1cca3b54822443ff76f78957 = $(`<div id="html_972c050c1cca3b54822443ff76f78957" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/25045365</div>`)[0];
+                popup_3e4239ab069f9cdd4cd666ba4de7e6cd.setContent(html_972c050c1cca3b54822443ff76f78957);
+            
+        
+
+        marker_e9c927a8f688762e8e71aa0438382ac4.bindPopup(popup_3e4239ab069f9cdd4cd666ba4de7e6cd)
+        ;
+
+        
+    
+    
+            marker_e9c927a8f688762e8e71aa0438382ac4.bindTooltip(
+                `<div>
+                     충남대학교 실내체육관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e8ca9b4de43f767d36d125e0f8442419 = L.marker(
+                [36.3680252601739, 127.344695165418],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_e89f01ea46ceeb4312c958e99a77bd50 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_bd298cbe4d9e2d75f4df21936508ada7 = $(`<div id="html_bd298cbe4d9e2d75f4df21936508ada7" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17564256</div>`)[0];
+                popup_e89f01ea46ceeb4312c958e99a77bd50.setContent(html_bd298cbe4d9e2d75f4df21936508ada7);
+            
+        
+
+        marker_e8ca9b4de43f767d36d125e0f8442419.bindPopup(popup_e89f01ea46ceeb4312c958e99a77bd50)
+        ;
+
+        
+    
+    
+            marker_e8ca9b4de43f767d36d125e0f8442419.bindTooltip(
+                `<div>
+                     충남대학교 공과대학 1호관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e268a13e118e86c62d957489a5730aa9 = L.marker(
+                [36.3733185254439, 127.34414796297],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_0ca0b1ae5867a74e362f1b5eca7fcc3c = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_8ca116c3d7444613d1251247b96fdf2a = $(`<div id="html_8ca116c3d7444613d1251247b96fdf2a" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17555716</div>`)[0];
+                popup_0ca0b1ae5867a74e362f1b5eca7fcc3c.setContent(html_8ca116c3d7444613d1251247b96fdf2a);
+            
+        
+
+        marker_e268a13e118e86c62d957489a5730aa9.bindPopup(popup_0ca0b1ae5867a74e362f1b5eca7fcc3c)
+        ;
+
+        
+    
+    
+            marker_e268a13e118e86c62d957489a5730aa9.bindTooltip(
+                `<div>
+                     충남대학교 음악1호관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_5d4acf8067b64b90365751adcb3bab7b = L.marker(
+                [36.3695287120918, 127.352011667982],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_039e8e127ed31de9c8390eee0cb3b75d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_26bed19076364d29d85d732eaaed85e5 = $(`<div id="html_26bed19076364d29d85d732eaaed85e5" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17567421</div>`)[0];
+                popup_039e8e127ed31de9c8390eee0cb3b75d.setContent(html_26bed19076364d29d85d732eaaed85e5);
+            
+        
+
+        marker_5d4acf8067b64b90365751adcb3bab7b.bindPopup(popup_039e8e127ed31de9c8390eee0cb3b75d)
+        ;
+
+        
+    
+    
+            marker_5d4acf8067b64b90365751adcb3bab7b.bindTooltip(
+                `<div>
+                     충남대학교 농생대1호관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9b27a7ef8221ca57e1778490240fe4d5 = L.marker(
+                [36.3703223901368, 127.351792379349],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_747a4a2455c61102c9a61ef391af8ad6 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ce7f2e33f79feaa302dd378e54eaf85d = $(`<div id="html_ce7f2e33f79feaa302dd378e54eaf85d" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17566049</div>`)[0];
+                popup_747a4a2455c61102c9a61ef391af8ad6.setContent(html_ce7f2e33f79feaa302dd378e54eaf85d);
+            
+        
+
+        marker_9b27a7ef8221ca57e1778490240fe4d5.bindPopup(popup_747a4a2455c61102c9a61ef391af8ad6)
+        ;
+
+        
+    
+    
+            marker_9b27a7ef8221ca57e1778490240fe4d5.bindTooltip(
+                `<div>
+                     충남대학교 농업생명과학대학3호관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_898774678cdfe6f860db863cc7a620b6 = L.marker(
+                [36.3711299801248, 127.343694818873],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_543d1e6f98330bccf999d1eb1df79958 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_f6f18f08c0840290c1bc72b995d1610c = $(`<div id="html_f6f18f08c0840290c1bc72b995d1610c" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/904669483</div>`)[0];
+                popup_543d1e6f98330bccf999d1eb1df79958.setContent(html_f6f18f08c0840290c1bc72b995d1610c);
+            
+        
+
+        marker_898774678cdfe6f860db863cc7a620b6.bindPopup(popup_543d1e6f98330bccf999d1eb1df79958)
+        ;
+
+        
+    
+    
+            marker_898774678cdfe6f860db863cc7a620b6.bindTooltip(
+                `<div>
+                     충남대학교 예술대학
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_d891005fe73e5c7c0713116d889171a9 = L.marker(
+                [36.3684599070877, 127.34019533289],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_31b581b3bbb92645ce80eac314f39a0a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1d9f29b97642cdcca6680f8877aa5c3d = $(`<div id="html_1d9f29b97642cdcca6680f8877aa5c3d" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/1907361857</div>`)[0];
+                popup_31b581b3bbb92645ce80eac314f39a0a.setContent(html_1d9f29b97642cdcca6680f8877aa5c3d);
+            
+        
+
+        marker_d891005fe73e5c7c0713116d889171a9.bindPopup(popup_31b581b3bbb92645ce80eac314f39a0a)
+        ;
+
+        
+    
+    
+            marker_d891005fe73e5c7c0713116d889171a9.bindTooltip(
+                `<div>
+                     충남대학교 글로벌인재양성센터
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_51975062020fba7d546c7de5bb2966c5 = L.marker(
+                [36.368166444998, 127.346977854516],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_194b9828ccbf6b4e199eb55d29e77110 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_41681f37784e442ebdd8e1fe58ab9631 = $(`<div id="html_41681f37784e442ebdd8e1fe58ab9631" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/27074642</div>`)[0];
+                popup_194b9828ccbf6b4e199eb55d29e77110.setContent(html_41681f37784e442ebdd8e1fe58ab9631);
+            
+        
+
+        marker_51975062020fba7d546c7de5bb2966c5.bindPopup(popup_194b9828ccbf6b4e199eb55d29e77110)
+        ;
+
+        
+    
+    
+            marker_51975062020fba7d546c7de5bb2966c5.bindTooltip(
+                `<div>
+                     충남대학교 대학본부별관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_e168499891d0db1fc8d7f634161f5a5a = L.marker(
+                [36.370510166287495, 127.34767691381535],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_34153122b8cd65f7ec98ab41b953d41d = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0073ab442ea85cbf0a179a307e565ac2 = $(`<div id="html_0073ab442ea85cbf0a179a307e565ac2" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/9972334</div>`)[0];
+                popup_34153122b8cd65f7ec98ab41b953d41d.setContent(html_0073ab442ea85cbf0a179a307e565ac2);
+            
+        
+
+        marker_e168499891d0db1fc8d7f634161f5a5a.bindPopup(popup_34153122b8cd65f7ec98ab41b953d41d)
+        ;
+
+        
+    
+    
+            marker_e168499891d0db1fc8d7f634161f5a5a.bindTooltip(
+                `<div>
+                     충남대학교 정보화본부교육관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_fe7491e72d1e174d8f6824e21fd3fe8c = L.marker(
+                [36.3731606980855, 127.342622821216],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_91a6b53bf1e5c6bd8828355bf1f744cd = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_d3e0bebf32a39a8ecfebf72fdbbed9eb = $(`<div id="html_d3e0bebf32a39a8ecfebf72fdbbed9eb" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/27202577</div>`)[0];
+                popup_91a6b53bf1e5c6bd8828355bf1f744cd.setContent(html_d3e0bebf32a39a8ecfebf72fdbbed9eb);
+            
+        
+
+        marker_fe7491e72d1e174d8f6824e21fd3fe8c.bindPopup(popup_91a6b53bf1e5c6bd8828355bf1f744cd)
+        ;
+
+        
+    
+    
+            marker_fe7491e72d1e174d8f6824e21fd3fe8c.bindTooltip(
+                `<div>
+                     충남대학교 종합운동장
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_bbf3ece51e17c471f88ee7dc7d5836a1 = L.marker(
+                [36.37106673852, 127.343750257273],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_478804d29ce67294a7ce01d74b8240d7 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_da7de918c109a136812a163b547f59ef = $(`<div id="html_da7de918c109a136812a163b547f59ef" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17563872</div>`)[0];
+                popup_478804d29ce67294a7ce01d74b8240d7.setContent(html_da7de918c109a136812a163b547f59ef);
+            
+        
+
+        marker_bbf3ece51e17c471f88ee7dc7d5836a1.bindPopup(popup_478804d29ce67294a7ce01d74b8240d7)
+        ;
+
+        
+    
+    
+            marker_bbf3ece51e17c471f88ee7dc7d5836a1.bindTooltip(
+                `<div>
+                     충남대학교 미술관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_9b0d88b0353cf524257ffd6c72c39b50 = L.marker(
+                [36.3668956795372, 127.340121666939],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_84450ce7214174e74904673bcb3eff33 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_928c929dbfff69af069cea284583bf3d = $(`<div id="html_928c929dbfff69af069cea284583bf3d" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/1214285989</div>`)[0];
+                popup_84450ce7214174e74904673bcb3eff33.setContent(html_928c929dbfff69af069cea284583bf3d);
+            
+        
+
+        marker_9b0d88b0353cf524257ffd6c72c39b50.bindPopup(popup_84450ce7214174e74904673bcb3eff33)
+        ;
+
+        
+    
+    
+            marker_9b0d88b0353cf524257ffd6c72c39b50.bindTooltip(
+                `<div>
+                     충남대학교 자연과학대학 4호관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_65d32270f37bf79e1fa82724ac4bd213 = L.marker(
+                [36.368596410876215, 127.34036195734458],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_d92ced86fbfd01a2de359bd370242e74 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6d5a3ab9a8bcbb53979e59a869dbfd62 = $(`<div id="html_6d5a3ab9a8bcbb53979e59a869dbfd62" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/12653436</div>`)[0];
+                popup_d92ced86fbfd01a2de359bd370242e74.setContent(html_6d5a3ab9a8bcbb53979e59a869dbfd62);
+            
+        
+
+        marker_65d32270f37bf79e1fa82724ac4bd213.bindPopup(popup_d92ced86fbfd01a2de359bd370242e74)
+        ;
+
+        
+    
+    
+            marker_65d32270f37bf79e1fa82724ac4bd213.bindTooltip(
+                `<div>
+                     충남대학교 사범대학
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_67d284a8bee9d69974492d4872e6135c = L.marker(
+                [36.3677901422815, 127.346222927121],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_87dddfb3fb0bbed24f2aa1e3d7d080ad = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_7cb4cddbdb0967a0b30ac9ed8a8d8a8e = $(`<div id="html_7cb4cddbdb0967a0b30ac9ed8a8d8a8e" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/10834252</div>`)[0];
+                popup_87dddfb3fb0bbed24f2aa1e3d7d080ad.setContent(html_7cb4cddbdb0967a0b30ac9ed8a8d8a8e);
+            
+        
+
+        marker_67d284a8bee9d69974492d4872e6135c.bindPopup(popup_87dddfb3fb0bbed24f2aa1e3d7d080ad)
+        ;
+
+        
+    
+    
+            marker_67d284a8bee9d69974492d4872e6135c.bindTooltip(
+                `<div>
+                     충남대학교 대덕캠퍼스 경상대학
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3bc5befc40211aa39278167048247b26 = L.marker(
+                [36.367788316068804, 127.34310737859708],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_fd36cc7962486e4b171737c7f0283d0a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_6b20f718142cc50412c9a94dfb8b3c9a = $(`<div id="html_6b20f718142cc50412c9a94dfb8b3c9a" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/841441723</div>`)[0];
+                popup_fd36cc7962486e4b171737c7f0283d0a.setContent(html_6b20f718142cc50412c9a94dfb8b3c9a);
+            
+        
+
+        marker_3bc5befc40211aa39278167048247b26.bindPopup(popup_fd36cc7962486e4b171737c7f0283d0a)
+        ;
+
+        
+    
+    
+            marker_3bc5befc40211aa39278167048247b26.bindTooltip(
+                `<div>
+                     충남대학교 대덕캠퍼스 서점
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4d8a5174863d2d6b620bee38084de925 = L.marker(
+                [36.3659854270717, 127.345795970201],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_411eef35f150882ed253180faa0c69da = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_aafebb4a347d878a4e5086b695a947d4 = $(`<div id="html_aafebb4a347d878a4e5086b695a947d4" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17561993</div>`)[0];
+                popup_411eef35f150882ed253180faa0c69da.setContent(html_aafebb4a347d878a4e5086b695a947d4);
+            
+        
+
+        marker_4d8a5174863d2d6b620bee38084de925.bindPopup(popup_411eef35f150882ed253180faa0c69da)
+        ;
+
+        
+    
+    
+            marker_4d8a5174863d2d6b620bee38084de925.bindTooltip(
+                `<div>
+                     충남대학교 인재개발원
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b56b9c10357ae024a599a0320a847424 = L.marker(
+                [36.3750175374688, 127.342474950119],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_76a6850cc1d67bd5b3a8f7823897e379 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_23e22907a4b5361feef32570def878f5 = $(`<div id="html_23e22907a4b5361feef32570def878f5" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17564828</div>`)[0];
+                popup_76a6850cc1d67bd5b3a8f7823897e379.setContent(html_23e22907a4b5361feef32570def878f5);
+            
+        
+
+        marker_b56b9c10357ae024a599a0320a847424.bindPopup(popup_76a6850cc1d67bd5b3a8f7823897e379)
+        ;
+
+        
+    
+    
+            marker_b56b9c10357ae024a599a0320a847424.bindTooltip(
+                `<div>
+                     충남대학교 북부운동장
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_12919a3f22f0b3c0ff699e682062dc36 = L.marker(
+                [36.3770582985471, 127.343553737166],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_df37174f9bb66186beb88ad8f22ebf63 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_ef9b2d5ad4f57ef76edb402761fd5702 = $(`<div id="html_ef9b2d5ad4f57ef76edb402761fd5702" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8580928</div>`)[0];
+                popup_df37174f9bb66186beb88ad8f22ebf63.setContent(html_ef9b2d5ad4f57ef76edb402761fd5702);
+            
+        
+
+        marker_12919a3f22f0b3c0ff699e682062dc36.bindPopup(popup_df37174f9bb66186beb88ad8f22ebf63)
+        ;
+
+        
+    
+    
+            marker_12919a3f22f0b3c0ff699e682062dc36.bindTooltip(
+                `<div>
+                     충남대학교 수의과대학
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_2600b8c3f8fbe589ebf5491ddfa7c8ac = L.marker(
+                [36.3746834872033, 127.347060286928],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_7f36724702fac0e10fae83f03e0915f4 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_e02791b01e51c643a83c3231e5c9878e = $(`<div id="html_e02791b01e51c643a83c3231e5c9878e" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8581598</div>`)[0];
+                popup_7f36724702fac0e10fae83f03e0915f4.setContent(html_e02791b01e51c643a83c3231e5c9878e);
+            
+        
+
+        marker_2600b8c3f8fbe589ebf5491ddfa7c8ac.bindPopup(popup_7f36724702fac0e10fae83f03e0915f4)
+        ;
+
+        
+    
+    
+            marker_2600b8c3f8fbe589ebf5491ddfa7c8ac.bindTooltip(
+                `<div>
+                     충남대학교 대덕캠퍼스 학생생활관행정실
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_23615edf0590a10c3db43b79d4cdd416 = L.marker(
+                [36.3692250388105, 127.353530212059],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_cde62cb154a320d9d3ec2f0763ac5699 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_97118726f6f68086130aab3294ad67c9 = $(`<div id="html_97118726f6f68086130aab3294ad67c9" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/11582041</div>`)[0];
+                popup_cde62cb154a320d9d3ec2f0763ac5699.setContent(html_97118726f6f68086130aab3294ad67c9);
+            
+        
+
+        marker_23615edf0590a10c3db43b79d4cdd416.bindPopup(popup_cde62cb154a320d9d3ec2f0763ac5699)
+        ;
+
+        
+    
+    
+            marker_23615edf0590a10c3db43b79d4cdd416.bindTooltip(
+                `<div>
+                     충남농업마이스터대학
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c9c1be180efb5cd83605f77fb6371629 = L.marker(
+                [36.3752821568941, 127.347580024201],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_24bddff1767f6380777b2ce3a5561852 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1a1280a96807a91151aa4255cc9b9ac1 = $(`<div id="html_1a1280a96807a91151aa4255cc9b9ac1" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/2119104598</div>`)[0];
+                popup_24bddff1767f6380777b2ce3a5561852.setContent(html_1a1280a96807a91151aa4255cc9b9ac1);
+            
+        
+
+        marker_c9c1be180efb5cd83605f77fb6371629.bindPopup(popup_24bddff1767f6380777b2ce3a5561852)
+        ;
+
+        
+    
+    
+            marker_c9c1be180efb5cd83605f77fb6371629.bindTooltip(
+                `<div>
+                     충남대학교 학생생활관 1동
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_4f1aef224c6514d3b78d0e8a788b8c2c = L.marker(
+                [36.3698283930676, 127.34316982342],
+                {}
+            ).addTo(map_a531d975bebbeac66c72c8ed7c83efd9);
+        
+    
+        var popup_f9f95e6d34fa27fff613a9740a943bc0 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_a6eb92cab0b841942351f9672b871c22 = $(`<div id="html_a6eb92cab0b841942351f9672b871c22" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17555954</div>`)[0];
+                popup_f9f95e6d34fa27fff613a9740a943bc0.setContent(html_a6eb92cab0b841942351f9672b871c22);
+            
+        
+
+        marker_4f1aef224c6514d3b78d0e8a788b8c2c.bindPopup(popup_f9f95e6d34fa27fff613a9740a943bc0)
+        ;
+
+        
+    
+    
+            marker_4f1aef224c6514d3b78d0e8a788b8c2c.bindTooltip(
+                `<div>
+                     충남대학교 대덕캠퍼스 자연과학대학2호관
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
+</html>

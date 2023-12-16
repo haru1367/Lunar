@@ -259,14 +259,6 @@ def crater(crater):
                 rx.container(height='5px'),
                 rx.text(crater.content, width="100%",fontSize = '15px'),  # 트윗 내용
                 rx.container(height='10px'),
-                rx.hstack(
-                    rx.button(
-                        rx.image(src='/heart2.png',height='30px',width='30px'),
-                        on_click = HomeState.crater_heart(crater.id,HomeState.user.username),
-                    ),
-                    rx.image(src='/comment.png',height='30px',width='30px'),
-                ),
-                width = '100%',
             ),
             py=4,
             gap=1,

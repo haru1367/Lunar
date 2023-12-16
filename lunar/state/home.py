@@ -118,21 +118,7 @@ class HomeState(State):
                 )
             else:
                 self.craters = session.query(Crater).all()[::-1]                       # session에 저장된 모든 story를 가져옴
-        
-    # Crater 공감 기능 함수
-    def crater_heart(self,crater_id,username):
-        with rx.session() as session:
-            crater = session.query(Crater).get(crater_id)
-            heart_users = crater.heart_list.split(',')
-            if username in heart_users:
-                crater.heart_num -=1
-                heart_users.remove(f'{username}')
-                crater.heart_list = ''
-                crater.heart_list = ",".join(heart_users)
-            else :
-                crater.heart_num+=1
-                crater.heart_list+=f',{username}'
-            session.commit()
+
 
 
     def set_search(self, search):

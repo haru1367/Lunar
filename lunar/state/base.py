@@ -33,10 +33,6 @@ class Crater(rx.Model, table=True):
     created_at: str = Field()
     author: str = Field()
     image_content: str = Field()
-    heart_list: str = Field()
-    comment_list : str = Field()
-    heart_num: int = Field()
-    comment_num : int = Field()
 
 
 class State(rx.State):

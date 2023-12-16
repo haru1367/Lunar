@@ -1,4 +1,9 @@
-*.db
-*.py[cod]
-.web
+*.db
+
+*.py[cod]
+
+.web
+
 __pycache__/
+
+kakaoapikey.json

@@ -6,20 +6,38 @@ from sqlmodel import select
 import os
 from .base import Follows, State, Crater, User
 from tkinter import filedialog
+import folium
+from folium.plugins import MiniMap
+import requests
+import pandas as pd
+import numpy as np
+import json
 
 
 class HomeState(State):
     """The state for the home page."""
 
+    # 데이터 베이스 저장된 crater 불러오기
     crater: str
     craters: list[Crater] = []
 
+    # 친구,crater 검색
     friend: str
     search: str
 
+    # 파일 선택 변수
     img: list[str]                                                             
     files: list[str] = []
     imgshow:bool=False
+
+    # map 키워드 검색
+    map_search_input:str=''
+    map_html:str
+    map_iframe:str
+
+    @rx.var
+    def time_map_iframe(self)->str:
+        return self.map_iframe
 
     def handle_file_selection(self):                                          
         root = tk.Tk()
@@ -173,3 +191,84 @@ class HomeState(State):
                 ).all()
                 return users
         return []
+    
+    # KaKao Rest API Key를 받아오는 함수     
+    def kakao_api(self): 
+        key=''
+        with open('kakaoapikey.json','r')as f:                                               
+            key = json.load(f)
+        self.KAKAO_REST_API_KEY = key['key']
+    
+    # kakao api 검색으로 장소 목록을 받는 함수   
+    def elec_location(self,region,page_num):
+        self.kakao_api()                                                                    
+        url = 'https://dapi.kakao.com/v2/local/search/keyword.json'
+        params = {'query': region,'page': page_num}                                         
+        headers = {"Authorization": f'KakaoAK {self.KAKAO_REST_API_KEY}'}                   
+        places = requests.get(url, params=params, headers=headers).json()['documents']                                                                         
+        return places  
+    
+    # 장소목록의 정보를 가져오는 함수
+    def elec_info(self,places):
+        X = []    # 경도                                                        
+        Y = []    # 위도                                                                    
+        stores = []                                                                        
+        road_address = []                                                                   
+        place_url = []                                                                      
+        ID = []                                                                             
+
+        for place in places:                                                                
+            X.append(float(place['x']))
+            Y.append(float(place['y']))
+            stores.append(place['place_name'])
+            road_address.append(place['road_address_name'])
+            place_url.append(place['place_url'])
+            ID.append(place['id'])
+
+        ar = np.array([ID,stores, X, Y, road_address,place_url]).T                          
+        df = pd.DataFrame(ar, columns = ['ID','stores', 'X', 'Y','road_address','place_url']) 
+        return df
+
+    #사용자가 입력한 키워드로 정보를 받아와 데이터 프레임 생성
+    def keywords(self):
+        df = None
+        for loca in self.locations:                                                         
+            for page in range(1,4):                                                         
+                local_name = self.elec_location(loca, page)                                
+                local_elec_info = self.elec_info(local_name)                                
+
+                if df is None:                                                              
+                    df = local_elec_info
+                elif local_elec_info is None:                                               
+                    continue
+                else:                                                                       
+                    df = pd.concat([df, local_elec_info],join='outer', ignore_index = True)
+        return df
+
+    # 데이터 프레임을 기준으로 지도를 생성하는 함수
+    def make_map(self,dfs):
+        m = folium.Map(location=[37.5518911,126.9917937],                                   
+                    zoom_start=12)
+
+        minimap = MiniMap()                                                                 
+        m.add_child(minimap)
+        for i in range(len(dfs)):                                                           
+            folium.Marker([dfs['Y'][i],dfs['X'][i]],                                       
+                    tooltip=dfs['stores'][i],                                               
+                    popup=dfs['place_url'][i],                                              
+                    ).add_to(m)
+        return m
+
+    # 키워드로 지도검색하는 함수
+    def map_search(self):
+        if self.map_search_input == "":                                                          
+            return rx.window_alert('Please enter your search term!')                        
+        self.locations = self.map_search_input.split(',')                                         
+        self.df = self.keywords()
+        self.df = self.df.drop_duplicates(['ID'])                                           
+        self.df['place url'] = self.df['place_url']
+        m = self.make_map(self.df)
+        m.save('assets/map.html')
+        self.map_html = '/map.html'
+        self.map_iframe = f'<iframe src="{self.map_html}" width="100%" height="600"></iframe>'                                           
+

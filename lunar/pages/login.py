@@ -7,15 +7,15 @@ def login():
     return rx.container(
         rx.container(height='150px'),
         rx.hstack( 
-            rx.vstack(
-                rx.container(height='30px'),
-                rx.image(
-                    src = '/space2.jpg',
-                ),
-                width = '500px',
-                height= '100%',
-            ),
-            rx.container(width='30px'),
+            # rx.vstack(
+            #     rx.container(height='30px'),
+            #     rx.image(
+            #         src = '/space2.jpg',
+            #     ),
+            #     width = '500px',
+            #     height= '100%',
+            # ),
+            # rx.container(width='30px'),
             rx.vstack(
                 rx.hstack(
                     rx.vstack(
@@ -110,7 +110,7 @@ def login():
                 center_content=True,
                 borderRadius='40px',
                 boxShadow='10px 10px 100px #79d0ed',
-                background= 'rgb(255,255,255,0.7)'
+                background= 'rgb(255,255,255,0.9)'
             ),
         ),
         center_content=True,
@@ -118,6 +118,9 @@ def login():
         maxWidth='auto',
         maxHeight='auto',
         height='100vh',
+        background_image = '/deepspace1.gif',
+        background_size = 'cover',
+        # background_repeat = 'no-repeat',
         # style={
         #     'background-image':"url('/space2.jpg')",
         #     'background-size':'cover',

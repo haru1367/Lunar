@@ -36,10 +36,11 @@ class HomeState(State):
     map_search_input:str=''
     map_html:str='/map.html'
     map_iframe:str
+    df : pd.DataFrame
 
     @rx.var
     def time_map_iframe(self)->str:
-        self.map_iframe=f'<iframe src="{self.map_html}" width="100%" height="600"></iframe>'
+        self.map_iframe=f'<iframe src="{self.map_html}" width="100%" height="500px"></iframe>'
         return self.map_iframe
 
     def handle_file_selection(self):                                          
@@ -274,8 +275,6 @@ class HomeState(State):
         self.map_count+=1                        
         self.locations = self.map_search_input.split(',')                                         
         self.df = self.keywords()
-        self.df = self.df.drop_duplicates(['ID'])                                           
-        self.df['place url'] = self.df['place_url']
         m = self.make_map(self.df)
         if self.map_html == '/map2.html':
             m.save('assets/map3.html')
@@ -285,9 +284,12 @@ class HomeState(State):
             self.map_html = '/map2.html'
         await asyncio.sleep(2)
         self.map_iframe = self.time_map_iframe
-        print(self.map_html)
-        print(self.map_iframe)
+        self.df = self.df.drop_duplicates(['ID']) 
+        self.df['place url'] = self.df['place_url']
+        self.df = self.df.drop('place_url', axis=1)                                         
+        self.df = self.df.reset_index()
 
+    # 지도 초기화 함수
     def map_clear(self):
         self.map_html = '/map.html'                                      
 

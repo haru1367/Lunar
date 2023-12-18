@@ -105,7 +105,7 @@ def feed_header(HomeState):
     """The header of the feed."""
     return rx.hstack(
         rx.image(src='/find1.png',height='35px',width='35px'),
-        rx.input(on_change=HomeState.set_map_search_input, placeholder="Search contents"),
+        rx.input(on_change=HomeState.set_map_search_input, placeholder="Search place..!"),
         rx.button('search', on_click = HomeState.map_search),
         rx.button('clear',on_click = HomeState.map_clear),
         justify="space-between",
@@ -119,6 +119,11 @@ def feed(HomeState):
     return rx.box(
         feed_header(HomeState),
         rx.html(HomeState.time_map_iframe),
+        rx.data_table(
+            data=HomeState.df,
+            font_size = '8px',
+        ),
+        overflow='auto',
     )
 
 # 홈 페이지

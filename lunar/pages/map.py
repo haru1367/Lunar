@@ -68,10 +68,10 @@ def sidebar(HomeState):
     """The sidebar displayed on the right."""
     return rx.vstack(
         rx.hstack(
-            rx.image(src='/find2.png',height='35px',width='35px'),
+            rx.image(src='/placeurl.png',height='35px',width='35px'),
             rx.input(
                 on_change=HomeState.set_friend,
-                placeholder="Search users",  # 사용자 검색을 위한 입력 상자
+                placeholder="Place url..",  # 사용자 검색을 위한 입력 상자
                 width="100%",
                 border = "3px solid #000000",
             ),

@@ -282,7 +282,7 @@ class HomeState(State):
         else :
             m.save('assets/map2.html')
             self.map_html = '/map2.html'
-        await asyncio.sleep(2)
+        await asyncio.sleep(1)
         self.map_iframe = self.time_map_iframe
         self.df = self.df.drop_duplicates(['ID']) 
         self.df['place url'] = self.df['place_url']

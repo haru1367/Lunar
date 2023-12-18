@@ -12,6 +12,7 @@ import requests
 import pandas as pd
 import numpy as np
 import json
+import asyncio
 
 
 class HomeState(State):
@@ -33,11 +34,12 @@ class HomeState(State):
     # map 키워드 검색
     map_count:int=1
     map_search_input:str=''
-    map_html:str
+    map_html:str='/map.html'
     map_iframe:str
 
     @rx.var
     def time_map_iframe(self)->str:
+        self.map_iframe=f'<iframe src="{self.map_html}" width="100%" height="600"></iframe>'
         return self.map_iframe
 
     def handle_file_selection(self):                                          
@@ -259,9 +261,14 @@ class HomeState(State):
                     popup=dfs['place_url'][i],                                              
                     ).add_to(m)
         return m
+    
+    # 지도 기본설정
+    def standard_map(self):
+        m = folium.Map(location=[37.5518911,126.9917931],zoom_start=12)
+        m.save('assets/map.html')
 
     # 키워드로 지도검색하는 함수
-    def map_search(self):
+    async def map_search(self):
         if self.map_search_input == "":                                                          
             return rx.window_alert('Please enter your search term!')
         self.map_count+=1                        
@@ -270,7 +277,17 @@ class HomeState(State):
         self.df = self.df.drop_duplicates(['ID'])                                           
         self.df['place url'] = self.df['place_url']
         m = self.make_map(self.df)
-        m.save(f'assets/map.html')
-        self.map_html = f'/map.html'
-        self.map_iframe = f'<iframe src="{self.map_html}" width="100%" height="600"></iframe>'                                           
+        if self.map_html == '/map2.html':
+            m.save('assets/map3.html')
+            self.map_html = '/map3.html'
+        else :
+            m.save('assets/map2.html')
+            self.map_html = '/map2.html'
+        await asyncio.sleep(2)
+        self.map_iframe = self.time_map_iframe
+        print(self.map_html)
+        print(self.map_iframe)
+
+    def map_clear(self):
+        self.map_html = '/map.html'                                      
 

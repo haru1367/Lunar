@@ -107,6 +107,7 @@ def feed_header(HomeState):
         rx.image(src='/find1.png',height='35px',width='35px'),
         rx.input(on_change=HomeState.set_map_search_input, placeholder="Search contents"),
         rx.button('search', on_click = HomeState.map_search),
+        rx.button('clear',on_click = HomeState.map_clear),
         justify="space-between",
         p=4,
         border_bottom="3px solid #000000",

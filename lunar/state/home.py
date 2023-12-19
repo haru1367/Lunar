@@ -37,6 +37,11 @@ class HomeState(State):
     map_html:str='/map.html'
     map_iframe:str
     df : pd.DataFrame
+    start_location_x:str
+    start_location_y:str
+    end_location_x:str
+    end_location_y:str
+    KAKAO_REST_API_KEY:str
 
     @rx.var
     def time_map_iframe(self)->str:
@@ -252,7 +257,7 @@ class HomeState(State):
     # 데이터 프레임을 기준으로 지도를 생성하는 함수
     def make_map(self,dfs):
         m = folium.Map(location=[37.5518911,126.9917937],                                   
-                    zoom_start=12)
+                    zoom_start=7)
 
         minimap = MiniMap()                                                                 
         m.add_child(minimap)
@@ -291,5 +296,41 @@ class HomeState(State):
 
     # 지도 초기화 함수
     def map_clear(self):
-        self.map_html = '/map.html'                                      
+        self.map_html = '/map.html'
+
+    # kakaoapi 길찾기함수
+    async def get_directions(self):
+        self.kakao_api()
+        api_url = "https://apis-navi.kakaomobility.com/v1/directions"
+        origin = self.start_location_x+','+self.start_location_y
+        destination = self.end_location_x+','+self.end_location_y
+
+        headers = {
+            "Authorization": f"KakaoAK {self.KAKAO_REST_API_KEY}"
+        }
+
+        params = {
+            "origin": origin,
+            "destination": destination,
+        }
+
+        response = requests.get(api_url, headers=headers, params=params)
+        result = response.json()
+        m = folium.Map(location=[37.5518911,126.9917931],zoom_start=7)
+        for i in range(0,len(result['routes'][0]['sections'][0]['guides'])):
+            folium.Marker([result['routes'][0]['sections'][0]['guides'][i]['y'],result['routes'][0]['sections'][0]['guides'][i]['x']],                                       
+                    tooltip=f'{i}번 위치',                                               
+                    popup=f'{i}번 위치',                                              
+                    ).add_to(m)
+        if self.map_html == '/map2.html':
+            m.save('assets/map3.html')
+            self.map_html = '/map3.html'
+        else :
+            m.save('assets/map2.html')
+            self.map_html = '/map2.html'
+        await asyncio.sleep(1)
+        self.map_iframe = self.time_map_iframe
+
+
+
 

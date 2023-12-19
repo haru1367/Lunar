@@ -67,31 +67,39 @@ def tabs():
 def sidebar(HomeState):
     """The sidebar displayed on the right."""
     return rx.vstack(
-        rx.hstack(
-            rx.image(src='/placeurl.png',height='35px',width='35px'),
+        rx.vstack(
+            rx.image(src='/startpoint.png',height='35px',width='35px'),
             rx.input(
-                on_change=HomeState.set_friend,
-                placeholder="Place url..",  # 사용자 검색을 위한 입력 상자
+                on_change=HomeState.set_start_location_x,
+                placeholder="starting point longitude", 
                 width="100%",
                 border = "3px solid #000000",
             ),
-        ),
-        rx.container(height='10px'),
-        rx.foreach(
-            HomeState.search_users,
-            lambda user: rx.vstack(
-                rx.hstack(
-                    rx.avatar(name=user.username, size="sm"),  # 검색된 사용자의 아바타 이미지
-                    rx.text(user.username),  # 검색된 사용자의 사용자 이름
-                    rx.spacer(),
-                    rx.button(
-                        rx.icon(tag="add"),
-                        on_click=lambda: HomeState.follow_user(user.username),  # 사용자를 팔로우하는 버튼
-                    ),
-                    width="100%",
-                ),
-                py=2,
+            rx.input(
+                on_change=HomeState.set_start_location_y,
+                placeholder="starting point latitude", 
                 width="100%",
+                border = "3px solid #000000",
+            ),
+            rx.image(src='/endpoint.png',height='35px',width='35px'),
+            rx.input(
+                on_change=HomeState.set_end_location_x,
+                placeholder="end point longitude", 
+                width="100%",
+                border = "3px solid #000000",
+            ),
+            rx.input(
+                on_change=HomeState.set_end_location_y,
+                placeholder="end point latitude", 
+                width="100%",
+                border = "3px solid #000000",
+            ),
+            rx.hstack(
+                rx.button(
+                    'Search',
+                    on_click = HomeState.get_directions,
+                ),
+                align_items='flex-end',
             ),
         ),
         align_items="start",
@@ -122,6 +130,7 @@ def feed(HomeState):
         rx.data_table(
             data=HomeState.df,
             font_size = '8px',
+            width='100%',
         ),
         overflow='auto',
     )

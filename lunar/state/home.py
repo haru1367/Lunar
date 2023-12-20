@@ -317,11 +317,17 @@ class HomeState(State):
         response = requests.get(api_url, headers=headers, params=params)
         result = response.json()
         m = folium.Map(location=[37.5518911,126.9917931],zoom_start=7)
+        location_list =[]
         for i in range(0,len(result['routes'][0]['sections'][0]['guides'])):
-            folium.Marker([result['routes'][0]['sections'][0]['guides'][i]['y'],result['routes'][0]['sections'][0]['guides'][i]['x']],                                       
-                    tooltip=f'{i+1}번 위치',                                               
-                    popup=f'{i+1}번 위치',                                              
-                    ).add_to(m)
+            location_list.append([result['routes'][0]['sections'][0]['guides'][i]['y'],result['routes'][0]['sections'][0]['guides'][i]['x']])
+            folium.Marker([result['routes'][0]['sections'][0]['guides'][i]['y'],result['routes'][0]['sections'][0]['guides'][i]['x']],
+                          tooltip=f"{result['routes'][0]['sections'][0]['guides'][i]['name']}",
+                          popup=f"{result['routes'][0]['sections'][0]['guides'][i]['name']}",
+                          icon = folium.Icon(color='orange',icon='info-sign'),
+                          ).add_to(m)
+        folium.PolyLine(locations=location_list,                                       
+                color = 'black',                             
+                ).add_to(m)
         if self.map_html == '/map2.html':
             m.save('assets/map3.html')
             self.map_html = '/map3.html'
@@ -330,6 +336,9 @@ class HomeState(State):
             self.map_html = '/map2.html'
         await asyncio.sleep(1)
         self.map_iframe = self.time_map_iframe
+        self.df = None
+        
+        print(result['routes'][0]['sections'][0]['guides'])
 
 
 

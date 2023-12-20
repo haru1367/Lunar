@@ -319,8 +319,8 @@ class HomeState(State):
         m = folium.Map(location=[37.5518911,126.9917931],zoom_start=7)
         for i in range(0,len(result['routes'][0]['sections'][0]['guides'])):
             folium.Marker([result['routes'][0]['sections'][0]['guides'][i]['y'],result['routes'][0]['sections'][0]['guides'][i]['x']],                                       
-                    tooltip=f'{i}번 위치',                                               
-                    popup=f'{i}번 위치',                                              
+                    tooltip=f'{i+1}번 위치',                                               
+                    popup=f'{i+1}번 위치',                                              
                     ).add_to(m)
         if self.map_html == '/map2.html':
             m.save('assets/map3.html')

@@ -68,7 +68,12 @@ def sidebar(HomeState):
     """The sidebar displayed on the right."""
     return rx.vstack(
         rx.vstack(
-            rx.image(src='/startpoint.png',height='35px',width='35px'),
+            rx.hstack(
+                rx.image(src='/startpoint.png',height='35px',width='35px'),
+                rx.text('origin',font_size = '20px'),
+                align_items='start',
+                width = '100%',
+            ),
             rx.input(
                 on_change=HomeState.set_start_location_x,
                 placeholder="starting point longitude", 
@@ -81,7 +86,12 @@ def sidebar(HomeState):
                 width="100%",
                 border = "3px solid #000000",
             ),
-            rx.image(src='/endpoint.png',height='35px',width='35px'),
+            rx.hstack(
+                rx.image(src='/endpoint.png',height='35px',width='35px'),
+                rx.text('Destination',font_size='20px'),
+                align_items='start',
+                width='100%',
+            ),
             rx.input(
                 on_change=HomeState.set_end_location_x,
                 placeholder="end point longitude", 
@@ -94,17 +104,22 @@ def sidebar(HomeState):
                 width="100%",
                 border = "3px solid #000000",
             ),
-            rx.hstack(
+            rx.vstack(
                 rx.button(
                     'Search',
                     on_click = HomeState.get_directions,
+                    bg="#d1895c",
+                    color="white",
+                    _hover={"bg": "orange.600"},
                 ),
-                align_items='flex-end',
+                align_items='left',
+                width='100%',
             ),
         ),
         align_items="start",
         gap=4,
         h="100%",
+        width = '100%',
         py=4,
     )
 

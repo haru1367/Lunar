@@ -13,7 +13,7 @@ import pandas as pd
 import numpy as np
 import json
 import asyncio
-from sqlalchemy.sql import func
+from sqlalchemy.sql import func,desc
 
 
 class HomeState(State):
@@ -360,6 +360,7 @@ class HomeState(State):
         path_time_s = path_time%60
         self.path_time = f'소요시간 : {path_time_h}시간 {path_time_m}분 {path_time_s}초'
 
+    # 최근 하루 동안 핫플레이스 검색하는 함수
     def hotplaces(self):
         # Calculate the timestamp for 24 hours ago
         twenty_four_hours_ago = datetime.utcnow() - timedelta(hours=24)
@@ -372,8 +373,14 @@ class HomeState(State):
                 .filter(
                     func.datetime(Hotplace.search_at) >= twenty_four_hours_ago_without_microseconds.strftime("%Y-%m-%d %H:%M:%S")
                 )
+                .order_by(
+                    desc(func.count(Hotplace.search_place)),
+                    desc(func.datetime(Hotplace.search_at))
+                )
+                .group_by(Hotplace.search_place)  # Group by search_place for counting occurrences
                 .all()
             )
+        
 
 
 

@@ -42,6 +42,10 @@ class HomeState(State):
     end_location_x:str
     end_location_y:str
     KAKAO_REST_API_KEY:str
+    taxi_fee:str
+    toll_fee:str
+    distance:str
+    path_time:str
 
     @rx.var
     def time_map_iframe(self)->str:
@@ -336,9 +340,15 @@ class HomeState(State):
             self.map_html = '/map2.html'
         await asyncio.sleep(1)
         self.map_iframe = self.time_map_iframe
-        self.df = None
-        
-        print(result['routes'][0]['sections'][0]['guides'])
+        self.taxi_fee = f"택시비용 : {result['routes'][0]['summary']['fare']['taxi']}원"
+        self.toll_fee = f"톨게이트비용 : {result['routes'][0]['summary']['fare']['toll']}원"
+        distance = result['routes'][0]['summary']['distance']
+        self.distance = f'총 이동거리 : {float(distance)/float(1000)}km'
+        path_time = result['routes'][0]['summary']['duration']
+        path_time_h = path_time//3600
+        path_time_m = (path_time%3600)//60
+        path_time_s = path_time%60
+        self.path_time = f'소요시간 : {path_time_h}시간 {path_time_m}분 {path_time_s}초'
 
 
 

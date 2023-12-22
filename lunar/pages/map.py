@@ -68,6 +68,7 @@ def sidebar(HomeState):
     """The sidebar displayed on the right."""
     return rx.vstack(
         rx.vstack(
+            rx.text('Route search',font_size='35px'),
             rx.hstack(
                 rx.image(src='/startpoint.png',height='35px',width='35px'),
                 rx.text('origin',font_size = '20px'),
@@ -115,6 +116,16 @@ def sidebar(HomeState):
                 align_items='left',
                 width='100%',
             ),
+            rx.container(height='30px'),
+            border_bottom = '3px solid #000000',
+        ),
+        rx.vstack(
+            rx.text('Route search result',font_size='30px'),
+            rx.text(HomeState.distance,font_size = '25px'),
+            rx.text(HomeState.path_time,font_size ='25px'),
+            rx.text(HomeState.taxi_fee, font_size = '20px'),
+            rx.text(HomeState.toll_fee, font_size = '20px'),
+            align_items='start',
         ),
         align_items="start",
         gap=4,

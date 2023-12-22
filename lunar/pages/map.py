@@ -66,14 +66,14 @@ def tabs():
                 rx.vstack(
                     rx.container(height='10px'),
                     rx.hstack(
-                        rx.button('Hot place!(24H)',Font_size = '25px',on_click = HomeState.hotplaces,bg = '#ebf564'),
+                        rx.button('Hot place!(24H)',Font_size = '20px',on_click = HomeState.hotplaces,bg = '#ebf564'),
                     ),
                     rx.container(height='5px'),
                     rx.foreach(
                         HomeState.map_hotplaces,
                         hotplace,
                     ),
-                    rx.container(height='10px'),
+                    rx.container(height='4px'),
                     width ='100%',
                     align_items='start',
                 ),
@@ -92,6 +92,7 @@ def tabs():
             gap=4,
         ),
         py=4,
+        overflow='auto',
     )
 
 # 오른쪽에 표시되는 사이드바
@@ -163,6 +164,7 @@ def sidebar(HomeState):
         h="100%",
         width = '100%',
         py=4,
+        overflow='auto',
     )
 
 # 피드의 헤더
@@ -184,10 +186,12 @@ def feed(HomeState):
     return rx.box(
         feed_header(HomeState),
         rx.html(HomeState.time_map_iframe),
-        rx.data_table(
-            data=HomeState.df,
-            font_size = '8px',
-            width='100%',
+        rx.box(
+            rx.data_table(
+                data=HomeState.df,
+                font_size = '8px',
+                width='100%',
+            ),
         ),
         overflow='auto',
     )
@@ -204,6 +208,7 @@ def map():
             width='97%',
             h="90vh",
             gap=4,
+            border_bottome='3px solid #000000',
         ),
         rx.hstack(
             tab_button('/Home.png','/'),

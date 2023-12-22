@@ -49,6 +49,16 @@ def tabs():
                     ),  # 앱 이름
                 ),
             ),
+            rx.vstack(
+                rx.hstack(
+                    rx.text('Hot place!',Font_size = '25px'),
+                    rx.button(
+                        'Check',
+                        on_click = HomeState.hotplaces,
+                    ),
+                ),
+                align_items='start',
+            ),
             rx.button(
                 "Sign out",
                 on_click=State.logout,

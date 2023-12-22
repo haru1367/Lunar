@@ -1,10 +1,10 @@
 """The state for the home page."""
-from datetime import datetime
+from datetime import datetime,timedelta
 import tkinter as tk
 import reflex as rx
 from sqlmodel import select
 import os
-from .base import Follows, State, Crater, User
+from .base import Follows, State, Crater, User,Hotplace
 from tkinter import filedialog
 import folium
 from folium.plugins import MiniMap
@@ -13,6 +13,7 @@ import pandas as pd
 import numpy as np
 import json
 import asyncio
+from sqlalchemy.sql import func
 
 
 class HomeState(State):
@@ -46,6 +47,8 @@ class HomeState(State):
     toll_fee:str
     distance:str
     path_time:str
+    map_hotplaces : list[Hotplace] = []
+
 
     @rx.var
     def time_map_iframe(self)->str:
@@ -297,6 +300,13 @@ class HomeState(State):
         self.df['place url'] = self.df['place_url']
         self.df = self.df.drop('place_url', axis=1)                                         
         self.df = self.df.reset_index()
+        with rx.session() as session:
+            hotplace = Hotplace(
+                search_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+                search_place = self.map_search_input,
+            )
+            session.add(hotplace)
+            session.commit()
 
     # 지도 초기화 함수
     def map_clear(self):
@@ -349,6 +359,22 @@ class HomeState(State):
         path_time_m = (path_time%3600)//60
         path_time_s = path_time%60
         self.path_time = f'소요시간 : {path_time_h}시간 {path_time_m}분 {path_time_s}초'
+
+    def hotplaces(self):
+        # Calculate the timestamp for 24 hours ago
+        twenty_four_hours_ago = datetime.utcnow() - timedelta(hours=24)
+        twenty_four_hours_ago_without_microseconds = twenty_four_hours_ago.replace(microsecond=0)
+
+        with rx.session() as session:
+            # Filter records created in the last 24 hours
+            self.map_hotplaces = (
+                session.query(Hotplace)
+                .filter(
+                    func.datetime(Hotplace.search_at) >= twenty_four_hours_ago_without_microseconds.strftime("%Y-%m-%d %H:%M:%S")
+                )
+                .all()
+            )
+
 
 
 

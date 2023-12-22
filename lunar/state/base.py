@@ -3,6 +3,10 @@ from typing import Optional,List,Union
 from sqlmodel import Field
 import reflex as rx
 
+class Hotplace(rx.Model,table=True):
+    search_at:str = Field()
+    search_place:str=Field()
+    
 
 class Follows(rx.Model, table=True):
     """A table of Follows. This is a many-to-many join table.

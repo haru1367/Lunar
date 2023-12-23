@@ -14,6 +14,17 @@ import numpy as np
 import json
 import asyncio
 from sqlalchemy.sql import func,desc
+from bs4 import BeautifulSoup
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+import time
+from openpyxl import Workbook
+from openpyxl import load_workbook
+from openpyxl.styles import Alignment
+from pytube import YouTube
+import datetime
 
 
 class HomeState(State):
@@ -48,6 +59,10 @@ class HomeState(State):
     distance:str
     path_time:str
     map_hotplaces : list[Hotplace] = []
+
+    # video 검색
+    search_video:str
+    youtube_results: list[str]=[]
 
 
     @rx.var
@@ -377,9 +392,47 @@ class HomeState(State):
                 .group_by(Hotplace.search_place)
                 .all()
             )
-        
+
+    # youtube링크를 가져오는 함수
+    def get_youtube_links(self):
+        search_word = self.search_video
+        url = f'https://www.youtube.com/results?search_query={search_word}' 
+        service = Service(ChromeDriverManager().install())
+        options = webdriver.ChromeOptions()
+        options.add_argument('headless')
+        driver = webdriver.Chrome(service=service,options=options)
+        driver.get(url)
+        SCROLL_PAUSE_TIME = 0.2
+        time_limit = 1
+        last_height = driver.execute_script("return document.documentElement.scrollHeight")
+        while time_limit>0:
+            driver.execute_script("window.scrollTo(0,document.documentElement.scrollHeight);")
+            time.sleep(SCROLL_PAUSE_TIME)
+            time_limit-=SCROLL_PAUSE_TIME
+            new_height=driver.execute_script("return document.documentElement.scrollHeight;")
+            if new_height == last_height:
+                break
+            last_height=new_height
+        titles = driver.find_elements(By.CSS_SELECTOR,"#dismissible.style-scope.ytd-video-renderer")
+        for title in titles:
+            result = ''
+            main_title = title.find_element(By.CSS_SELECTOR,"#video-title").get_property("title")
+            tube_url = title.find_element(By.CSS_SELECTOR,"#video-title").get_property("href")
+            tube = YouTube(tube_url)
+            view = tube.views
+            update_dates=str(tube.publish_date)
+            result += main_title
+            result += ','
+            result += tube_url
+            result += ','
+            result += str(view)
+            result += ','
+            result += update_dates
+            self.youtube_results.append(result)
+        print(self.youtube_results)
+            
 
 
-
+            
 
 

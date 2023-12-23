@@ -68,66 +68,6 @@ def tabs():
 def sidebar(HomeState):
     """The sidebar displayed on the right."""
     return rx.vstack(
-        rx.vstack(
-            rx.text('Route search',font_size='35px'),
-            rx.hstack(
-                rx.image(src='/startpoint.png',height='35px',width='35px'),
-                rx.text('origin',font_size = '20px'),
-                align_items='start',
-                width = '100%',
-            ),
-            rx.input(
-                on_change=HomeState.set_start_location_x,
-                placeholder="starting point longitude", 
-                width="100%",
-                border = "3px solid #000000",
-            ),
-            rx.input(
-                on_change=HomeState.set_start_location_y,
-                placeholder="starting point latitude", 
-                width="100%",
-                border = "3px solid #000000",
-            ),
-            rx.hstack(
-                rx.image(src='/endpoint.png',height='35px',width='35px'),
-                rx.text('Destination',font_size='20px'),
-                align_items='start',
-                width='100%',
-            ),
-            rx.input(
-                on_change=HomeState.set_end_location_x,
-                placeholder="end point longitude", 
-                width="100%",
-                border = "3px solid #000000",
-            ),
-            rx.input(
-                on_change=HomeState.set_end_location_y,
-                placeholder="end point latitude", 
-                width="100%",
-                border = "3px solid #000000",
-            ),
-            rx.vstack(
-                rx.button(
-                    'Search',
-                    on_click = HomeState.get_directions,
-                    bg="#d1895c",
-                    color="white",
-                    _hover={"bg": "orange.600"},
-                ),
-                align_items='left',
-                width='100%',
-            ),
-            rx.container(height='30px'),
-            border_bottom = '3px solid #000000',
-        ),
-        rx.vstack(
-            rx.text('Route search result',font_size='30px'),
-            rx.text(HomeState.distance,font_size = '25px'),
-            rx.text(HomeState.path_time,font_size ='25px'),
-            rx.text(HomeState.taxi_fee, font_size = '20px'),
-            rx.text(HomeState.toll_fee, font_size = '20px'),
-            align_items='start',
-        ),
         align_items="start",
         gap=4,
         h="100%",
@@ -141,12 +81,23 @@ def feed_header(HomeState):
     """The header of the feed."""
     return rx.hstack(
         rx.image(src='/find1.png',height='35px',width='35px'),
-        rx.input(on_change=HomeState.set_map_search_input, placeholder="Search place..!"),
-        rx.button('search', on_click = HomeState.map_search),
-        rx.button('clear',on_click = HomeState.map_clear),
+        rx.input(on_change=HomeState.set_search_video, placeholder="video search..!"),
+        rx.button('search', on_click = HomeState.get_youtube_links),
         justify="space-between",
         p=4,
         border_bottom="3px solid #000000",
+    )
+
+def get_video(video):
+    return rx.box(
+        rx.video(
+            url = video,
+            max_width = '700px',
+            max_height = 'auto',
+            playing = False,
+            loop = True,
+        ),
+        rx.container(height='10px'),
     )
 
 # 피드 영역
@@ -154,6 +105,10 @@ def feed(HomeState):
     """The feed."""
     return rx.box(
         feed_header(HomeState),
+        # rx.foreach(
+        #     HomeState.youtube_results,
+        #     get_video,
+        # ),
         overflow='auto',
     )
 

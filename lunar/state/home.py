@@ -362,12 +362,9 @@ class HomeState(State):
 
     # 최근 하루 동안 핫플레이스 검색하는 함수
     def hotplaces(self):
-        # Calculate the timestamp for 24 hours ago
         twenty_four_hours_ago = datetime.utcnow() - timedelta(hours=24)
         twenty_four_hours_ago_without_microseconds = twenty_four_hours_ago.replace(microsecond=0)
-
         with rx.session() as session:
-            # Filter records created in the last 24 hours
             self.map_hotplaces = (
                 session.query(Hotplace)
                 .filter(
@@ -377,7 +374,7 @@ class HomeState(State):
                     desc(func.count(Hotplace.search_place)),
                     desc(func.datetime(Hotplace.search_at))
                 )
-                .group_by(Hotplace.search_place)  # Group by search_place for counting occurrences
+                .group_by(Hotplace.search_place)
                 .all()
             )
         

@@ -23,18 +23,6 @@ def tab_button(imagepath, href):
         href=href,  # 버튼 클릭 시 이동할 경로
     )
 
-def hotplace(hotplace):
-    return rx.box(
-        rx.button(
-            f'{hotplace.search_place}',
-            width='250px',
-            bg = '#9debf5',
-        ),
-        rx.container(height='5px'),
-        align='start',
-        padding='5px',  # 테두리와 내용 사이의 여백 지정
-    )
-
 # 왼쪽에 표시되는 탭 스위처
 def tabs():
     """The tab switcher displayed on the left."""
@@ -60,25 +48,6 @@ def tabs():
                         center_content=True,
                     ),  # 앱 이름
                 ),
-            ),
-            rx.hstack(
-                rx.container(width='5px'),
-                rx.vstack(
-                    rx.container(height='10px'),
-                    rx.hstack(
-                        rx.button('Hot place!(24H)',Font_size = '20px',on_click = HomeState.hotplaces,bg = '#ebf564'),
-                    ),
-                    rx.container(height='5px'),
-                    rx.foreach(
-                        HomeState.map_hotplaces,
-                        hotplace,
-                    ),
-                    rx.container(height='4px'),
-                    width ='100%',
-                    align_items='start',
-                ),
-                border = '3px solid #000000',
-                border_radius = '30px',
             ),
             rx.button(
                 "Sign out",
@@ -185,14 +154,6 @@ def feed(HomeState):
     """The feed."""
     return rx.box(
         feed_header(HomeState),
-        rx.html(HomeState.time_map_iframe),
-        rx.box(
-            rx.data_table(
-                data=HomeState.df,
-                font_size = '8px',
-                width='100%',
-            ),
-        ),
         overflow='auto',
     )
 

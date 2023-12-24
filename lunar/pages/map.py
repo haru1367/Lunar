@@ -193,6 +193,7 @@ def feed(HomeState):
                 width='100%',
             ),
         ),
+        border_x = '3px solid #000000',
         overflow='auto',
     )
 

@@ -89,15 +89,20 @@ def feed_header(HomeState):
     )
 
 def get_video(video):
+    result = video.split(',')
     return rx.box(
-        rx.video(
-            url = video,
-            max_width = '700px',
-            max_height = 'auto',
-            playing = False,
-            loop = True,
+        rx.vstack(
+            rx.video(
+                url = result[1],
+                max_width = '800px',
+                max_height = 'auto',
+                playing = False,
+                loop = True,
+            ),
+            rx.heading(result[0],Font_size = '25px'),
+            rx.container(height='10px'),
+            width = '100%'
         ),
-        rx.container(height='10px'),
     )
 
 # 피드 영역
@@ -105,10 +110,11 @@ def feed(HomeState):
     """The feed."""
     return rx.box(
         feed_header(HomeState),
-        # rx.foreach(
-        #     HomeState.youtube_results,
-        #     get_video,
-        # ),
+        rx.foreach(
+            HomeState.youtube_results,
+            get_video,
+        ),
+        border_x = '3px solid #000000',
         overflow='auto',
     )
 

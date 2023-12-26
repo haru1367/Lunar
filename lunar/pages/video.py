@@ -94,12 +94,17 @@ def get_video(video):
         rx.vstack(
             rx.video(
                 url = result[1],
-                max_width = '800px',
+                max_width = '100%',
                 max_height = 'auto',
                 playing = False,
                 loop = True,
             ),
             rx.heading(result[0],Font_size = '25px'),
+            rx.vstack(
+                rx.button('Save'),
+                width='100%',
+                align_items='start',
+            ),
             rx.container(height='10px'),
             width = '100%'
         ),

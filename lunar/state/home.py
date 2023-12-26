@@ -58,6 +58,7 @@ class HomeState(State):
     # video 검색
     search_video:str
     youtube_results: list[str]=[]
+    saved_video_results : list[Video_Playlist]
 
 
     @rx.var
@@ -409,38 +410,37 @@ class HomeState(State):
             result += tube_url
             self.youtube_results.append(result)
 
-    def add_video_playlist(self, video_url):
+    # 나중에 볼 동영상에 추가
+    def add_video_playlist(self, video_url,video_title):
         if not self.logged_in:
             return rx.window_alert("Please log in to save video.")          
         with rx.session() as session:
-            # Modify the query to select only the video_url column
-            user_exists = (
-                session.query(exists().where(Video_Playlist.user_id == self.user.username)).scalar()
+            new_playlist = Video_Playlist(
+                user_id = self.user.username,
+                video_url = video_url,
+                video_title = video_title,
             )
-            if user_exists==False:
-                new_playlist = Video_Playlist(
-                    user_id = self.user.username,
-                    video_url = '',
-                )
-                session.add(new_playlist)
-                session.commit()
-            playlist_saved_query = session.exec(
-                select(Video_Playlist).where(
-                    Video_Playlist.user_id == self.user.username
-                )
-            ).all()
-            playlist_saved = [item.video_url for item in playlist_saved_query][0]
-            if len(playlist_saved)>0:
-                playlist_saved+=','
-            playlist_saved+=f'{video_url}'
-            new_playlist_item = Video_Playlist(user_id=self.user.username, video_url=playlist_saved)
-            print(playlist_saved)
-            session.add(new_playlist_item)
-
-            # Commit the changes to the database
+            session.add(new_playlist)
             session.commit()
 
+    # 나중에 볼 영상에서 제거
+    def remove_video_playlist(self, video_url):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to remove video.")
+        
+        with rx.session() as session:
+            video_playlist_entry = session.query(Video_Playlist).filter_by(user_id=self.user.username, video_url=video_url).first()
+            
+            if video_playlist_entry:
+                # 찾은 동영상을 재생목록에서 제거하고 커밋
+                session.delete(video_playlist_entry)
+                session.commit()
 
+    def get_saved_video(self):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to see saved video.")
+        with rx.session() as session:
+            self.saved_video_results = session.query(Video_Playlist).filter(Video_Playlist.user_id == self.user.username).all()[::-1]
             
 
 

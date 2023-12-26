@@ -64,14 +64,56 @@ def tabs():
         overflow='auto',
     )
 
+def saved_video(video):
+    return rx.vstack(
+        rx.hstack(
+            rx.video(
+                url = video.video_url,
+                width = '150px',
+                height= '100px',
+            ),
+            rx.button(
+                f'{video.video_title}',
+                style={'white-space': 'normal'},
+                align='start',
+                max_width='200px',
+                height='100px',
+            ),
+
+        ),
+        rx.container(height='5px'),
+        max_width='100%',
+    )
+
 # 오른쪽에 표시되는 사이드바
 def sidebar(HomeState):
     """The sidebar displayed on the right."""
     return rx.vstack(
+        rx.heading('Saved video',Font_size='25px',Font_weight='border'),
+        rx.vstack(
+            rx.cond(
+                HomeState.saved_video_results,
+                rx.foreach(
+                    HomeState.saved_video_results,
+                    saved_video
+                ),
+                rx.vstack(
+                    rx.button(
+                        rx.icon(
+                            tag="repeat",
+                            mr=1,
+                        ),
+                        rx.text("load",Font_size = '20px',),
+                        on_click=HomeState.get_saved_video,
+                    ),
+                    p=4,
+                ),
+            ),
+        ),
         align_items="start",
         gap=4,
         h="100%",
-        width = '100%',
+        max_width = '100%',
         py=4,
         overflow='auto',
     )
@@ -104,7 +146,7 @@ def get_video(video):
                 rx.spacer(),
                 rx.button(
                     'Save',
-                    on_click = HomeState.add_video_playlist(result[1]),
+                    on_click = HomeState.add_video_playlist(result[1],result[0]),
                     border_radius = '1em',
                     bg = '#95de98',
                     _hover={"bg": "blue.400"},

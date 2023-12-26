@@ -6,6 +6,7 @@ import reflex as rx
 class Video_Playlist(rx.Model,table = True):
     user_id : str = Field()
     video_url : str = Field()
+    video_title : str = Field()
 
 class Hotplace(rx.Model,table=True):
     search_at:str = Field()

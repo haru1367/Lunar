@@ -310,6 +310,7 @@ def home():
             feed(HomeState),
             sidebar(HomeState),
             grid_template_columns="2fr 5fr 2fr",
+            border_bottom = '3px solid #000000',
 
             width='97%',
             h="90vh",

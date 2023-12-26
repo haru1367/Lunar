@@ -4,7 +4,7 @@ import tkinter as tk
 import reflex as rx
 from sqlmodel import select
 import os
-from .base import Follows, State, Crater, User,Hotplace
+from .base import Follows, State, Crater, User,Hotplace,Video_Playlist
 from tkinter import filedialog
 import folium
 from folium.plugins import MiniMap
@@ -19,6 +19,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 import datetime
+from sqlalchemy import exists
 
 
 class HomeState(State):
@@ -407,6 +408,38 @@ class HomeState(State):
             result += ','
             result += tube_url
             self.youtube_results.append(result)
+
+    def add_video_playlist(self, video_url):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to save video.")          
+        with rx.session() as session:
+            # Modify the query to select only the video_url column
+            user_exists = (
+                session.query(exists().where(Video_Playlist.user_id == self.user.username)).scalar()
+            )
+            if user_exists==False:
+                new_playlist = Video_Playlist(
+                    user_id = self.user.username,
+                    video_url = '',
+                )
+                session.add(new_playlist)
+                session.commit()
+            playlist_saved_query = session.exec(
+                select(Video_Playlist).where(
+                    Video_Playlist.user_id == self.user.username
+                )
+            ).all()
+            playlist_saved = [item.video_url for item in playlist_saved_query][0]
+            if len(playlist_saved)>0:
+                playlist_saved+=','
+            playlist_saved+=f'{video_url}'
+            new_playlist_item = Video_Playlist(user_id=self.user.username, video_url=playlist_saved)
+            print(playlist_saved)
+            session.add(new_playlist_item)
+
+            # Commit the changes to the database
+            session.commit()
+
 
             
 

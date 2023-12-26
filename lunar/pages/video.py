@@ -94,14 +94,21 @@ def get_video(video):
         rx.vstack(
             rx.video(
                 url = result[1],
-                max_width = '100%',
-                max_height = 'auto',
+                width = '100%',
+                height = '500px',
                 playing = False,
                 loop = True,
             ),
-            rx.heading(result[0],Font_size = '25px'),
-            rx.vstack(
-                rx.button('Save'),
+            rx.hstack(
+                rx.heading(result[0],Font_size = '25px'),
+                rx.spacer(),
+                rx.button(
+                    'Save',
+                    on_click = HomeState.add_video_playlist(result[1]),
+                    border_radius = '1em',
+                    bg = '#95de98',
+                    _hover={"bg": "blue.400"},
+                ),
                 width='100%',
                 align_items='start',
             ),
@@ -132,6 +139,7 @@ def video():
             feed(HomeState),
             sidebar(HomeState),
             grid_template_columns="2fr 5fr 2fr",
+            border_bottom = '3px solid #000000',
             width='97%',
             h="90vh",
             gap=4,

@@ -3,6 +3,10 @@ from typing import Optional,List,Union
 from sqlmodel import Field
 import reflex as rx
 
+class Video_Playlist(rx.Model,table = True):
+    user_id : str = Field()
+    video_url : str = Field()
+
 class Hotplace(rx.Model,table=True):
     search_at:str = Field()
     search_place:str=Field()

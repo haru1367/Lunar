@@ -59,6 +59,7 @@ class HomeState(State):
     search_video:str
     youtube_results: list[str]=[]
     saved_video_results : list[Video_Playlist]
+    show : bool = False
 
 
     @rx.var
@@ -415,6 +416,16 @@ class HomeState(State):
         if not self.logged_in:
             return rx.window_alert("Please log in to save video.")          
         with rx.session() as session:
+            existing_playlist = session.query(Video_Playlist).filter_by(
+                user_id=self.user.username,
+                video_url=video_url,
+                video_title=video_title
+            ).first()
+
+            if existing_playlist:
+                # Playlist with the same URL and title already exists
+                return rx.window_alert("This video is already in your playlist.")
+
             new_playlist = Video_Playlist(
                 user_id = self.user.username,
                 video_url = video_url,
@@ -422,6 +433,7 @@ class HomeState(State):
             )
             session.add(new_playlist)
             session.commit()
+        return self.get_saved_video()
 
     # 나중에 볼 영상에서 제거
     def remove_video_playlist(self, video_url):
@@ -435,12 +447,18 @@ class HomeState(State):
                 # 찾은 동영상을 재생목록에서 제거하고 커밋
                 session.delete(video_playlist_entry)
                 session.commit()
+        return self.get_saved_video()
 
+    # 동영상 저장 리스트를 불러오는 함수
     def get_saved_video(self):
         if not self.logged_in:
             return rx.window_alert("Please log in to see saved video.")
         with rx.session() as session:
             self.saved_video_results = session.query(Video_Playlist).filter(Video_Playlist.user_id == self.user.username).all()[::-1]
+
+    # 동영상 팝업을 띄우는 함수
+    def popup_video(self):
+        self.show = not (self.show)
             
 
 

@@ -73,13 +73,47 @@ def saved_video(video):
                 height= '100px',
             ),
             rx.button(
-                f'{video.video_title}',
+                f'{video.video_title[:20] + "..."}',
                 style={'white-space': 'normal'},
                 align='start',
                 max_width='200px',
                 height='100px',
+                on_click = HomeState.popup_video,
             ),
-
+            rx.alert_dialog(
+                rx.alert_dialog_overlay(
+                    rx.alert_dialog_content(
+                        rx.alert_dialog_header("Video"),
+                        rx.alert_dialog_body(
+                            rx.video(
+                                url = video.video_url,
+                                width = '700px',
+                                height= '500px',
+                            ),
+                            rx.heading(
+                                video.video_title,
+                                Font_size='20px',
+                            )
+                        ),
+                        rx.alert_dialog_footer(
+                            rx.button(
+                                "Close",
+                                on_click=HomeState.popup_video,
+                            )
+                        ),
+                    ),
+                ),
+                size = '3xl',
+                is_open=HomeState.show,
+            ),
+        ),
+        rx.button(
+            'Save cancel',
+            width='100%',
+            border_radius = '20px',
+            bg = '#ecf065',
+            _hover={'bg':'orange.400'},
+            on_click = HomeState.remove_video_playlist(video.video_url)
         ),
         rx.container(height='5px'),
         max_width='100%',

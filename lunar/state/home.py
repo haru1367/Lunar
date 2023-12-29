@@ -60,6 +60,8 @@ class HomeState(State):
     youtube_results: list[str]=[]
     saved_video_results : list[Video_Playlist]
     show : bool = False
+    popup_video_url:str
+    popup_video_title:str
 
 
     @rx.var
@@ -457,9 +459,11 @@ class HomeState(State):
             self.saved_video_results = session.query(Video_Playlist).filter(Video_Playlist.user_id == self.user.username).all()[::-1]
 
     # 동영상 팝업을 띄우는 함수
-    def popup_video(self):
+    def popup_video(self,video_url,video_title):
         self.show = not (self.show)
-            
+        self.popup_video_url = video_url
+        self.popup_video_title = video_title
+
 
 
             

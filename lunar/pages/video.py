@@ -78,7 +78,7 @@ def saved_video(video):
                 align='start',
                 max_width='200px',
                 height='100px',
-                on_click = HomeState.popup_video,
+                on_click = HomeState.popup_video(video.video_url,video.video_title),
             ),
             rx.alert_dialog(
                 rx.alert_dialog_overlay(
@@ -86,19 +86,19 @@ def saved_video(video):
                         rx.alert_dialog_header("Video"),
                         rx.alert_dialog_body(
                             rx.video(
-                                url = video.video_url,
+                                url = HomeState.popup_video_url,
                                 width = '700px',
                                 height= '500px',
                             ),
                             rx.heading(
-                                video.video_title,
+                                HomeState.popup_video_title,
                                 Font_size='20px',
                             )
                         ),
                         rx.alert_dialog_footer(
                             rx.button(
                                 "Close",
-                                on_click=HomeState.popup_video,
+                                on_click=HomeState.popup_video(video.video_url,video.video_title),
                             )
                         ),
                     ),
@@ -123,7 +123,7 @@ def saved_video(video):
 def sidebar(HomeState):
     """The sidebar displayed on the right."""
     return rx.vstack(
-        rx.heading('Saved video',Font_size='25px',Font_weight='border'),
+        rx.heading('Saved video',Font_size='25px',Font_weight='border',bg = 'green.400'),
         rx.vstack(
             rx.cond(
                 HomeState.saved_video_results,

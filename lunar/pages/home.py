@@ -27,29 +27,31 @@ def tab_button(imagepath, href):
 def tabs():
     """The tab switcher displayed on the left."""
     return rx.box(
-        rx.vstack(
-            rx.container(
-                rx.hstack(
-                    rx.image(
-                        src='/moon.png',
-                        height='60px',
-                        width='60px',         
-                    ),
-                    rx.text(
-                        "Lunar", 
-                        style={
-                            "fontSize": "40px",
-                            "fontWeight": "bolder",
-                            "fontFamily": "Calibri, Calibri",
-                            "background": "-webkit-linear-gradient(-45deg, #e04a3f, #4e8be6)",
-                            "-webkit-background-clip": "text",
-                            "color": "transparent",
-                        },
-                        center_content=True,
-                    ),  # 앱 이름
+        rx.container(
+            rx.hstack(
+                rx.image(
+                    src='/moon.png',
+                    height='60px',
+                    width='60px',         
                 ),
+                rx.text(
+                    "Lunar", 
+                    style={
+                        "fontSize": "40px",
+                        "fontWeight": "bolder",
+                        "fontFamily": "Calibri, Calibri",
+                        "background": "-webkit-linear-gradient(-45deg, #e04a3f, #4e8be6)",
+                        "-webkit-background-clip": "text",
+                        "color": "transparent",
+                    },
+                    center_content=True,
+                ),  # 앱 이름
             ),
+        ),
+        rx.container(height='30px'),
+        rx.vstack(
             rx.vstack(
+                rx.container(height='10px'),
                 rx.container(
                     rx.hstack(
                         rx.image(src='/human.png',height='40px',width='40px'),
@@ -74,18 +76,28 @@ def tabs():
                 ),
                 align_items='start',
             ),
-            rx.button(
-                "Sign out",
-                on_click=State.logout,
-                bg="#212963",
-                color="white",
-                _hover={"bg": "blue.600"},
+            rx.vstack(
+                rx.button(
+                    "Sign out",
+                    on_click=State.logout,
+                    bg="#212963",
+                    color="white",
+                    _hover={"bg": "blue.600"},
+                    width = '80%',
+                ),
+                width = '100%',
             ),
-            rx.container(height='200px'),
+            rx.container(height='30px'),
+            width = '90%',
             align_items="left",
             gap=4,
+            background= 'rgb(255,255,255,0.7)',                           
+            border = '2px groove #969394',
+            box_Shadow = '10px 10px 5px #d61c4e',
+            border_radius = '30px', 
         ),
         py=4,
+        overflow = 'auto',
     )
 
 # 오른쪽에 표시되는 사이드바
@@ -123,6 +135,7 @@ def sidebar(HomeState):
         gap=4,
         h="100%",
         py=4,
+        over_flow='auto',
     )
 
 # 피드의 헤더
@@ -133,7 +146,6 @@ def feed_header(HomeState):
         rx.input(on_change=HomeState.set_search, placeholder="Search contents"),  # 콘텐츠 검색을 위한 입력 상자
         justify="space-between",
         p=4,
-        border_bottom="3px solid #000000",
     )
 
 # 새로운 게시물을 작성하는 컴포저
@@ -230,8 +242,10 @@ def composer(HomeState):
             margin_left='5px',
             width='97%',
             border_radius='20px',
-            border="3px solid #000000",
+            border = '3px solid #000000',
+            box_Shadow = '10px 10px 5px #dece57',
         ),
+        rx.container(height='20px'),
     )
 
 
@@ -247,23 +261,34 @@ def crater(crater):
     ),
 
     return rx.vstack(
-        rx.hstack(
-            rx.avatar(name=crater.author, size="md"),  # 트윗 작성자의 아바타 이미지
-            rx.text("@" + crater.author, font_weight="bold",fontSize = '20px'),  # 트윗 작성자의 사용자 이름
-            rx.text("["+ crater.created_at +"]"),
-        ),
-        rx.hstack(
-            rx.container(width='50px'),
-            rx.box(
-                *image_tags,
-                rx.container(height='5px'),
-                rx.text(crater.content, width="100%",fontSize = '15px'),  # 트윗 내용
-                rx.container(height='10px'),
-                width = '100%',
+        rx.vstack(
+            rx.hstack(
+                rx.avatar(name=crater.author, size="md"),  # 트윗 작성자의 아바타 이미지
+                rx.text("@" + crater.author, font_weight="bold",fontSize = '20px'),  # 트윗 작성자의 사용자 이름
+                rx.text("["+ crater.created_at +"]"),
+                margin='10px',
             ),
-            py=4,
-            gap=1,
-            width='98%',
+            rx.hstack(
+                rx.container(
+                    width='50px',
+                ),
+                rx.box(
+                    *image_tags,
+                    rx.container(height='5px'),
+                    rx.text(crater.content, width="100%",fontSize = '15px'),  # 트윗 내용
+                    rx.container(height='10px'),
+                    width = '100%',
+                ),
+                py=4,
+                gap=1,
+                width='98%',
+                margin = '10px',
+            ),
+            align_items='start',
+            width='97%',
+            border = '2px solid #7a7a73',
+            border_radius = '20px',
+            box_shadow = '5px 5px 5px #7a7a73',
         ),
         rx.container(height='5px'),
         margin_left = '25px',
@@ -297,7 +322,6 @@ def feed(HomeState):
             ),
         ),
         h="100%",
-        border_x = '3px solid #000000',
         overflow = 'auto',
     )
 
@@ -310,7 +334,6 @@ def home():
             feed(HomeState),
             sidebar(HomeState),
             grid_template_columns="2fr 5fr 2fr",
-            border_bottom = '3px solid #000000',
 
             width='97%',
             h="90vh",
@@ -329,6 +352,7 @@ def home():
             margin_right='5px',
             border="1px solid #000000",
             border_radius="full",
+            box_Shadow = '10px 10px 5px #3083f0',
         ),
         width='100%',
     )

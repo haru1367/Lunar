@@ -61,34 +61,43 @@ def tabs():
                     ),  # 앱 이름
                 ),
             ),
-            rx.hstack(
-                rx.container(width='5px'),
-                rx.vstack(
-                    rx.container(height='10px'),
-                    rx.hstack(
-                        rx.button('Hot place!(24H)',Font_size = '20px',on_click = HomeState.hotplaces,bg = '#ebf564'),
+            rx.vstack(
+                rx.hstack(
+                    rx.container(width='5px'),
+                    rx.vstack(
+                        rx.container(height='10px'),
+                        rx.hstack(
+                            rx.button('Hot place!(24H)',Font_size = '20px',on_click = HomeState.hotplaces,bg = '#ebf564'),
+                        ),
+                        rx.container(height='5px'),
+                        rx.foreach(
+                            HomeState.map_hotplaces,
+                            hotplace,
+                        ),
+                        rx.container(height='4px'),
+                        width ='100%',
+                        align_items='start',
                     ),
-                    rx.container(height='5px'),
-                    rx.foreach(
-                        HomeState.map_hotplaces,
-                        hotplace,
-                    ),
-                    rx.container(height='4px'),
-                    width ='100%',
-                    align_items='start',
                 ),
+                align_items = 'start',
+                margin_left = '20px',
                 border = '3px solid #000000',
                 border_radius = '30px',
+                box_Shadow = '10px 10px 5px #d61c4e',
+                width = '90%',
             ),
-            rx.button(
-                "Sign out",
-                on_click=State.logout,
-                bg="#212963",
-                color="white",
-                _hover={"bg": "blue.600"},
+            rx.vstack(
+                rx.button(
+                    "Sign out",
+                    on_click=State.logout,
+                    bg="#212963",
+                    color="white",
+                    _hover={"bg": "blue.600"},
+                    width = '80%'
+                ),
+                width = '90%',
             ),
-            rx.container(height='200px'),
-            align_items="left",
+            align_items="start",
             gap=4,
         ),
         py=4,
@@ -149,15 +158,27 @@ def sidebar(HomeState):
                 width='100%',
             ),
             rx.container(height='30px'),
-            border_bottom = '3px solid #000000',
+            border = '3px solid #000000',
+            box_Shadow = '10px 10px 5px #307849',
+            border_radius = '20px',
+            width = '90%',
         ),
+        rx.container(height='40px'),
         rx.vstack(
-            rx.text('Route search result',font_size='30px'),
-            rx.text(HomeState.distance,font_size = '25px'),
-            rx.text(HomeState.path_time,font_size ='25px'),
-            rx.text(HomeState.taxi_fee, font_size = '20px'),
-            rx.text(HomeState.toll_fee, font_size = '20px'),
-            align_items='start',
+            rx.vstack(
+                rx.text('Route search result',font_size='30px'),
+            ),
+            rx.vstack(
+                rx.text(HomeState.distance,font_size = '25px'),
+                rx.text(HomeState.path_time,font_size ='25px'),
+                rx.text(HomeState.taxi_fee, font_size = '20px'),
+                rx.text(HomeState.toll_fee, font_size = '20px'),
+                align_items='start',
+            ),
+            border = '3px solid #000000',
+            border_radius = '20px',
+            box_Shadow = '10px 10px 5px #973dba',
+            width = '90%',
         ),
         align_items="start",
         gap=4,
@@ -185,7 +206,17 @@ def feed(HomeState):
     """The feed."""
     return rx.box(
         feed_header(HomeState),
-        rx.html(HomeState.time_map_iframe),
+        rx.container(height='10px'),
+        rx.vstack(
+            rx.html(
+                HomeState.time_map_iframe,
+                width = '100%',
+            ),
+            width = '95%',
+            border= '3px solid #000000',
+            box_shadow = '10px 10px 5px #85d647'
+        ),
+        rx.container(height='20px'),
         rx.box(
             rx.data_table(
                 data=HomeState.df,
@@ -193,7 +224,6 @@ def feed(HomeState):
                 width='100%',
             ),
         ),
-        border_x = '3px solid #000000',
         overflow='auto',
     )
 
@@ -209,7 +239,6 @@ def map():
             width='97%',
             h="90vh",
             gap=4,
-            border_bottome='3px solid #000000',
         ),
         rx.hstack(
             tab_button('/Home.png','/'),
@@ -224,6 +253,7 @@ def map():
             margin_right='5px',
             border="1px solid #000000",
             border_radius="full",
+            box_Shadow = '10px 10px 5px #3083f0'
         ),
         width='100%',
     )

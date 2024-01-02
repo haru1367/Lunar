@@ -7,15 +7,6 @@ def login():
     return rx.container(
         rx.container(height='150px'),
         rx.hstack( 
-            # rx.vstack(
-            #     rx.container(height='30px'),
-            #     rx.image(
-            #         src = '/space2.jpg',
-            #     ),
-            #     width = '500px',
-            #     height= '100%',
-            # ),
-            # rx.container(width='30px'),
             rx.vstack(
                 rx.hstack(
                     rx.vstack(
@@ -35,7 +26,6 @@ def login():
                                     "fontSize": "50px",
                                     "fontWeight": "bolder",
                                     "letterSpacing": "3px",
-                                    "fontFamily": "Comic Sans MS, Cursive",
                                     "background": "-webkit-linear-gradient(-45deg, #e04a3f, #24d6d6)",
                                     "-webkit-background-clip": "text",
                                     "color": "black",
@@ -84,33 +74,37 @@ def login():
                             background= 'rgb(255,255,255,0.7)'
                         ),
                         rx.container(height='10px'),
-                        rx.vstack(
-                            rx.text(
-                                'Forgot your id?     ',
-                                rx.link('Find Id!',href="/findid",color='red.500'),
-                                color='gray.600', 
+                        rx.hstack(
+                            rx.container(width='20px'),
+                            rx.vstack(
+                                rx.text(
+                                    'Forgot your id?     ',
+                                    rx.link('Find Id!',href="/findid",color='red.500'),
+                                    color='gray.600', 
+                                ),
+                                rx.text(
+                                    'Forgot your password?     ',
+                                    rx.link('Find Password!',href="/findpassword",color='green.500'),
+                                    color="gray.600",
+                                ), 
+                                rx.text(
+                                    "Don't have an account yet?     ",
+                                    rx.link("Sign up!", href="/signup", color="blue.500"),
+                                    color="gray.600",
+                                ),
+                                align_items='start',
                             ),
-                            rx.text(
-                                'Forgot your password?     ',
-                                rx.link('Find Password!',href="/findpassword",color='green.500'),
-                                color="gray.600",
-                            ), 
-                            rx.text(
-                                "Don't have an account yet?     ",
-                                rx.link("Sign up!", href="/signup", color="blue.500"),
-                                color="gray.600",
-                            ),
-                            align_items='start',
                         ),
-                        rx.container(height='30px') ,  
+                        rx.container(height='30px') ,
+                        align_items='start',  
                     ),
                 ),
                 width='500px',
                 height='auto',
                 center_content=True,
-                borderRadius='40px',
-                boxShadow='10px 10px 100px #79d0ed',
-                background= 'rgb(255,255,255,0.9)'
+                borderRadius='30px',
+                # boxShadow='10px 10px 100px #79d0ed',
+                background= 'rgb(255,255,255,0.7)'
             ),
         ),
         center_content=True,

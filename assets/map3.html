@@ -25,7 +25,7 @@
             <meta name="viewport" content="width=device-width,
                 initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
             <style>
-                #map_919a1dfc56a9a99b9e955d41ad1dfb0c {
+                #map_0fdd3f994369b76ef958a26612e325ad {
                     position: relative;
                     width: 100.0%;
                     height: 100.0%;
@@ -35,20 +35,22 @@
                 .leaflet-container { font-size: 1rem; }
             </style>
         
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
 </head>
 <body>
     
     
-            <div class="folium-map" id="map_919a1dfc56a9a99b9e955d41ad1dfb0c" ></div>
+            <div class="folium-map" id="map_0fdd3f994369b76ef958a26612e325ad" ></div>
         
 </body>
 <script>
     
     
-            var map_919a1dfc56a9a99b9e955d41ad1dfb0c = L.map(
-                "map_919a1dfc56a9a99b9e955d41ad1dfb0c",
+            var map_0fdd3f994369b76ef958a26612e325ad = L.map(
+                "map_0fdd3f994369b76ef958a26612e325ad",
                 {
-                    center: [37.5518911, 126.9917931],
+                    center: [37.5518911, 126.9917937],
                     crs: L.CRS.EPSG3857,
                     zoom: 7,
                     zoomControl: true,
@@ -60,2116 +62,1326 @@
 
         
     
-            var tile_layer_67a297630acf1ae78400349d0b27ac2c = L.tileLayer(
+            var tile_layer_612f5775dfd75242e633636ad55d6da4 = L.tileLayer(
                 "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
                 {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var marker_e889ca7448ee4431aa95087011bf46fe = L.marker(
-                [36.368839332173515, 127.3466342332821],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_3b24417e07a6bba92eb87bcca01d5d90 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
+            var tile_layer_e99fd34fffd0ab68f71a5cb4942e74b3 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca target=\"_blank\" href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca target=\"_blank\" href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
             );
-            marker_e889ca7448ee4431aa95087011bf46fe.setIcon(icon_3b24417e07a6bba92eb87bcca01d5d90);
+            var mini_map_64b8054874303702623294d30d771146 = new L.Control.MiniMap(
+                tile_layer_e99fd34fffd0ab68f71a5cb4942e74b3,
+                {"autoToggleDisplay": false, "centerFixed": false, "collapsedHeight": 25, "collapsedWidth": 25, "height": 150, "minimized": false, "position": "bottomright", "toggleDisplay": false, "width": 150, "zoomAnimation": false, "zoomLevelOffset": -5}
+            );
+            map_0fdd3f994369b76ef958a26612e325ad.addControl(mini_map_64b8054874303702623294d30d771146);
         
     
-        var popup_f002339f6b1a03ebce451ed11aa9ec3b = L.popup({"maxWidth": "100%"});
+            var marker_def9c3da1ad8ecdcd972e121dd20eede = L.marker(
+                [35.8906303894606, 128.612177806453],
+                {}
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
+        
+    
+        var popup_23e54f43262cb7069515b3a89bb24ddc = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_71f85d50e62580534a37d72671617550 = $(`<div id="html_71f85d50e62580534a37d72671617550" style="width: 100.0%; height: 100.0%;">출발지</div>`)[0];
-                popup_f002339f6b1a03ebce451ed11aa9ec3b.setContent(html_71f85d50e62580534a37d72671617550);
+                var html_1c0e8603b4fc768d88aeea10f3c47c01 = $(`<div id="html_1c0e8603b4fc768d88aeea10f3c47c01" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/18445477</div>`)[0];
+                popup_23e54f43262cb7069515b3a89bb24ddc.setContent(html_1c0e8603b4fc768d88aeea10f3c47c01);
             
         
 
-        marker_e889ca7448ee4431aa95087011bf46fe.bindPopup(popup_f002339f6b1a03ebce451ed11aa9ec3b)
+        marker_def9c3da1ad8ecdcd972e121dd20eede.bindPopup(popup_23e54f43262cb7069515b3a89bb24ddc)
         ;
 
         
     
     
-            marker_e889ca7448ee4431aa95087011bf46fe.bindTooltip(
+            marker_def9c3da1ad8ecdcd972e121dd20eede.bindTooltip(
                 `<div>
-                     출발지
+                     경북대학교 대구캠퍼스
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_f9bc1f86c68723aa5de6764c0c62ae2e = L.marker(
-                [36.36925425114198, 127.3466976277299],
+            var marker_6140e73289fedea1641c3bb8974ea274 = L.marker(
+                [36.37867991380023, 128.1448311067946],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_0d1748cb9c5cd29ae4bceba35c5c0193 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_f9bc1f86c68723aa5de6764c0c62ae2e.setIcon(icon_0d1748cb9c5cd29ae4bceba35c5c0193);
-        
-    
-        var popup_855addf110972980c791a051da0654a7 = L.popup({"maxWidth": "100%"});
+        var popup_5e399bcf3cf3bbb00484c9a4f97a424f = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_97fa9ae5c7ea4967269293b081ba252c = $(`<div id="html_97fa9ae5c7ea4967269293b081ba252c" style="width: 100.0%; height: 100.0%;"></div>`)[0];
-                popup_855addf110972980c791a051da0654a7.setContent(html_97fa9ae5c7ea4967269293b081ba252c);
+                var html_e05e8354805466d3dfc8f52c9b8e1158 = $(`<div id="html_e05e8354805466d3dfc8f52c9b8e1158" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8187666</div>`)[0];
+                popup_5e399bcf3cf3bbb00484c9a4f97a424f.setContent(html_e05e8354805466d3dfc8f52c9b8e1158);
             
         
 
-        marker_f9bc1f86c68723aa5de6764c0c62ae2e.bindPopup(popup_855addf110972980c791a051da0654a7)
+        marker_6140e73289fedea1641c3bb8974ea274.bindPopup(popup_5e399bcf3cf3bbb00484c9a4f97a424f)
         ;
 
         
     
     
-            marker_f9bc1f86c68723aa5de6764c0c62ae2e.bindTooltip(
+            marker_6140e73289fedea1641c3bb8974ea274.bindTooltip(
                 `<div>
-                     
+                     경북대학교 상주캠퍼스
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_838229dd4f33bf17d6996ed8c9d28a65 = L.marker(
-                [36.36994809353475, 127.34011684789942],
+            var marker_45e68706b96d7c2a642ab294c12e3f90 = L.marker(
+                [35.8925010432922, 128.609230041745],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_5b9bc95640b2f894e3b0fa04042c6a78 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_838229dd4f33bf17d6996ed8c9d28a65.setIcon(icon_5b9bc95640b2f894e3b0fa04042c6a78);
-        
-    
-        var popup_61d1f198204f4ecf54470a8999feeb9e = L.popup({"maxWidth": "100%"});
+        var popup_91aefe8e674687558933d6cb28c31a73 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_749c9c6a3f1c1882f03e49a64504fc38 = $(`<div id="html_749c9c6a3f1c1882f03e49a64504fc38" style="width: 100.0%; height: 100.0%;">충대서문네거리</div>`)[0];
-                popup_61d1f198204f4ecf54470a8999feeb9e.setContent(html_749c9c6a3f1c1882f03e49a64504fc38);
+                var html_136c2910764645d53ba99a348e9d7c15 = $(`<div id="html_136c2910764645d53ba99a348e9d7c15" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8179132</div>`)[0];
+                popup_91aefe8e674687558933d6cb28c31a73.setContent(html_136c2910764645d53ba99a348e9d7c15);
             
         
 
-        marker_838229dd4f33bf17d6996ed8c9d28a65.bindPopup(popup_61d1f198204f4ecf54470a8999feeb9e)
+        marker_45e68706b96d7c2a642ab294c12e3f90.bindPopup(popup_91aefe8e674687558933d6cb28c31a73)
         ;
 
         
     
     
-            marker_838229dd4f33bf17d6996ed8c9d28a65.bindTooltip(
+            marker_45e68706b96d7c2a642ab294c12e3f90.bindTooltip(
                 `<div>
-                     충대서문네거리
+                     경북대학교북문교차로
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_ea14720960f178709bb33e73b894a719 = L.marker(
-                [36.364855393405925, 127.3383657771643],
+            var marker_f404a749cd280b304ca1071ab1b8ed75 = L.marker(
+                [35.8855060008441, 128.614496808498],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_4e956cd64cc9b7e6faa6641a91176d76 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_ea14720960f178709bb33e73b894a719.setIcon(icon_4e956cd64cc9b7e6faa6641a91176d76);
-        
-    
-        var popup_2b1c951166e68be86afc5feb952f7565 = L.popup({"maxWidth": "100%"});
+        var popup_c9f46516b6490e286ac08048e4909965 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_b49c46b05d3685f617d8cf228246bfdb = $(`<div id="html_b49c46b05d3685f617d8cf228246bfdb" style="width: 100.0%; height: 100.0%;">장대네거리</div>`)[0];
-                popup_2b1c951166e68be86afc5feb952f7565.setContent(html_b49c46b05d3685f617d8cf228246bfdb);
+                var html_be072f3bf45964bb13da795041f26597 = $(`<div id="html_be072f3bf45964bb13da795041f26597" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/18092665</div>`)[0];
+                popup_c9f46516b6490e286ac08048e4909965.setContent(html_be072f3bf45964bb13da795041f26597);
             
         
 
-        marker_ea14720960f178709bb33e73b894a719.bindPopup(popup_2b1c951166e68be86afc5feb952f7565)
+        marker_f404a749cd280b304ca1071ab1b8ed75.bindPopup(popup_c9f46516b6490e286ac08048e4909965)
         ;
 
         
     
     
-            marker_ea14720960f178709bb33e73b894a719.bindTooltip(
+            marker_f404a749cd280b304ca1071ab1b8ed75.bindTooltip(
                 `<div>
-                     장대네거리
+                     경북대학교 정문
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_8c8c80f9f9884b795fedefea418ab556 = L.marker(
-                [36.36694052767083, 127.33085962700319],
+            var marker_67ccf2cdbc7e73acb47bdab41adab4c4 = L.marker(
+                [35.892740489354, 128.610727742114],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_8aa46c6646c7414e547afc71fd431baa = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_8c8c80f9f9884b795fedefea418ab556.setIcon(icon_8aa46c6646c7414e547afc71fd431baa);
-        
-    
-        var popup_6c8986e401a8973957356da3f2fdab51 = L.popup({"maxWidth": "100%"});
+        var popup_e30e6e643bced34e325ce73d0b018507 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_f648beabd29bc2cc95a300f36b83a0da = $(`<div id="html_f648beabd29bc2cc95a300f36b83a0da" style="width: 100.0%; height: 100.0%;">월드컵지하차도</div>`)[0];
-                popup_6c8986e401a8973957356da3f2fdab51.setContent(html_f648beabd29bc2cc95a300f36b83a0da);
+                var html_1af5ebd57264568e706405a57fa4f982 = $(`<div id="html_1af5ebd57264568e706405a57fa4f982" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17552523</div>`)[0];
+                popup_e30e6e643bced34e325ce73d0b018507.setContent(html_1af5ebd57264568e706405a57fa4f982);
             
         
 
-        marker_8c8c80f9f9884b795fedefea418ab556.bindPopup(popup_6c8986e401a8973957356da3f2fdab51)
+        marker_67ccf2cdbc7e73acb47bdab41adab4c4.bindPopup(popup_e30e6e643bced34e325ce73d0b018507)
         ;
 
         
     
     
-            marker_8c8c80f9f9884b795fedefea418ab556.bindTooltip(
+            marker_67ccf2cdbc7e73acb47bdab41adab4c4.bindTooltip(
                 `<div>
-                     월드컵지하차도
+                     경북대학교 대강당
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_886a6d1cdedc042d9b430baf29b0b2b1 = L.marker(
-                [36.36698565831296, 127.32766102733822],
+            var marker_3aedd9a7c268fda5fded39a986c6b899 = L.marker(
+                [35.8918682645968, 128.611259363988],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_79297b5c8fa5d45645f6f7c177ee6da4 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_886a6d1cdedc042d9b430baf29b0b2b1.setIcon(icon_79297b5c8fa5d45645f6f7c177ee6da4);
-        
-    
-        var popup_fc965f3a5ecf507171d9d5ae6a6b503b = L.popup({"maxWidth": "100%"});
+        var popup_96ff6c8f2527a2c45edfc1a21441fda3 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_ecd7c2c9b01632abb90f216be91170aa = $(`<div id="html_ecd7c2c9b01632abb90f216be91170aa" style="width: 100.0%; height: 100.0%;">월드컵네거리</div>`)[0];
-                popup_fc965f3a5ecf507171d9d5ae6a6b503b.setContent(html_ecd7c2c9b01632abb90f216be91170aa);
+                var html_43e6d7059c84cc4dabfcc29f9240a456 = $(`<div id="html_43e6d7059c84cc4dabfcc29f9240a456" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17556017</div>`)[0];
+                popup_96ff6c8f2527a2c45edfc1a21441fda3.setContent(html_43e6d7059c84cc4dabfcc29f9240a456);
             
         
 
-        marker_886a6d1cdedc042d9b430baf29b0b2b1.bindPopup(popup_fc965f3a5ecf507171d9d5ae6a6b503b)
+        marker_3aedd9a7c268fda5fded39a986c6b899.bindPopup(popup_96ff6c8f2527a2c45edfc1a21441fda3)
         ;
 
         
     
     
-            marker_886a6d1cdedc042d9b430baf29b0b2b1.bindTooltip(
+            marker_3aedd9a7c268fda5fded39a986c6b899.bindTooltip(
                 `<div>
-                     월드컵네거리
+                     경북대학교 글로벌플라자
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_dd424eacfc249c5bb727ddb4044710f3 = L.marker(
-                [36.38165644007069, 127.32261951625297],
+            var marker_b66acf2d08bbd7bf6b3af8690b6caacc = L.marker(
+                [35.8922571702661, 128.609406727498],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_098075855b2b696d04f96fc83f267341 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_dd424eacfc249c5bb727ddb4044710f3.setIcon(icon_098075855b2b696d04f96fc83f267341);
-        
-    
-        var popup_7dbfae6dc8735e8395b2a82bde4dbb43 = L.popup({"maxWidth": "100%"});
+        var popup_fbdadeea041d7f0479d4181e9ca30b50 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_9ddf4f006e7b2de9df50d0369aee04f4 = $(`<div id="html_9ddf4f006e7b2de9df50d0369aee04f4" style="width: 100.0%; height: 100.0%;">노은지하차도</div>`)[0];
-                popup_7dbfae6dc8735e8395b2a82bde4dbb43.setContent(html_9ddf4f006e7b2de9df50d0369aee04f4);
+                var html_03caaf7b0e963fe1424fa59f12e15874 = $(`<div id="html_03caaf7b0e963fe1424fa59f12e15874" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/25926005</div>`)[0];
+                popup_fbdadeea041d7f0479d4181e9ca30b50.setContent(html_03caaf7b0e963fe1424fa59f12e15874);
             
         
 
-        marker_dd424eacfc249c5bb727ddb4044710f3.bindPopup(popup_7dbfae6dc8735e8395b2a82bde4dbb43)
+        marker_b66acf2d08bbd7bf6b3af8690b6caacc.bindPopup(popup_fbdadeea041d7f0479d4181e9ca30b50)
         ;
 
         
     
     
-            marker_dd424eacfc249c5bb727ddb4044710f3.bindTooltip(
+            marker_b66acf2d08bbd7bf6b3af8690b6caacc.bindTooltip(
                 `<div>
-                     노은지하차도
+                     경북대학교 북문
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_65fb7278e2c24aeb88110a4db3ab0f4c = L.marker(
-                [36.461692265929045, 127.27756333832068],
+            var marker_3abd09d3a3d83b62b340427ff8bc90fc = L.marker(
+                [35.8884543708499, 128.604018667428],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_394be4ff1fa73a9e381d891aec69c530 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_65fb7278e2c24aeb88110a4db3ab0f4c.setIcon(icon_394be4ff1fa73a9e381d891aec69c530);
-        
-    
-        var popup_4928f64cea3fd409f23e55bc5817d985 = L.popup({"maxWidth": "100%"});
+        var popup_ca4499bbfe4664e78254d0c9c3135f20 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_f989d42dba2efc6fa8403785f3275a06 = $(`<div id="html_f989d42dba2efc6fa8403785f3275a06" style="width: 100.0%; height: 100.0%;">대평교차로</div>`)[0];
-                popup_4928f64cea3fd409f23e55bc5817d985.setContent(html_f989d42dba2efc6fa8403785f3275a06);
+                var html_04b7edb490cc4cfed0d96db9668d0972 = $(`<div id="html_04b7edb490cc4cfed0d96db9668d0972" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/1359751560</div>`)[0];
+                popup_ca4499bbfe4664e78254d0c9c3135f20.setContent(html_04b7edb490cc4cfed0d96db9668d0972);
             
         
 
-        marker_65fb7278e2c24aeb88110a4db3ab0f4c.bindPopup(popup_4928f64cea3fd409f23e55bc5817d985)
+        marker_3abd09d3a3d83b62b340427ff8bc90fc.bindPopup(popup_ca4499bbfe4664e78254d0c9c3135f20)
         ;
 
         
     
     
-            marker_65fb7278e2c24aeb88110a4db3ab0f4c.bindTooltip(
+            marker_3abd09d3a3d83b62b340427ff8bc90fc.bindTooltip(
                 `<div>
-                     대평교차로
+                     경북대학교 서문
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_d7f9cd68b36a4c323a031cc351735bc2 = L.marker(
-                [36.47542032795766, 127.24732880771745],
+            var marker_6ae02787aaa10d69780b1b04338fb0f8 = L.marker(
+                [35.8929821462696, 128.61017890748445],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_ed7d0b049adf0bd3e7ebc0fbc311ed65 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_d7f9cd68b36a4c323a031cc351735bc2.setIcon(icon_ed7d0b049adf0bd3e7ebc0fbc311ed65);
-        
-    
-        var popup_35a35da75064c9e8a831ca24e9457384 = L.popup({"maxWidth": "100%"});
+        var popup_66b66a51eb73b903e39b8d3a8d13c765 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_4488dae3151dc32c958b9d6c1541d13c = $(`<div id="html_4488dae3151dc32c958b9d6c1541d13c" style="width: 100.0%; height: 100.0%;">사오리지하차도</div>`)[0];
-                popup_35a35da75064c9e8a831ca24e9457384.setContent(html_4488dae3151dc32c958b9d6c1541d13c);
+                var html_9c0ee374103f7c43f01e75e0855d2754 = $(`<div id="html_9c0ee374103f7c43f01e75e0855d2754" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/547361232</div>`)[0];
+                popup_66b66a51eb73b903e39b8d3a8d13c765.setContent(html_9c0ee374103f7c43f01e75e0855d2754);
             
         
 
-        marker_d7f9cd68b36a4c323a031cc351735bc2.bindPopup(popup_35a35da75064c9e8a831ca24e9457384)
+        marker_6ae02787aaa10d69780b1b04338fb0f8.bindPopup(popup_66b66a51eb73b903e39b8d3a8d13c765)
         ;
 
         
     
     
-            marker_d7f9cd68b36a4c323a031cc351735bc2.bindTooltip(
+            marker_6ae02787aaa10d69780b1b04338fb0f8.bindTooltip(
                 `<div>
-                     사오리지하차도
+                     경북대학교 미술관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_f675775d578af508ce0a6cc804868207 = L.marker(
-                [36.49593858123378, 127.23981920167937],
+            var marker_befb337bd9dd879972029dc776198a9a = L.marker(
+                [35.8883850963789, 128.616442268997],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_b336ba7e3d30b5fec5cdefb7376e9cca = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_f675775d578af508ce0a6cc804868207.setIcon(icon_b336ba7e3d30b5fec5cdefb7376e9cca);
-        
-    
-        var popup_4a66a137911c3f5c19697028d7a3d77b = L.popup({"maxWidth": "100%"});
+        var popup_a38df2335c2078acc8ac86760efd6798 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_65667fc70c53d0fbc4dd3442c7a6a6ba = $(`<div id="html_65667fc70c53d0fbc4dd3442c7a6a6ba" style="width: 100.0%; height: 100.0%;">주추지하차도</div>`)[0];
-                popup_4a66a137911c3f5c19697028d7a3d77b.setContent(html_65667fc70c53d0fbc4dd3442c7a6a6ba);
+                var html_eb2d06fe33d060d100dc787ea024fa50 = $(`<div id="html_eb2d06fe33d060d100dc787ea024fa50" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/1305598876</div>`)[0];
+                popup_a38df2335c2078acc8ac86760efd6798.setContent(html_eb2d06fe33d060d100dc787ea024fa50);
             
         
 
-        marker_f675775d578af508ce0a6cc804868207.bindPopup(popup_4a66a137911c3f5c19697028d7a3d77b)
+        marker_befb337bd9dd879972029dc776198a9a.bindPopup(popup_a38df2335c2078acc8ac86760efd6798)
         ;
 
         
     
     
-            marker_f675775d578af508ce0a6cc804868207.bindTooltip(
+            marker_befb337bd9dd879972029dc776198a9a.bindTooltip(
                 `<div>
-                     주추지하차도
+                     경북대학교 동문
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_80bf4f5c5e33878596ea0fd97646865e = L.marker(
-                [36.52429635822419, 127.2477935732901],
+            var marker_2fd80efa1ad9527936ca022eb7927621 = L.marker(
+                [35.866720742961085, 128.60428237400686],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_67b7a6b9fec000c5910a548e83ded931 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_80bf4f5c5e33878596ea0fd97646865e.setIcon(icon_67b7a6b9fec000c5910a548e83ded931);
-        
-    
-        var popup_e225cc82b472e5d0aabf67bb1c7dbe51 = L.popup({"maxWidth": "100%"});
+        var popup_3e30af86efa8321b574095aeee5e0552 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_b82059f97279b27f73003f2519cd8389 = $(`<div id="html_b82059f97279b27f73003f2519cd8389" style="width: 100.0%; height: 100.0%;">모개고가차도</div>`)[0];
-                popup_e225cc82b472e5d0aabf67bb1c7dbe51.setContent(html_b82059f97279b27f73003f2519cd8389);
+                var html_af11a561f780c7eee12ee370fa6afddf = $(`<div id="html_af11a561f780c7eee12ee370fa6afddf" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8645867</div>`)[0];
+                popup_3e30af86efa8321b574095aeee5e0552.setContent(html_af11a561f780c7eee12ee370fa6afddf);
             
         
 
-        marker_80bf4f5c5e33878596ea0fd97646865e.bindPopup(popup_e225cc82b472e5d0aabf67bb1c7dbe51)
+        marker_2fd80efa1ad9527936ca022eb7927621.bindPopup(popup_3e30af86efa8321b574095aeee5e0552)
         ;
 
         
     
     
-            marker_80bf4f5c5e33878596ea0fd97646865e.bindTooltip(
+            marker_2fd80efa1ad9527936ca022eb7927621.bindTooltip(
                 `<div>
-                     모개고가차도
+                     경북대학교병원
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_4f2524b4637c3947c835edcbb3a71a1e = L.marker(
-                [36.52753018050317, 127.2489794160235],
+            var marker_72d6604b28d0f01777bdcf08c220b191 = L.marker(
+                [35.8919398048101, 128.612642907305],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_97a3b4524a98050b6c1d9ccc1500669c = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_4f2524b4637c3947c835edcbb3a71a1e.setIcon(icon_97a3b4524a98050b6c1d9ccc1500669c);
-        
-    
-        var popup_0a4e09f5a8c1e07f7b9f640c5f907ffc = L.popup({"maxWidth": "100%"});
+        var popup_759db50a93b8cbf4ed77b6f6504cff87 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_8a6a07e212718be716fe809b3d7421ae = $(`<div id="html_8a6a07e212718be716fe809b3d7421ae" style="width: 100.0%; height: 100.0%;"></div>`)[0];
-                popup_0a4e09f5a8c1e07f7b9f640c5f907ffc.setContent(html_8a6a07e212718be716fe809b3d7421ae);
+                var html_671babc8433bb7303bb3f4b417dfa1c4 = $(`<div id="html_671babc8433bb7303bb3f4b417dfa1c4" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/22028576</div>`)[0];
+                popup_759db50a93b8cbf4ed77b6f6504cff87.setContent(html_671babc8433bb7303bb3f4b417dfa1c4);
             
         
 
-        marker_4f2524b4637c3947c835edcbb3a71a1e.bindPopup(popup_0a4e09f5a8c1e07f7b9f640c5f907ffc)
+        marker_72d6604b28d0f01777bdcf08c220b191.bindPopup(popup_759db50a93b8cbf4ed77b6f6504cff87)
         ;
 
         
     
     
-            marker_4f2524b4637c3947c835edcbb3a71a1e.bindTooltip(
+            marker_72d6604b28d0f01777bdcf08c220b191.bindTooltip(
                 `<div>
-                     
+                     경북대학교 도서관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_9b4267ccc126de40dd7c5161e9676ccf = L.marker(
-                [36.536270817085466, 127.23602961917662],
+            var marker_d338848cca497d7abb96693de66c30e2 = L.marker(
+                [35.89348464660513, 128.61356021837153],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_f79c01900a6e035f61788b15b4048c2f = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_9b4267ccc126de40dd7c5161e9676ccf.setIcon(icon_f79c01900a6e035f61788b15b4048c2f);
-        
-    
-        var popup_12e2cdb691bb7083d174028de0113874 = L.popup({"maxWidth": "100%"});
+        var popup_34e16172ca8597524019731b9b717626 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_a6ffc7c363275f368d0416340227ed50 = $(`<div id="html_a6ffc7c363275f368d0416340227ed50" style="width: 100.0%; height: 100.0%;">수산교차로</div>`)[0];
-                popup_12e2cdb691bb7083d174028de0113874.setContent(html_a6ffc7c363275f368d0416340227ed50);
+                var html_da5794aae8c843400263dc3868037f21 = $(`<div id="html_da5794aae8c843400263dc3868037f21" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/443117484</div>`)[0];
+                popup_34e16172ca8597524019731b9b717626.setContent(html_da5794aae8c843400263dc3868037f21);
             
         
 
-        marker_9b4267ccc126de40dd7c5161e9676ccf.bindPopup(popup_12e2cdb691bb7083d174028de0113874)
+        marker_d338848cca497d7abb96693de66c30e2.bindPopup(popup_34e16172ca8597524019731b9b717626)
         ;
 
         
     
     
-            marker_9b4267ccc126de40dd7c5161e9676ccf.bindTooltip(
+            marker_d338848cca497d7abb96693de66c30e2.bindTooltip(
                 `<div>
-                     수산교차로
+                     경북대학교 생활관 누리관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_66c23e9c053d7a5f9af91ec80b76715d = L.marker(
-                [36.574565783790966, 127.17554039778739],
+            var marker_8c1d26fded726db59b27a4045fe5f9d8 = L.marker(
+                [35.8891480156525, 128.615731319714],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_d6dde50795610a898a72ea77093d5018 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_66c23e9c053d7a5f9af91ec80b76715d.setIcon(icon_d6dde50795610a898a72ea77093d5018);
-        
-    
-        var popup_21e4a50da7fa2972da1cd80e267d16c6 = L.popup({"maxWidth": "100%"});
+        var popup_f97a2cd08945328445642a9a22ccadf6 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_a88ea5bf714d4b44cca76f99cc04f3b0 = $(`<div id="html_a88ea5bf714d4b44cca76f99cc04f3b0" style="width: 100.0%; height: 100.0%;">종흥졸음쉼터</div>`)[0];
-                popup_21e4a50da7fa2972da1cd80e267d16c6.setContent(html_a88ea5bf714d4b44cca76f99cc04f3b0);
+                var html_4c776c808b9df4a7deece9efef58637c = $(`<div id="html_4c776c808b9df4a7deece9efef58637c" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/11040830</div>`)[0];
+                popup_f97a2cd08945328445642a9a22ccadf6.setContent(html_4c776c808b9df4a7deece9efef58637c);
             
         
 
-        marker_66c23e9c053d7a5f9af91ec80b76715d.bindPopup(popup_21e4a50da7fa2972da1cd80e267d16c6)
+        marker_8c1d26fded726db59b27a4045fe5f9d8.bindPopup(popup_f97a2cd08945328445642a9a22ccadf6)
         ;
 
         
     
     
-            marker_66c23e9c053d7a5f9af91ec80b76715d.bindTooltip(
+            marker_8c1d26fded726db59b27a4045fe5f9d8.bindTooltip(
                 `<div>
-                     종흥졸음쉼터
+                     경북대학교 경상대학
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_f937dedd4f1dde79b0517b58d2408cde = L.marker(
-                [36.61970233394062, 127.12192277934527],
+            var marker_7538aab35492d07d7479c08aa3c21660 = L.marker(
+                [35.89044713628425, 128.61407997019452],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_6174cb1b0beb64de10731cac573ea914 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_f937dedd4f1dde79b0517b58d2408cde.setIcon(icon_6174cb1b0beb64de10731cac573ea914);
-        
-    
-        var popup_4de822c12f89d14491c72ca323de78a6 = L.popup({"maxWidth": "100%"});
+        var popup_28777094fe0fab4bcab1ecd486ec16ce = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_70d4b76a73483564ac76b30bc5fd8325 = $(`<div id="html_70d4b76a73483564ac76b30bc5fd8325" style="width: 100.0%; height: 100.0%;">정안IC</div>`)[0];
-                popup_4de822c12f89d14491c72ca323de78a6.setContent(html_70d4b76a73483564ac76b30bc5fd8325);
+                var html_f73df2c1daacf3aad39458b56608dde4 = $(`<div id="html_f73df2c1daacf3aad39458b56608dde4" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/9697247</div>`)[0];
+                popup_28777094fe0fab4bcab1ecd486ec16ce.setContent(html_f73df2c1daacf3aad39458b56608dde4);
             
         
 
-        marker_f937dedd4f1dde79b0517b58d2408cde.bindPopup(popup_4de822c12f89d14491c72ca323de78a6)
+        marker_7538aab35492d07d7479c08aa3c21660.bindPopup(popup_28777094fe0fab4bcab1ecd486ec16ce)
         ;
 
         
     
     
-            marker_f937dedd4f1dde79b0517b58d2408cde.bindTooltip(
+            marker_7538aab35492d07d7479c08aa3c21660.bindTooltip(
                 `<div>
-                     정안IC
+                     경북대학교 사범대학
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_24387d4f2df9700a74215b44e9e38fd9 = L.marker(
-                [36.62180572570938, 127.12241320476808],
+            var marker_cb8d9406a6836776f1fdfdca4cbd29e6 = L.marker(
+                [35.891457954573156, 128.61362982938385],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_7074fde84da272e736be968b0feedef1 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_24387d4f2df9700a74215b44e9e38fd9.setIcon(icon_7074fde84da272e736be968b0feedef1);
-        
-    
-        var popup_4809bd4596a9b2eab34dcd9f943d1f66 = L.popup({"maxWidth": "100%"});
+        var popup_27bfa92a226f33a9025db63ba824a762 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_00c5ef4d44d1bba3b14b01104f1a19ff = $(`<div id="html_00c5ef4d44d1bba3b14b01104f1a19ff" style="width: 100.0%; height: 100.0%;">정안TG</div>`)[0];
-                popup_4809bd4596a9b2eab34dcd9f943d1f66.setContent(html_00c5ef4d44d1bba3b14b01104f1a19ff);
+                var html_03282ab69898622cd0b6c848db15586c = $(`<div id="html_03282ab69898622cd0b6c848db15586c" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/1977254201</div>`)[0];
+                popup_27bfa92a226f33a9025db63ba824a762.setContent(html_03282ab69898622cd0b6c848db15586c);
             
         
 
-        marker_24387d4f2df9700a74215b44e9e38fd9.bindPopup(popup_4809bd4596a9b2eab34dcd9f943d1f66)
+        marker_cb8d9406a6836776f1fdfdca4cbd29e6.bindPopup(popup_27bfa92a226f33a9025db63ba824a762)
         ;
 
         
     
     
-            marker_24387d4f2df9700a74215b44e9e38fd9.bindTooltip(
+            marker_cb8d9406a6836776f1fdfdca4cbd29e6.bindTooltip(
                 `<div>
-                     정안TG
+                     경북대학교 정보화본부
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_8c8b1390b2ae8fb960e32c7d6bee944e = L.marker(
-                [36.62444533981407, 127.12229383910632],
+            var marker_ab0715e0712c7dc20936937aa9a47b2c = L.marker(
+                [35.8902353205432, 128.605884060384],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_02662e5c28bb388eda22c7c93ea7cb15 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_8c8b1390b2ae8fb960e32c7d6bee944e.setIcon(icon_02662e5c28bb388eda22c7c93ea7cb15);
-        
-    
-        var popup_7430e714fde106bdfeb31ba6858be9c1 = L.popup({"maxWidth": "100%"});
+        var popup_3be9c26a3daad8243abbca9553593004 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_d681aab2c4f39b1eeb4932f8c8a8f57c = $(`<div id="html_d681aab2c4f39b1eeb4932f8c8a8f57c" style="width: 100.0%; height: 100.0%;">정안IC</div>`)[0];
-                popup_7430e714fde106bdfeb31ba6858be9c1.setContent(html_d681aab2c4f39b1eeb4932f8c8a8f57c);
+                var html_20fe45a9e87a94f60ff9841ac667dd6c = $(`<div id="html_20fe45a9e87a94f60ff9841ac667dd6c" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/15278908</div>`)[0];
+                popup_3be9c26a3daad8243abbca9553593004.setContent(html_20fe45a9e87a94f60ff9841ac667dd6c);
             
         
 
-        marker_8c8b1390b2ae8fb960e32c7d6bee944e.bindPopup(popup_7430e714fde106bdfeb31ba6858be9c1)
+        marker_ab0715e0712c7dc20936937aa9a47b2c.bindPopup(popup_3be9c26a3daad8243abbca9553593004)
         ;
 
         
     
     
-            marker_8c8b1390b2ae8fb960e32c7d6bee944e.bindTooltip(
+            marker_ab0715e0712c7dc20936937aa9a47b2c.bindTooltip(
                 `<div>
-                     정안IC
+                     경북대학교 체육진흥센터
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_0dba65d6c494b0d2dfd80bf5340575ca = L.marker(
-                [36.721076361442606, 127.13666627631478],
+            var marker_96413a6771518966543b53fbc5dcaa03 = L.marker(
+                [35.89137583960026, 128.61504568393738],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_d76613aec41d7b0471f2513fd876a0f2 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_0dba65d6c494b0d2dfd80bf5340575ca.setIcon(icon_d76613aec41d7b0471f2513fd876a0f2);
-        
-    
-        var popup_8ba2d43830c975cb56d1c3bf771875af = L.popup({"maxWidth": "100%"});
+        var popup_1437772107d5a78f8e66605dcec98a42 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_c516e2c78f16fe7b0e89804d16c1f349 = $(`<div id="html_c516e2c78f16fe7b0e89804d16c1f349" style="width: 100.0%; height: 100.0%;">남풍세IC</div>`)[0];
-                popup_8ba2d43830c975cb56d1c3bf771875af.setContent(html_c516e2c78f16fe7b0e89804d16c1f349);
+                var html_6c8403155284558dd7cbd432b81ee8db = $(`<div id="html_6c8403155284558dd7cbd432b81ee8db" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17561296</div>`)[0];
+                popup_1437772107d5a78f8e66605dcec98a42.setContent(html_6c8403155284558dd7cbd432b81ee8db);
             
         
 
-        marker_0dba65d6c494b0d2dfd80bf5340575ca.bindPopup(popup_8ba2d43830c975cb56d1c3bf771875af)
+        marker_96413a6771518966543b53fbc5dcaa03.bindPopup(popup_1437772107d5a78f8e66605dcec98a42)
         ;
 
         
     
     
-            marker_0dba65d6c494b0d2dfd80bf5340575ca.bindTooltip(
+            marker_96413a6771518966543b53fbc5dcaa03.bindTooltip(
                 `<div>
-                     남풍세IC
+                     경북대학교 생활관 첨성관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_4cb61101f27eed8137ef591089274dae = L.marker(
-                [36.7356581075218, 127.15560429190141],
+            var marker_f6cffcdb3cf73cd7b99ed63eda36b42d = L.marker(
+                [35.88805499159571, 128.61136813167485],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_6193ef36e5d5edaaeb7273e12b41b539 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_4cb61101f27eed8137ef591089274dae.setIcon(icon_6193ef36e5d5edaaeb7273e12b41b539);
-        
-    
-        var popup_307e914ab31077a01d91d3c26f7c628a = L.popup({"maxWidth": "100%"});
+        var popup_a05be61bdf445254450a085cc654907e = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_8e671bf377bc7e315bead818afbd726b = $(`<div id="html_8e671bf377bc7e315bead818afbd726b" style="width: 100.0%; height: 100.0%;">풍세졸음쉼터</div>`)[0];
-                popup_307e914ab31077a01d91d3c26f7c628a.setContent(html_8e671bf377bc7e315bead818afbd726b);
+                var html_a3be98f5453c530ba4272920abd99cd6 = $(`<div id="html_a3be98f5453c530ba4272920abd99cd6" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/2066782496</div>`)[0];
+                popup_a05be61bdf445254450a085cc654907e.setContent(html_a3be98f5453c530ba4272920abd99cd6);
             
         
 
-        marker_4cb61101f27eed8137ef591089274dae.bindPopup(popup_307e914ab31077a01d91d3c26f7c628a)
+        marker_f6cffcdb3cf73cd7b99ed63eda36b42d.bindPopup(popup_a05be61bdf445254450a085cc654907e)
         ;
 
         
     
     
-            marker_4cb61101f27eed8137ef591089274dae.bindTooltip(
+            marker_f6cffcdb3cf73cd7b99ed63eda36b42d.bindTooltip(
                 `<div>
-                     풍세졸음쉼터
+                     경북대학교 대구캠퍼스 IT대학5호관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_6faa8f4775162c6ea50a6fee16e589b6 = L.marker(
-                [36.74271764253949, 127.16117053248426],
+            var marker_587a2ecc5b89597f62ec16756f9db290 = L.marker(
+                [35.8886709090714, 128.613684007518],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_f4b2da5b7e956d0c832c0cd2572d79c6 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_6faa8f4775162c6ea50a6fee16e589b6.setIcon(icon_f4b2da5b7e956d0c832c0cd2572d79c6);
-        
-    
-        var popup_d387876f0ad33ede1b5c205e59ef7fef = L.popup({"maxWidth": "100%"});
+        var popup_985ec59a3955ff26e8710b212a9422cd = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_0eb06df3f14f3d54133dbc0bfc7a3e2f = $(`<div id="html_0eb06df3f14f3d54133dbc0bfc7a3e2f" style="width: 100.0%; height: 100.0%;">풍세원톨링</div>`)[0];
-                popup_d387876f0ad33ede1b5c205e59ef7fef.setContent(html_0eb06df3f14f3d54133dbc0bfc7a3e2f);
+                var html_a4f1df82c1a30f71e56200dccab3d2b5 = $(`<div id="html_a4f1df82c1a30f71e56200dccab3d2b5" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17807744</div>`)[0];
+                popup_985ec59a3955ff26e8710b212a9422cd.setContent(html_a4f1df82c1a30f71e56200dccab3d2b5);
             
         
 
-        marker_6faa8f4775162c6ea50a6fee16e589b6.bindPopup(popup_d387876f0ad33ede1b5c205e59ef7fef)
+        marker_587a2ecc5b89597f62ec16756f9db290.bindPopup(popup_985ec59a3955ff26e8710b212a9422cd)
         ;
 
         
     
     
-            marker_6faa8f4775162c6ea50a6fee16e589b6.bindTooltip(
+            marker_587a2ecc5b89597f62ec16756f9db290.bindTooltip(
                 `<div>
-                     풍세원톨링
+                     경북대학교 박물관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_16696d8d9ef2d2167b6141b0fe12af06 = L.marker(
-                [36.74972273660243, 127.16415149859739],
+            var marker_4348551afe7af61d6bda9886b08c418f = L.marker(
+                [35.8888571997186, 128.614573710891],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_114b93e70ae63a8ec07bfc05ca38228d = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_16696d8d9ef2d2167b6141b0fe12af06.setIcon(icon_114b93e70ae63a8ec07bfc05ca38228d);
-        
-    
-        var popup_87b977606c84fff586e52b6d809a4d51 = L.popup({"maxWidth": "100%"});
+        var popup_616845f06d5ec042bbcb4487cd542910 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_69315e1d04d850b5aabbe477853a123d = $(`<div id="html_69315e1d04d850b5aabbe477853a123d" style="width: 100.0%; height: 100.0%;">남천안IC</div>`)[0];
-                popup_87b977606c84fff586e52b6d809a4d51.setContent(html_69315e1d04d850b5aabbe477853a123d);
+                var html_54cd0992463d4f70c3fd78c951df088c = $(`<div id="html_54cd0992463d4f70c3fd78c951df088c" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/10179692</div>`)[0];
+                popup_616845f06d5ec042bbcb4487cd542910.setContent(html_54cd0992463d4f70c3fd78c951df088c);
             
         
 
-        marker_16696d8d9ef2d2167b6141b0fe12af06.bindPopup(popup_87b977606c84fff586e52b6d809a4d51)
+        marker_4348551afe7af61d6bda9886b08c418f.bindPopup(popup_616845f06d5ec042bbcb4487cd542910)
         ;
 
         
     
     
-            marker_16696d8d9ef2d2167b6141b0fe12af06.bindTooltip(
+            marker_4348551afe7af61d6bda9886b08c418f.bindTooltip(
                 `<div>
-                     남천안IC
+                     경북대학교 우편취급국
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_227a785155e03fcb3441dff9a2ace700 = L.marker(
-                [36.76458461725579, 127.17729672640652],
+            var marker_ede5db7d703b20b630abf691088082fd = L.marker(
+                [35.8902243645042, 128.610738783211],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_9061ae2f8ae78328743c4037c05ebf32 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_227a785155e03fcb3441dff9a2ace700.setIcon(icon_9061ae2f8ae78328743c4037c05ebf32);
-        
-    
-        var popup_bc4048ea6edfecedb94df94a2fe2c0c3 = L.popup({"maxWidth": "100%"});
+        var popup_8b207a7f178d1a05e9de6862f44df92e = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_95a25e763e6dfd4f7a9bf333977ab1fd = $(`<div id="html_95a25e763e6dfd4f7a9bf333977ab1fd" style="width: 100.0%; height: 100.0%;">천안JC</div>`)[0];
-                popup_bc4048ea6edfecedb94df94a2fe2c0c3.setContent(html_95a25e763e6dfd4f7a9bf333977ab1fd);
+                var html_bbd93475230189c14d88c0e95fc27d32 = $(`<div id="html_bbd93475230189c14d88c0e95fc27d32" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/612903880</div>`)[0];
+                popup_8b207a7f178d1a05e9de6862f44df92e.setContent(html_bbd93475230189c14d88c0e95fc27d32);
             
         
 
-        marker_227a785155e03fcb3441dff9a2ace700.bindPopup(popup_bc4048ea6edfecedb94df94a2fe2c0c3)
+        marker_ede5db7d703b20b630abf691088082fd.bindPopup(popup_8b207a7f178d1a05e9de6862f44df92e)
         ;
 
         
     
     
-            marker_227a785155e03fcb3441dff9a2ace700.bindTooltip(
+            marker_ede5db7d703b20b630abf691088082fd.bindTooltip(
                 `<div>
-                     천안JC
+                     경북대학교 인문한국진흥관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_60b330928a1800236986cf7c73ce8f5a = L.marker(
-                [36.77400831414502, 127.17822663632886],
+            var marker_0bae6fdf3e0ffdc41940449042470c8b = L.marker(
+                [35.8884799856809, 128.615819625695],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_5b01e634fb30450d19d7ee2c565c0395 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_60b330928a1800236986cf7c73ce8f5a.setIcon(icon_5b01e634fb30450d19d7ee2c565c0395);
-        
-    
-        var popup_df22b6fd71943e6f093f9d6242593f34 = L.popup({"maxWidth": "100%"});
+        var popup_8e78a613e9ee5c7e2081491ad3dcad39 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_5c1a72d94ef1a7a67ae21efcdd35a24e = $(`<div id="html_5c1a72d94ef1a7a67ae21efcdd35a24e" style="width: 100.0%; height: 100.0%;">천안삼거리휴게소</div>`)[0];
-                popup_df22b6fd71943e6f093f9d6242593f34.setContent(html_5c1a72d94ef1a7a67ae21efcdd35a24e);
+                var html_b264b09be92ae17182e24bc95dc34385 = $(`<div id="html_b264b09be92ae17182e24bc95dc34385" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17565941</div>`)[0];
+                popup_8e78a613e9ee5c7e2081491ad3dcad39.setContent(html_b264b09be92ae17182e24bc95dc34385);
             
         
 
-        marker_60b330928a1800236986cf7c73ce8f5a.bindPopup(popup_df22b6fd71943e6f093f9d6242593f34)
+        marker_0bae6fdf3e0ffdc41940449042470c8b.bindPopup(popup_8e78a613e9ee5c7e2081491ad3dcad39)
         ;
 
         
     
     
-            marker_60b330928a1800236986cf7c73ce8f5a.bindTooltip(
+            marker_0bae6fdf3e0ffdc41940449042470c8b.bindTooltip(
                 `<div>
-                     천안삼거리휴게소
+                     경북대학교 사회과학대학
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_3b2fcbabac16e7a75b491320cdfb72dc = L.marker(
-                [36.82095855554521, 127.16647113893768],
+            var marker_faee9d6bf4abd2e022cd7f77e2232224 = L.marker(
+                [35.8925848083558, 128.612390201384],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_e4c1a26a1a807ef50af949dca0c69ea2 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_3b2fcbabac16e7a75b491320cdfb72dc.setIcon(icon_e4c1a26a1a807ef50af949dca0c69ea2);
-        
-    
-        var popup_8217e76fe09001a690a97bf7b7b8c9c7 = L.popup({"maxWidth": "100%"});
+        var popup_3de8ce280e68bfe24260a40f782163cf = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_0a2ef9b716a07c9d35290599c374d137 = $(`<div id="html_0a2ef9b716a07c9d35290599c374d137" style="width: 100.0%; height: 100.0%;">천안IC</div>`)[0];
-                popup_8217e76fe09001a690a97bf7b7b8c9c7.setContent(html_0a2ef9b716a07c9d35290599c374d137);
+                var html_125fe89c81b86e673f89f9762ec400bb = $(`<div id="html_125fe89c81b86e673f89f9762ec400bb" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/13106950</div>`)[0];
+                popup_3de8ce280e68bfe24260a40f782163cf.setContent(html_125fe89c81b86e673f89f9762ec400bb);
             
         
 
-        marker_3b2fcbabac16e7a75b491320cdfb72dc.bindPopup(popup_8217e76fe09001a690a97bf7b7b8c9c7)
+        marker_faee9d6bf4abd2e022cd7f77e2232224.bindPopup(popup_3de8ce280e68bfe24260a40f782163cf)
         ;
 
         
     
     
-            marker_3b2fcbabac16e7a75b491320cdfb72dc.bindTooltip(
+            marker_faee9d6bf4abd2e022cd7f77e2232224.bindTooltip(
                 `<div>
-                     천안IC
+                     경북대학교 약학대학
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_07df10ccf8d412d58d68c4e5321d48b3 = L.marker(
-                [36.89735452248936, 127.18928189261982],
+            var marker_5413384819ab18bc205bcd6702bf7c24 = L.marker(
+                [35.88927937107955, 128.61393777140896],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_be6ef625385c953346d4489bd5686c49 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_07df10ccf8d412d58d68c4e5321d48b3.setIcon(icon_be6ef625385c953346d4489bd5686c49);
-        
-    
-        var popup_2606a6ca82a35300f71eb7ce1c651071 = L.popup({"maxWidth": "100%"});
+        var popup_331718a9b2c11915899113f9a8a22c89 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_313527cd7b2fc7c53797869aa87df301 = $(`<div id="html_313527cd7b2fc7c53797869aa87df301" style="width: 100.0%; height: 100.0%;">북천안IC</div>`)[0];
-                popup_2606a6ca82a35300f71eb7ce1c651071.setContent(html_313527cd7b2fc7c53797869aa87df301);
+                var html_95fa70c6b3ae94330dbe5436825e409d = $(`<div id="html_95fa70c6b3ae94330dbe5436825e409d" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8413200</div>`)[0];
+                popup_331718a9b2c11915899113f9a8a22c89.setContent(html_95fa70c6b3ae94330dbe5436825e409d);
             
         
 
-        marker_07df10ccf8d412d58d68c4e5321d48b3.bindPopup(popup_2606a6ca82a35300f71eb7ce1c651071)
+        marker_5413384819ab18bc205bcd6702bf7c24.bindPopup(popup_331718a9b2c11915899113f9a8a22c89)
         ;
 
         
     
     
-            marker_07df10ccf8d412d58d68c4e5321d48b3.bindTooltip(
+            marker_5413384819ab18bc205bcd6702bf7c24.bindTooltip(
                 `<div>
-                     북천안IC
+                     신한은행 경북대학교지점
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_619cb97cab641c6bd6b2a7a4f6ffcaec = L.marker(
-                [36.93985455696909, 127.18952791884847],
+            var marker_81a7cc7c49030fe27b480ea5ac9090f0 = L.marker(
+                [35.88809572383076, 128.61484284861612],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_20e5cecdffb206c6494c0bae20008a86 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_619cb97cab641c6bd6b2a7a4f6ffcaec.setIcon(icon_20e5cecdffb206c6494c0bae20008a86);
-        
-    
-        var popup_83326c8b571286b9fca5465673b32bff = L.popup({"maxWidth": "100%"});
+        var popup_ef850f5aadf3c6d5d85add4d926b0da0 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_7e4ab4d70752c0d9f05f90a1d86d4a19 = $(`<div id="html_7e4ab4d70752c0d9f05f90a1d86d4a19" style="width: 100.0%; height: 100.0%;">입장거봉포도휴게소</div>`)[0];
-                popup_83326c8b571286b9fca5465673b32bff.setContent(html_7e4ab4d70752c0d9f05f90a1d86d4a19);
+                var html_a92b96646438a925fe0eb6bdba4c854f = $(`<div id="html_a92b96646438a925fe0eb6bdba4c854f" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17567406</div>`)[0];
+                popup_ef850f5aadf3c6d5d85add4d926b0da0.setContent(html_a92b96646438a925fe0eb6bdba4c854f);
             
         
 
-        marker_619cb97cab641c6bd6b2a7a4f6ffcaec.bindPopup(popup_83326c8b571286b9fca5465673b32bff)
+        marker_81a7cc7c49030fe27b480ea5ac9090f0.bindPopup(popup_ef850f5aadf3c6d5d85add4d926b0da0)
         ;
 
         
     
     
-            marker_619cb97cab641c6bd6b2a7a4f6ffcaec.bindTooltip(
+            marker_81a7cc7c49030fe27b480ea5ac9090f0.bindTooltip(
                 `<div>
-                     입장거봉포도휴게소
+                     경북대학교 법학전문대학원
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_532fefc06fd2d109fc4b6b489cdf5a66 = L.marker(
-                [36.99124362877721, 127.15544978841986],
+            var marker_1ada9ffa4a706781c0f26f0b603badec = L.marker(
+                [35.890362321551, 128.612008472],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_13a3247027c571a9969a4c862b0fd218 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_532fefc06fd2d109fc4b6b489cdf5a66.setIcon(icon_13a3247027c571a9969a4c862b0fd218);
-        
-    
-        var popup_e555a727f65ee1d91bc2b246ab86233e = L.popup({"maxWidth": "100%"});
+        var popup_44ab6f02ee68f412b0bb8762949572b9 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_7d5c3b9643590d91b44d23d18e75c875 = $(`<div id="html_7d5c3b9643590d91b44d23d18e75c875" style="width: 100.0%; height: 100.0%;">안성IC</div>`)[0];
-                popup_e555a727f65ee1d91bc2b246ab86233e.setContent(html_7d5c3b9643590d91b44d23d18e75c875);
+                var html_059392345cabc0c9aabdc77535c74733 = $(`<div id="html_059392345cabc0c9aabdc77535c74733" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17567176</div>`)[0];
+                popup_44ab6f02ee68f412b0bb8762949572b9.setContent(html_059392345cabc0c9aabdc77535c74733);
             
         
 
-        marker_532fefc06fd2d109fc4b6b489cdf5a66.bindPopup(popup_e555a727f65ee1d91bc2b246ab86233e)
+        marker_1ada9ffa4a706781c0f26f0b603badec.bindPopup(popup_44ab6f02ee68f412b0bb8762949572b9)
         ;
 
         
     
     
-            marker_532fefc06fd2d109fc4b6b489cdf5a66.bindTooltip(
+            marker_1ada9ffa4a706781c0f26f0b603badec.bindTooltip(
                 `<div>
-                     안성IC
+                     경북대학교 본관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_7fc79d7664acd2570a11b023f51cc06d = L.marker(
-                [37.000329956847274, 127.15205738138637],
+            var marker_74fd35611f98418c7cadb5d5deda2397 = L.marker(
+                [35.8925030775421, 128.614783967318],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_c5419eac321639eba0a419d940c5f185 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_7fc79d7664acd2570a11b023f51cc06d.setIcon(icon_c5419eac321639eba0a419d940c5f185);
-        
-    
-        var popup_705e1bc893427e831e7ace39888c2fda = L.popup({"maxWidth": "100%"});
+        var popup_126af4bb4f2c3475fec005d753a17bdc = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_a464cadb8a9d72c65696d37fae38f742 = $(`<div id="html_a464cadb8a9d72c65696d37fae38f742" style="width: 100.0%; height: 100.0%;">원곡졸음쉼터</div>`)[0];
-                popup_705e1bc893427e831e7ace39888c2fda.setContent(html_a464cadb8a9d72c65696d37fae38f742);
+                var html_2d74519c50e8ec7532534020b052599c = $(`<div id="html_2d74519c50e8ec7532534020b052599c" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/1603361626</div>`)[0];
+                popup_126af4bb4f2c3475fec005d753a17bdc.setContent(html_2d74519c50e8ec7532534020b052599c);
             
         
 
-        marker_7fc79d7664acd2570a11b023f51cc06d.bindPopup(popup_705e1bc893427e831e7ace39888c2fda)
+        marker_74fd35611f98418c7cadb5d5deda2397.bindPopup(popup_126af4bb4f2c3475fec005d753a17bdc)
         ;
 
         
     
     
-            marker_7fc79d7664acd2570a11b023f51cc06d.bindTooltip(
+            marker_74fd35611f98418c7cadb5d5deda2397.bindTooltip(
                 `<div>
-                     원곡졸음쉼터
+                     경북대학교 대구캠퍼스 테크노문
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_de947e0978cbf0efa794e14158fe4331 = L.marker(
-                [37.02781728649514, 127.14115330738848],
+            var marker_8df8087879b0b9a5050a5f6bff4be47c = L.marker(
+                [35.8911079525942, 128.610703527042],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_e12da45b9d065f563766ea578acc773a = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_de947e0978cbf0efa794e14158fe4331.setIcon(icon_e12da45b9d065f563766ea578acc773a);
-        
-    
-        var popup_ad3893afd5ebce471d7521aab67f365c = L.popup({"maxWidth": "100%"});
+        var popup_fa96b58866505fd622f4d08107db5fcc = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_2b709f374b54662c174bcb1ddbdf7a8c = $(`<div id="html_2b709f374b54662c174bcb1ddbdf7a8c" style="width: 100.0%; height: 100.0%;">안성JC</div>`)[0];
-                popup_ad3893afd5ebce471d7521aab67f365c.setContent(html_2b709f374b54662c174bcb1ddbdf7a8c);
+                var html_e8203d539263d314d3a5c38bb98c80b6 = $(`<div id="html_e8203d539263d314d3a5c38bb98c80b6" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17564398</div>`)[0];
+                popup_fa96b58866505fd622f4d08107db5fcc.setContent(html_e8203d539263d314d3a5c38bb98c80b6);
             
         
 
-        marker_de947e0978cbf0efa794e14158fe4331.bindPopup(popup_ad3893afd5ebce471d7521aab67f365c)
+        marker_8df8087879b0b9a5050a5f6bff4be47c.bindPopup(popup_fa96b58866505fd622f4d08107db5fcc)
         ;
 
         
     
     
-            marker_de947e0978cbf0efa794e14158fe4331.bindTooltip(
+            marker_8df8087879b0b9a5050a5f6bff4be47c.bindTooltip(
                 `<div>
-                     안성JC
+                     경북대학교 인문대학
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_832b1fe76d7a08c9008f77e688c209e9 = L.marker(
-                [37.07325275941003, 127.13255533890259],
+            var marker_d9c03a96017ae04c107a2399b16cd2aa = L.marker(
+                [35.8639202151436, 128.601429491118],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_d19561ce736af0e2936dbba248a61c2c = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_832b1fe76d7a08c9008f77e688c209e9.setIcon(icon_d19561ce736af0e2936dbba248a61c2c);
-        
-    
-        var popup_667dbcbc394c4543cef8eec88c310745 = L.popup({"maxWidth": "100%"});
+        var popup_c62a51d2509ed6ba2d64d5acc578d9a4 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_1e1ea8c5272c283e36741f0c36f41eef = $(`<div id="html_1e1ea8c5272c283e36741f0c36f41eef" style="width: 100.0%; height: 100.0%;">안성휴게소</div>`)[0];
-                popup_667dbcbc394c4543cef8eec88c310745.setContent(html_1e1ea8c5272c283e36741f0c36f41eef);
+                var html_f7084a82642ac019f2454d1da156e390 = $(`<div id="html_f7084a82642ac019f2454d1da156e390" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/22542591</div>`)[0];
+                popup_c62a51d2509ed6ba2d64d5acc578d9a4.setContent(html_f7084a82642ac019f2454d1da156e390);
             
         
 
-        marker_832b1fe76d7a08c9008f77e688c209e9.bindPopup(popup_667dbcbc394c4543cef8eec88c310745)
+        marker_d9c03a96017ae04c107a2399b16cd2aa.bindPopup(popup_c62a51d2509ed6ba2d64d5acc578d9a4)
         ;
 
         
     
     
-            marker_832b1fe76d7a08c9008f77e688c209e9.bindTooltip(
+            marker_d9c03a96017ae04c107a2399b16cd2aa.bindTooltip(
                 `<div>
-                     안성휴게소
+                     경북대학교치과병원
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_7816a2a2e8d526d0f3160ec54a6f3a83 = L.marker(
-                [37.10368969982226, 127.11749280055979],
+            var marker_58aa865ed89f5b8efeb40f5ba99fe5b7 = L.marker(
+                [35.89066041255692, 128.61530800826316],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_e16685e13eda5c569056234258bcacc2 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_7816a2a2e8d526d0f3160ec54a6f3a83.setIcon(icon_e16685e13eda5c569056234258bcacc2);
-        
-    
-        var popup_09e715be3fecca656abd4d211ff6ad48 = L.popup({"maxWidth": "100%"});
+        var popup_d5dccd776fb98933d23e473f2e703fcf = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_42f946bc8387004f0fa57a0133555d96 = $(`<div id="html_42f946bc8387004f0fa57a0133555d96" style="width: 100.0%; height: 100.0%;">남사진위IC</div>`)[0];
-                popup_09e715be3fecca656abd4d211ff6ad48.setContent(html_42f946bc8387004f0fa57a0133555d96);
+                var html_07edcb6c2540c29beee1d7da91e9a5c4 = $(`<div id="html_07edcb6c2540c29beee1d7da91e9a5c4" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17567415</div>`)[0];
+                popup_d5dccd776fb98933d23e473f2e703fcf.setContent(html_07edcb6c2540c29beee1d7da91e9a5c4);
             
         
 
-        marker_7816a2a2e8d526d0f3160ec54a6f3a83.bindPopup(popup_09e715be3fecca656abd4d211ff6ad48)
+        marker_58aa865ed89f5b8efeb40f5ba99fe5b7.bindPopup(popup_d5dccd776fb98933d23e473f2e703fcf)
         ;
 
         
     
     
-            marker_7816a2a2e8d526d0f3160ec54a6f3a83.bindTooltip(
+            marker_58aa865ed89f5b8efeb40f5ba99fe5b7.bindTooltip(
                 `<div>
-                     남사진위IC
+                     경북대학교 생활관 향토관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_bb128be5d2573fbd89e2fc7c53cdf70c = L.marker(
-                [37.140670280715824, 127.08523169008016],
+            var marker_2ed23f164e13d10ba90f32138490650b = L.marker(
+                [35.8919804168856, 128.614180867499],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_81fa5cf48aaf10c49e36905d08ddc55a = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_bb128be5d2573fbd89e2fc7c53cdf70c.setIcon(icon_81fa5cf48aaf10c49e36905d08ddc55a);
-        
-    
-        var popup_1854de667012f66b03dabe8638076667 = L.popup({"maxWidth": "100%"});
+        var popup_944f3543d796fdc86da2305bca879b02 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_dc9fe7871510fda12489f79058e57f4e = $(`<div id="html_dc9fe7871510fda12489f79058e57f4e" style="width: 100.0%; height: 100.0%;">오산IC</div>`)[0];
-                popup_1854de667012f66b03dabe8638076667.setContent(html_dc9fe7871510fda12489f79058e57f4e);
+                var html_5fbfee7cc08fffe6a6ead5f5b4462b5d = $(`<div id="html_5fbfee7cc08fffe6a6ead5f5b4462b5d" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17567858</div>`)[0];
+                popup_944f3543d796fdc86da2305bca879b02.setContent(html_5fbfee7cc08fffe6a6ead5f5b4462b5d);
             
         
 
-        marker_bb128be5d2573fbd89e2fc7c53cdf70c.bindPopup(popup_1854de667012f66b03dabe8638076667)
+        marker_2ed23f164e13d10ba90f32138490650b.bindPopup(popup_944f3543d796fdc86da2305bca879b02)
         ;
 
         
     
     
-            marker_bb128be5d2573fbd89e2fc7c53cdf70c.bindTooltip(
+            marker_2ed23f164e13d10ba90f32138490650b.bindTooltip(
                 `<div>
-                     오산IC
+                     경북대학교 IT융합산업빌딩
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_e4dbda033d732dc57b422dac857212ab = L.marker(
-                [37.1541386706327, 127.08598134854311],
+            var marker_d912b6ad184135fe7b91100f47af151f = L.marker(
+                [35.8884795795739, 128.609945976963],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_a7496160eda1cbb89f4c62432f874554 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_e4dbda033d732dc57b422dac857212ab.setIcon(icon_a7496160eda1cbb89f4c62432f874554);
-        
-    
-        var popup_cbb38db3461812756c6861fd86772d86 = L.popup({"maxWidth": "100%"});
+        var popup_c89532a55f8c914a28b2d1ecfdbaa842 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_f29a62a9639202d3e818cdd0fd240c4a = $(`<div id="html_f29a62a9639202d3e818cdd0fd240c4a" style="width: 100.0%; height: 100.0%;">오산졸음쉼터</div>`)[0];
-                popup_cbb38db3461812756c6861fd86772d86.setContent(html_f29a62a9639202d3e818cdd0fd240c4a);
+                var html_50052bd72fc217b91365e755131e051c = $(`<div id="html_50052bd72fc217b91365e755131e051c" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17558456</div>`)[0];
+                popup_c89532a55f8c914a28b2d1ecfdbaa842.setContent(html_50052bd72fc217b91365e755131e051c);
             
         
 
-        marker_e4dbda033d732dc57b422dac857212ab.bindPopup(popup_cbb38db3461812756c6861fd86772d86)
+        marker_d912b6ad184135fe7b91100f47af151f.bindPopup(popup_c89532a55f8c914a28b2d1ecfdbaa842)
         ;
 
         
     
     
-            marker_e4dbda033d732dc57b422dac857212ab.bindTooltip(
+            marker_d912b6ad184135fe7b91100f47af151f.bindTooltip(
                 `<div>
-                     오산졸음쉼터
+                     경북대학교 공대12호관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_f5b655b32d6efde60ff023aaa9643c8a = L.marker(
-                [37.17465622287458, 127.09528352408873],
+            var marker_bbbbb12befa64c1796bd69aef7e1922d = L.marker(
+                [35.8653883369487, 128.605400232286],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_9d1003a6fcfa37d1ba90d8ef57315199 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_f5b655b32d6efde60ff023aaa9643c8a.setIcon(icon_9d1003a6fcfa37d1ba90d8ef57315199);
-        
-    
-        var popup_d9b9641840db8513d6ec989aadd41e36 = L.popup({"maxWidth": "100%"});
+        var popup_fc8b2b9647f6b5d2201b459079da0691 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_345cb7b45f5554e65a6c20f8641bd39e = $(`<div id="html_345cb7b45f5554e65a6c20f8641bd39e" style="width: 100.0%; height: 100.0%;">동탄JC</div>`)[0];
-                popup_d9b9641840db8513d6ec989aadd41e36.setContent(html_345cb7b45f5554e65a6c20f8641bd39e);
+                var html_ef9ed13cde23c882edb9cdfdaf3b9392 = $(`<div id="html_ef9ed13cde23c882edb9cdfdaf3b9392" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17092809</div>`)[0];
+                popup_fc8b2b9647f6b5d2201b459079da0691.setContent(html_ef9ed13cde23c882edb9cdfdaf3b9392);
             
         
 
-        marker_f5b655b32d6efde60ff023aaa9643c8a.bindPopup(popup_d9b9641840db8513d6ec989aadd41e36)
+        marker_bbbbb12befa64c1796bd69aef7e1922d.bindPopup(popup_fc8b2b9647f6b5d2201b459079da0691)
         ;
 
         
     
     
-            marker_f5b655b32d6efde60ff023aaa9643c8a.bindTooltip(
+            marker_bbbbb12befa64c1796bd69aef7e1922d.bindTooltip(
                 `<div>
-                     동탄JC
+                     경북대학교병원 장례식장
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_4d173959f31b37317fd842c285b923c2 = L.marker(
-                [37.21679031941798, 127.09743966672215],
+            var marker_ecaa519f6bd57d56607820e8b704d737 = L.marker(
+                [35.8893370614518, 128.6064772091897],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_f847dd2d36c2a9267d3bcd9a1a8ab911 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_4d173959f31b37317fd842c285b923c2.setIcon(icon_f847dd2d36c2a9267d3bcd9a1a8ab911);
-        
-    
-        var popup_e902b66e2031ac94bb40f3ff2993dee4 = L.popup({"maxWidth": "100%"});
+        var popup_fb50bda252ec89cfd98f70dda93e4261 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_bf81e1d33a4dc4dcca950d871e80e7f0 = $(`<div id="html_bf81e1d33a4dc4dcca950d871e80e7f0" style="width: 100.0%; height: 100.0%;">기흥동탄IC</div>`)[0];
-                popup_e902b66e2031ac94bb40f3ff2993dee4.setContent(html_bf81e1d33a4dc4dcca950d871e80e7f0);
+                var html_caf950652e7908dbac0de619aedd7dfc = $(`<div id="html_caf950652e7908dbac0de619aedd7dfc" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/808918414</div>`)[0];
+                popup_fb50bda252ec89cfd98f70dda93e4261.setContent(html_caf950652e7908dbac0de619aedd7dfc);
             
         
 
-        marker_4d173959f31b37317fd842c285b923c2.bindPopup(popup_e902b66e2031ac94bb40f3ff2993dee4)
+        marker_ecaa519f6bd57d56607820e8b704d737.bindPopup(popup_fb50bda252ec89cfd98f70dda93e4261)
         ;
 
         
     
     
-            marker_4d173959f31b37317fd842c285b923c2.bindTooltip(
+            marker_ecaa519f6bd57d56607820e8b704d737.bindTooltip(
                 `<div>
-                     기흥동탄IC
+                     경북대학교 미래융합과학관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_d14d8eac4b03ec12f27b1e113953f474 = L.marker(
-                [37.262155894459326, 127.10393355107016],
+            var marker_c6d0c5398d27679bd07ae98bd6527f58 = L.marker(
+                [35.8867738771252, 128.61322470757],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_4b1a29fc9f6bb9c38987baa552d040e2 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_d14d8eac4b03ec12f27b1e113953f474.setIcon(icon_4b1a29fc9f6bb9c38987baa552d040e2);
-        
-    
-        var popup_b0690ee136f2731b5b0347456c0c574d = L.popup({"maxWidth": "100%"});
+        var popup_bd1666560388be22fb80cf99accdec7e = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_41dccce55f4b78fcda04eac4c6e1c6cf = $(`<div id="html_41dccce55f4b78fcda04eac4c6e1c6cf" style="width: 100.0%; height: 100.0%;">수원신갈IC</div>`)[0];
-                popup_b0690ee136f2731b5b0347456c0c574d.setContent(html_41dccce55f4b78fcda04eac4c6e1c6cf);
+                var html_f70f16299b01447a373dbadf83d1e6ba = $(`<div id="html_f70f16299b01447a373dbadf83d1e6ba" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8757109</div>`)[0];
+                popup_bd1666560388be22fb80cf99accdec7e.setContent(html_f70f16299b01447a373dbadf83d1e6ba);
             
         
 
-        marker_d14d8eac4b03ec12f27b1e113953f474.bindPopup(popup_b0690ee136f2731b5b0347456c0c574d)
+        marker_c6d0c5398d27679bd07ae98bd6527f58.bindPopup(popup_bd1666560388be22fb80cf99accdec7e)
         ;
 
         
     
     
-            marker_d14d8eac4b03ec12f27b1e113953f474.bindTooltip(
+            marker_c6d0c5398d27679bd07ae98bd6527f58.bindTooltip(
                 `<div>
-                     수원신갈IC
+                     경북대학교 수의과대학
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_49a31738cfda052902170bf41a0e0894 = L.marker(
-                [37.28414163922727, 127.10380826489748],
+            var marker_c5619f3d4e8889d726af5fcb59758e08 = L.marker(
+                [35.8898136001886, 128.605343982035],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_644b59d015411a613f99d42557eba2c3 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_49a31738cfda052902170bf41a0e0894.setIcon(icon_644b59d015411a613f99d42557eba2c3);
-        
-    
-        var popup_5b8690b394cd9c940252b98722039802 = L.popup({"maxWidth": "100%"});
+        var popup_80d2d73cca01543b5db3571aaa1b7407 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_24c1b4556c6729bbe42b6236ba0c28be = $(`<div id="html_24c1b4556c6729bbe42b6236ba0c28be" style="width: 100.0%; height: 100.0%;">신갈JC</div>`)[0];
-                popup_5b8690b394cd9c940252b98722039802.setContent(html_24c1b4556c6729bbe42b6236ba0c28be);
+                var html_9b4408722d0a7e73104b943c96c3f28e = $(`<div id="html_9b4408722d0a7e73104b943c96c3f28e" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17564211</div>`)[0];
+                popup_80d2d73cca01543b5db3571aaa1b7407.setContent(html_9b4408722d0a7e73104b943c96c3f28e);
             
         
 
-        marker_49a31738cfda052902170bf41a0e0894.bindPopup(popup_5b8690b394cd9c940252b98722039802)
+        marker_c5619f3d4e8889d726af5fcb59758e08.bindPopup(popup_80d2d73cca01543b5db3571aaa1b7407)
         ;
 
         
     
     
-            marker_49a31738cfda052902170bf41a0e0894.bindTooltip(
+            marker_c5619f3d4e8889d726af5fcb59758e08.bindTooltip(
                 `<div>
-                     신갈JC
+                     경북대학교 제2체육관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_2b479f89ffd3d2d7a0f6d93fb1d1090c = L.marker(
-                [37.330329694569556, 127.10357587712913],
+            var marker_3710e29bdb975fb61f912cdf56c07056 = L.marker(
+                [35.88902007473884, 128.61452386276625],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_8bcc5f545fbc283263e3a780fc708545 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_2b479f89ffd3d2d7a0f6d93fb1d1090c.setIcon(icon_8bcc5f545fbc283263e3a780fc708545);
-        
-    
-        var popup_7d33dbb97b6c0b8c1cd53a75cf11948f = L.popup({"maxWidth": "100%"});
+        var popup_c1338d10636a243eb8c8f1de900c2939 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_ecd4a36ca1e2278d6b32edf6060884d6 = $(`<div id="html_ecd4a36ca1e2278d6b32edf6060884d6" style="width: 100.0%; height: 100.0%;">죽전휴게소</div>`)[0];
-                popup_7d33dbb97b6c0b8c1cd53a75cf11948f.setContent(html_ecd4a36ca1e2278d6b32edf6060884d6);
+                var html_91043cb6f12afa6cb6027f11ce38036e = $(`<div id="html_91043cb6f12afa6cb6027f11ce38036e" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/13324242</div>`)[0];
+                popup_c1338d10636a243eb8c8f1de900c2939.setContent(html_91043cb6f12afa6cb6027f11ce38036e);
             
         
 
-        marker_2b479f89ffd3d2d7a0f6d93fb1d1090c.bindPopup(popup_7d33dbb97b6c0b8c1cd53a75cf11948f)
+        marker_3710e29bdb975fb61f912cdf56c07056.bindPopup(popup_c1338d10636a243eb8c8f1de900c2939)
         ;
 
         
     
     
-            marker_2b479f89ffd3d2d7a0f6d93fb1d1090c.bindTooltip(
+            marker_3710e29bdb975fb61f912cdf56c07056.bindTooltip(
                 `<div>
-                     죽전휴게소
+                     경북대학교 복지관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_7a2b2ce01a9983005ecb11122d5d6a8b = L.marker(
-                [37.365230875520666, 127.10387207419437],
+            var marker_8c7a15695b2cd3e42c9022eb94c4c853 = L.marker(
+                [35.8922990401853, 128.613270366919],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_9cbf71d63b030562498e3601d646773a = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_7a2b2ce01a9983005ecb11122d5d6a8b.setIcon(icon_9cbf71d63b030562498e3601d646773a);
-        
-    
-        var popup_114c6d649a7b2669419d08098ce98e8e = L.popup({"maxWidth": "100%"});
+        var popup_52a4c7443cdecbac7c2c3385149125df = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_a5e47c6b667e9749dc4a6b84c9b428bf = $(`<div id="html_a5e47c6b667e9749dc4a6b84c9b428bf" style="width: 100.0%; height: 100.0%;">서울TG</div>`)[0];
-                popup_114c6d649a7b2669419d08098ce98e8e.setContent(html_a5e47c6b667e9749dc4a6b84c9b428bf);
+                var html_394a598b8228d24a69b6ddd2d29befd2 = $(`<div id="html_394a598b8228d24a69b6ddd2d29befd2" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17568069</div>`)[0];
+                popup_52a4c7443cdecbac7c2c3385149125df.setContent(html_394a598b8228d24a69b6ddd2d29befd2);
             
         
 
-        marker_7a2b2ce01a9983005ecb11122d5d6a8b.bindPopup(popup_114c6d649a7b2669419d08098ce98e8e)
+        marker_8c7a15695b2cd3e42c9022eb94c4c853.bindPopup(popup_52a4c7443cdecbac7c2c3385149125df)
         ;
 
         
     
     
-            marker_7a2b2ce01a9983005ecb11122d5d6a8b.bindTooltip(
+            marker_8c7a15695b2cd3e42c9022eb94c4c853.bindTooltip(
                 `<div>
-                     서울TG
+                     경북대학교 종합정보센터
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_2e32170bbbe5dae59f647e6f45df5213 = L.marker(
-                [37.392967266391686, 127.10165597135995],
+            var marker_493f23ff88db8cbd7942999521348db3 = L.marker(
+                [35.89126319887152, 128.60749067300577],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_6958b0ae0ff26f2e2460d328915462a0 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_2e32170bbbe5dae59f647e6f45df5213.setIcon(icon_6958b0ae0ff26f2e2460d328915462a0);
-        
-    
-        var popup_b0994288ee31838792553cbdbbf100f4 = L.popup({"maxWidth": "100%"});
+        var popup_bd79a6fa48b54666836848f0b34966d3 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_626ce27b13af9dae2e777c4e5c65743e = $(`<div id="html_626ce27b13af9dae2e777c4e5c65743e" style="width: 100.0%; height: 100.0%;">판교IC</div>`)[0];
-                popup_b0994288ee31838792553cbdbbf100f4.setContent(html_626ce27b13af9dae2e777c4e5c65743e);
+                var html_6e69fb4e2c4a0606b4677fb4cd335bd1 = $(`<div id="html_6e69fb4e2c4a0606b4677fb4cd335bd1" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/445451603</div>`)[0];
+                popup_bd79a6fa48b54666836848f0b34966d3.setContent(html_6e69fb4e2c4a0606b4677fb4cd335bd1);
             
         
 
-        marker_2e32170bbbe5dae59f647e6f45df5213.bindPopup(popup_b0994288ee31838792553cbdbbf100f4)
+        marker_493f23ff88db8cbd7942999521348db3.bindPopup(popup_bd79a6fa48b54666836848f0b34966d3)
         ;
 
         
     
     
-            marker_2e32170bbbe5dae59f647e6f45df5213.bindTooltip(
+            marker_493f23ff88db8cbd7942999521348db3.bindTooltip(
                 `<div>
-                     판교IC
+                     경북대학교어린이집
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_6bcab5b5a02479d545c9ba3226cffeef = L.marker(
-                [37.40255524437646, 127.09817562041385],
+            var marker_3c4a7e4022ea89152c82d0117190dadb = L.marker(
+                [35.8893837652182, 128.615891147793],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_4f89ff6b75110cd98101560d0c2d42b4 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_6bcab5b5a02479d545c9ba3226cffeef.setIcon(icon_4f89ff6b75110cd98101560d0c2d42b4);
-        
-    
-        var popup_d8210e0130396e92c75744872d83de00 = L.popup({"maxWidth": "100%"});
+        var popup_fbb95019a4b692abb0f20849c2daafac = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_4be41a56e6b5f28a58643de862e71557 = $(`<div id="html_4be41a56e6b5f28a58643de862e71557" style="width: 100.0%; height: 100.0%;">판교JC</div>`)[0];
-                popup_d8210e0130396e92c75744872d83de00.setContent(html_4be41a56e6b5f28a58643de862e71557);
+                var html_6b4cf83543343f58e39a049cea65556f = $(`<div id="html_6b4cf83543343f58e39a049cea65556f" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/21892964</div>`)[0];
+                popup_fbb95019a4b692abb0f20849c2daafac.setContent(html_6b4cf83543343f58e39a049cea65556f);
             
         
 
-        marker_6bcab5b5a02479d545c9ba3226cffeef.bindPopup(popup_d8210e0130396e92c75744872d83de00)
+        marker_3c4a7e4022ea89152c82d0117190dadb.bindPopup(popup_fbb95019a4b692abb0f20849c2daafac)
         ;
 
         
     
     
-            marker_6bcab5b5a02479d545c9ba3226cffeef.bindTooltip(
+            marker_3c4a7e4022ea89152c82d0117190dadb.bindTooltip(
                 `<div>
-                     판교JC
+                     경북대학교 국제경상관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_cd1d3f8860c15fa8f8dbd676efd65027 = L.marker(
-                [37.454518537830346, 127.04857721142687],
+            var marker_50be7fd03cbc38450e3f7838b67ecdc5 = L.marker(
+                [35.8868729915413, 128.606099643577],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_9f0814cb6785a33562a37ee58887f62d = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_cd1d3f8860c15fa8f8dbd676efd65027.setIcon(icon_9f0814cb6785a33562a37ee58887f62d);
-        
-    
-        var popup_15428fb944c68a31f526b7f3cf1106da = L.popup({"maxWidth": "100%"});
+        var popup_d16c22901ac882b97ee76cb38e8ffd39 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_1d32762b614e47330e99fd591bc2488e = $(`<div id="html_1d32762b614e47330e99fd591bc2488e" style="width: 100.0%; height: 100.0%;">양재IC</div>`)[0];
-                popup_15428fb944c68a31f526b7f3cf1106da.setContent(html_1d32762b614e47330e99fd591bc2488e);
+                var html_e686aa991d67e4fd3b1420b5362ed408 = $(`<div id="html_e686aa991d67e4fd3b1420b5362ed408" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17567853</div>`)[0];
+                popup_d16c22901ac882b97ee76cb38e8ffd39.setContent(html_e686aa991d67e4fd3b1420b5362ed408);
             
         
 
-        marker_cd1d3f8860c15fa8f8dbd676efd65027.bindPopup(popup_15428fb944c68a31f526b7f3cf1106da)
+        marker_50be7fd03cbc38450e3f7838b67ecdc5.bindPopup(popup_d16c22901ac882b97ee76cb38e8ffd39)
         ;
 
         
     
     
-            marker_cd1d3f8860c15fa8f8dbd676efd65027.bindTooltip(
+            marker_50be7fd03cbc38450e3f7838b67ecdc5.bindTooltip(
                 `<div>
-                     양재IC
+                     경북대학교 생물학관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_f9e012670a8e27e45c4f2a9f7e72b3ab = L.marker(
-                [37.46174348916827, 127.04169207506989],
+            var marker_79f385d0b03cd08a15cf9518e7e1b8fc = L.marker(
+                [35.86251645075709, 128.60060196360683],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_0e8d69827bb4bcd650a5db6332b2f07c = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_f9e012670a8e27e45c4f2a9f7e72b3ab.setIcon(icon_0e8d69827bb4bcd650a5db6332b2f07c);
-        
-    
-        var popup_9b81a740c058e6268952c10a55c76c63 = L.popup({"maxWidth": "100%"});
+        var popup_fe0d93264e252d994dca865ba1a89e18 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_8bc5f6e91efb7db5d97413b6c104e763 = $(`<div id="html_8bc5f6e91efb7db5d97413b6c104e763" style="width: 100.0%; height: 100.0%;">양재IC</div>`)[0];
-                popup_9b81a740c058e6268952c10a55c76c63.setContent(html_8bc5f6e91efb7db5d97413b6c104e763);
+                var html_ef97f6a7c72782c572194a815608cc77 = $(`<div id="html_ef97f6a7c72782c572194a815608cc77" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/8187675</div>`)[0];
+                popup_fe0d93264e252d994dca865ba1a89e18.setContent(html_ef97f6a7c72782c572194a815608cc77);
             
         
 
-        marker_f9e012670a8e27e45c4f2a9f7e72b3ab.bindPopup(popup_9b81a740c058e6268952c10a55c76c63)
+        marker_79f385d0b03cd08a15cf9518e7e1b8fc.bindPopup(popup_fe0d93264e252d994dca865ba1a89e18)
         ;
 
         
     
     
-            marker_f9e012670a8e27e45c4f2a9f7e72b3ab.bindTooltip(
+            marker_79f385d0b03cd08a15cf9518e7e1b8fc.bindTooltip(
                 `<div>
-                     양재IC
+                     경북대학교 사범대학 부설고등학교
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_9054b1c194c576ac4fd6c09e0fe692bb = L.marker(
-                [37.46417576751487, 127.039400194016],
+            var marker_e280fdcb084e846be88de115aee45235 = L.marker(
+                [35.891280885461455, 128.60956747699197],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_948fe8fb83118e112ccecd4cb36ec98a = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_9054b1c194c576ac4fd6c09e0fe692bb.setIcon(icon_948fe8fb83118e112ccecd4cb36ec98a);
-        
-    
-        var popup_448e461fd26c40ab6087e362de5b0fcf = L.popup({"maxWidth": "100%"});
+        var popup_eded751e14244fefdc191a3c7ca6343f = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_51765ce2bd66218dda0f3de4277fb1ef = $(`<div id="html_51765ce2bd66218dda0f3de4277fb1ef" style="width: 100.0%; height: 100.0%;">양재IC</div>`)[0];
-                popup_448e461fd26c40ab6087e362de5b0fcf.setContent(html_51765ce2bd66218dda0f3de4277fb1ef);
+                var html_3c13bbddfa7e750e4ec88ebebef9b356 = $(`<div id="html_3c13bbddfa7e750e4ec88ebebef9b356" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17562078</div>`)[0];
+                popup_eded751e14244fefdc191a3c7ca6343f.setContent(html_3c13bbddfa7e750e4ec88ebebef9b356);
             
         
 
-        marker_9054b1c194c576ac4fd6c09e0fe692bb.bindPopup(popup_448e461fd26c40ab6087e362de5b0fcf)
+        marker_e280fdcb084e846be88de115aee45235.bindPopup(popup_eded751e14244fefdc191a3c7ca6343f)
         ;
 
         
     
     
-            marker_9054b1c194c576ac4fd6c09e0fe692bb.bindTooltip(
+            marker_e280fdcb084e846be88de115aee45235.bindTooltip(
                 `<div>
-                     양재IC
+                     경북대학교 농대1호관
                  </div>`,
                 {"sticky": true}
             );
         
     
-            var marker_0f5a7fcc44dc24160d601a6b6e15de95 = L.marker(
-                [37.481328409274866, 127.02685627449925],
+            var marker_0473c2a35356e5b562ceff63a16f6969 = L.marker(
+                [35.8866507681026, 128.613802473303],
                 {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
+            ).addTo(map_0fdd3f994369b76ef958a26612e325ad);
         
     
-            var icon_108c51a38c9a53631cc138e33ed19ba8 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_0f5a7fcc44dc24160d601a6b6e15de95.setIcon(icon_108c51a38c9a53631cc138e33ed19ba8);
-        
-    
-        var popup_d8c4e8b82ab14a6e57e944767e5af6ba = L.popup({"maxWidth": "100%"});
+        var popup_6b94da54f472f00b9ac8dd72d6259cb0 = L.popup({"maxWidth": "100%"});
 
         
             
-                var html_c2b50de98024bc6b0aed3be5553e013a = $(`<div id="html_c2b50de98024bc6b0aed3be5553e013a" style="width: 100.0%; height: 100.0%;">서초IC</div>`)[0];
-                popup_d8c4e8b82ab14a6e57e944767e5af6ba.setContent(html_c2b50de98024bc6b0aed3be5553e013a);
+                var html_001f316b137b44dcad90c2e36c85014f = $(`<div id="html_001f316b137b44dcad90c2e36c85014f" style="width: 100.0%; height: 100.0%;">http://place.map.kakao.com/17562241</div>`)[0];
+                popup_6b94da54f472f00b9ac8dd72d6259cb0.setContent(html_001f316b137b44dcad90c2e36c85014f);
             
         
 
-        marker_0f5a7fcc44dc24160d601a6b6e15de95.bindPopup(popup_d8c4e8b82ab14a6e57e944767e5af6ba)
+        marker_0473c2a35356e5b562ceff63a16f6969.bindPopup(popup_6b94da54f472f00b9ac8dd72d6259cb0)
         ;
 
         
     
     
-            marker_0f5a7fcc44dc24160d601a6b6e15de95.bindTooltip(
+            marker_0473c2a35356e5b562ceff63a16f6969.bindTooltip(
                 `<div>
-                     서초IC
+                     경북대학교 수의과대학부속동물병원
                  </div>`,
                 {"sticky": true}
             );
-        
-    
-            var marker_491d94fe864d548ea4cfb5c167facde5 = L.marker(
-                [37.48388897460604, 127.02595241351848],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_bf60534dfb0c7857a0ead5c08286fa89 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_491d94fe864d548ea4cfb5c167facde5.setIcon(icon_bf60534dfb0c7857a0ead5c08286fa89);
-        
-    
-        var popup_e598e5495a4254e10dd583ac9cb5d9ce = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_f1b8ca822aeb6d3577e73bb2d17c3003 = $(`<div id="html_f1b8ca822aeb6d3577e73bb2d17c3003" style="width: 100.0%; height: 100.0%;">서초IC</div>`)[0];
-                popup_e598e5495a4254e10dd583ac9cb5d9ce.setContent(html_f1b8ca822aeb6d3577e73bb2d17c3003);
-            
-        
-
-        marker_491d94fe864d548ea4cfb5c167facde5.bindPopup(popup_e598e5495a4254e10dd583ac9cb5d9ce)
-        ;
-
-        
-    
-    
-            marker_491d94fe864d548ea4cfb5c167facde5.bindTooltip(
-                `<div>
-                     서초IC
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_36c462e9ca3bb4748724dd08cb6e8e8c = L.marker(
-                [37.50104555606845, 127.01947530255804],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_1981b0983b76983ba43213baf3c871a3 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_36c462e9ca3bb4748724dd08cb6e8e8c.setIcon(icon_1981b0983b76983ba43213baf3c871a3);
-        
-    
-        var popup_480b015d8221aafe32b22abd101eb591 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_5dfb371c37bb430b4fda2772117071e7 = $(`<div id="html_5dfb371c37bb430b4fda2772117071e7" style="width: 100.0%; height: 100.0%;">반포IC</div>`)[0];
-                popup_480b015d8221aafe32b22abd101eb591.setContent(html_5dfb371c37bb430b4fda2772117071e7);
-            
-        
-
-        marker_36c462e9ca3bb4748724dd08cb6e8e8c.bindPopup(popup_480b015d8221aafe32b22abd101eb591)
-        ;
-
-        
-    
-    
-            marker_36c462e9ca3bb4748724dd08cb6e8e8c.bindTooltip(
-                `<div>
-                     반포IC
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_22376c3969162620dd03cbf5db6c79ea = L.marker(
-                [37.50276966377837, 127.0187628462552],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_f8dafd835e087668da5a38f65bf17326 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_22376c3969162620dd03cbf5db6c79ea.setIcon(icon_f8dafd835e087668da5a38f65bf17326);
-        
-    
-        var popup_2a06dc362d69d8de04a769a05736f1e9 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_bdc17f1af2de20835291e4e71169f0c6 = $(`<div id="html_bdc17f1af2de20835291e4e71169f0c6" style="width: 100.0%; height: 100.0%;">반포IC</div>`)[0];
-                popup_2a06dc362d69d8de04a769a05736f1e9.setContent(html_bdc17f1af2de20835291e4e71169f0c6);
-            
-        
-
-        marker_22376c3969162620dd03cbf5db6c79ea.bindPopup(popup_2a06dc362d69d8de04a769a05736f1e9)
-        ;
-
-        
-    
-    
-            marker_22376c3969162620dd03cbf5db6c79ea.bindTooltip(
-                `<div>
-                     반포IC
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_8c04bfd7591eb68f85c9dffdd6b5ec88 = L.marker(
-                [37.50454956142881, 127.00962348989026],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_6e6b188a05f047833b2736585004479e = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_8c04bfd7591eb68f85c9dffdd6b5ec88.setIcon(icon_6e6b188a05f047833b2736585004479e);
-        
-    
-        var popup_d4bc522bfe21d8f482a90bdc99a77355 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_42b8ac3a49ea5b47ea2c90baca0280be = $(`<div id="html_42b8ac3a49ea5b47ea2c90baca0280be" style="width: 100.0%; height: 100.0%;"></div>`)[0];
-                popup_d4bc522bfe21d8f482a90bdc99a77355.setContent(html_42b8ac3a49ea5b47ea2c90baca0280be);
-            
-        
-
-        marker_8c04bfd7591eb68f85c9dffdd6b5ec88.bindPopup(popup_d4bc522bfe21d8f482a90bdc99a77355)
-        ;
-
-        
-    
-    
-            marker_8c04bfd7591eb68f85c9dffdd6b5ec88.bindTooltip(
-                `<div>
-                     
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_bc395edee98d13fac20f0d907377cd3d = L.marker(
-                [37.502822861609495, 127.00465859645611],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_4cc52f725699acfcbb740163115cefd1 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_bc395edee98d13fac20f0d907377cd3d.setIcon(icon_4cc52f725699acfcbb740163115cefd1);
-        
-    
-        var popup_df126171625fdb7b8c974dca2c105f73 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_21dd53506a6646b03393fa0ad8d01124 = $(`<div id="html_21dd53506a6646b03393fa0ad8d01124" style="width: 100.0%; height: 100.0%;"></div>`)[0];
-                popup_df126171625fdb7b8c974dca2c105f73.setContent(html_21dd53506a6646b03393fa0ad8d01124);
-            
-        
-
-        marker_bc395edee98d13fac20f0d907377cd3d.bindPopup(popup_df126171625fdb7b8c974dca2c105f73)
-        ;
-
-        
-    
-    
-            marker_bc395edee98d13fac20f0d907377cd3d.bindTooltip(
-                `<div>
-                     
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_28332ecf5ff1eb76ca18a9b525d97aba = L.marker(
-                [37.51324812824184, 126.99721289786272],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_15133c416a6a2b2acd2367bb22458b2c = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_28332ecf5ff1eb76ca18a9b525d97aba.setIcon(icon_15133c416a6a2b2acd2367bb22458b2c);
-        
-    
-        var popup_5f2870e2946c2b5d632428689dbfd890 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_b444c0e0954ae5cb61a24b0a15791aaa = $(`<div id="html_b444c0e0954ae5cb61a24b0a15791aaa" style="width: 100.0%; height: 100.0%;">반포대교북단</div>`)[0];
-                popup_5f2870e2946c2b5d632428689dbfd890.setContent(html_b444c0e0954ae5cb61a24b0a15791aaa);
-            
-        
-
-        marker_28332ecf5ff1eb76ca18a9b525d97aba.bindPopup(popup_5f2870e2946c2b5d632428689dbfd890)
-        ;
-
-        
-    
-    
-            marker_28332ecf5ff1eb76ca18a9b525d97aba.bindTooltip(
-                `<div>
-                     반포대교북단
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_166e9d1bbf8aa7627fb205affa1e261e = L.marker(
-                [37.51905379443614, 126.99437497614677],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_621e97327258b8999a48afc70000beb7 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_166e9d1bbf8aa7627fb205affa1e261e.setIcon(icon_621e97327258b8999a48afc70000beb7);
-        
-    
-        var popup_9449d4c6b8f7544d87827f9dfdfddbee = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_3784992bd75ed9cb244da9b3dfe263c4 = $(`<div id="html_3784992bd75ed9cb244da9b3dfe263c4" style="width: 100.0%; height: 100.0%;"></div>`)[0];
-                popup_9449d4c6b8f7544d87827f9dfdfddbee.setContent(html_3784992bd75ed9cb244da9b3dfe263c4);
-            
-        
-
-        marker_166e9d1bbf8aa7627fb205affa1e261e.bindPopup(popup_9449d4c6b8f7544d87827f9dfdfddbee)
-        ;
-
-        
-    
-    
-            marker_166e9d1bbf8aa7627fb205affa1e261e.bindTooltip(
-                `<div>
-                     
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_2807a39cffae605e6b68e5c68dee460b = L.marker(
-                [37.53266178167618, 126.98934969158718],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_90681b104c3f083ffb3628ac8c4c832e = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_2807a39cffae605e6b68e5c68dee460b.setIcon(icon_90681b104c3f083ffb3628ac8c4c832e);
-        
-    
-        var popup_26518b932364f87b5684138b09699bcb = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_e809b48b30de27e4a6cca6915533f35d = $(`<div id="html_e809b48b30de27e4a6cca6915533f35d" style="width: 100.0%; height: 100.0%;">이태원지하차도</div>`)[0];
-                popup_26518b932364f87b5684138b09699bcb.setContent(html_e809b48b30de27e4a6cca6915533f35d);
-            
-        
-
-        marker_2807a39cffae605e6b68e5c68dee460b.bindPopup(popup_26518b932364f87b5684138b09699bcb)
-        ;
-
-        
-    
-    
-            marker_2807a39cffae605e6b68e5c68dee460b.bindTooltip(
-                `<div>
-                     이태원지하차도
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_29a49da76ea4c2149442a87f31a7c06d = L.marker(
-                [37.53419047676609, 126.98793735358433],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_f4e325b2183309e09e7f5a44cb006f56 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_29a49da76ea4c2149442a87f31a7c06d.setIcon(icon_f4e325b2183309e09e7f5a44cb006f56);
-        
-    
-        var popup_bf818fc581ea3199b3e439ec94d1e0bf = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_670e3a71a4e9a767f0f8ed31b7720adf = $(`<div id="html_670e3a71a4e9a767f0f8ed31b7720adf" style="width: 100.0%; height: 100.0%;">녹사평역</div>`)[0];
-                popup_bf818fc581ea3199b3e439ec94d1e0bf.setContent(html_670e3a71a4e9a767f0f8ed31b7720adf);
-            
-        
-
-        marker_29a49da76ea4c2149442a87f31a7c06d.bindPopup(popup_bf818fc581ea3199b3e439ec94d1e0bf)
-        ;
-
-        
-    
-    
-            marker_29a49da76ea4c2149442a87f31a7c06d.bindTooltip(
-                `<div>
-                     녹사평역
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_00142c0217274b7d06c6330c00b98028 = L.marker(
-                [37.53490096035037, 126.9752438568448],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_c6713208b6fe3e7951442c5b968592db = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_00142c0217274b7d06c6330c00b98028.setIcon(icon_c6713208b6fe3e7951442c5b968592db);
-        
-    
-        var popup_41d72eab5144df7a4dc532201a553732 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_442fd46ef5f9dd27ff0a54259e7e7c54 = $(`<div id="html_442fd46ef5f9dd27ff0a54259e7e7c54" style="width: 100.0%; height: 100.0%;">삼각지역</div>`)[0];
-                popup_41d72eab5144df7a4dc532201a553732.setContent(html_442fd46ef5f9dd27ff0a54259e7e7c54);
-            
-        
-
-        marker_00142c0217274b7d06c6330c00b98028.bindPopup(popup_41d72eab5144df7a4dc532201a553732)
-        ;
-
-        
-    
-    
-            marker_00142c0217274b7d06c6330c00b98028.bindTooltip(
-                `<div>
-                     삼각지역
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_6f19684db7152ff3db8cc6dbaf0a32cd = L.marker(
-                [37.542043758691314, 126.97288292318112],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_9ee5f05a63a220278eac271c911cfab6 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_6f19684db7152ff3db8cc6dbaf0a32cd.setIcon(icon_9ee5f05a63a220278eac271c911cfab6);
-        
-    
-        var popup_c3c7f04e8e1ef3b6ef2d02b848f38126 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_5fe7a21443d8db21292f3483ef83dfc0 = $(`<div id="html_5fe7a21443d8db21292f3483ef83dfc0" style="width: 100.0%; height: 100.0%;">남영삼거리</div>`)[0];
-                popup_c3c7f04e8e1ef3b6ef2d02b848f38126.setContent(html_5fe7a21443d8db21292f3483ef83dfc0);
-            
-        
-
-        marker_6f19684db7152ff3db8cc6dbaf0a32cd.bindPopup(popup_c3c7f04e8e1ef3b6ef2d02b848f38126)
-        ;
-
-        
-    
-    
-            marker_6f19684db7152ff3db8cc6dbaf0a32cd.bindTooltip(
-                `<div>
-                     남영삼거리
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_68d58b4366b2827a88607d6bc2623af8 = L.marker(
-                [37.541851654850355, 126.97151634127394],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_37d1b445fc2207c548e2315957b8510d = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_68d58b4366b2827a88607d6bc2623af8.setIcon(icon_37d1b445fc2207c548e2315957b8510d);
-        
-    
-        var popup_d884dacefd2d11c3a66fcbf91d9f52e5 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_c79a799e240d01976acd8ffddb176622 = $(`<div id="html_c79a799e240d01976acd8ffddb176622" style="width: 100.0%; height: 100.0%;"></div>`)[0];
-                popup_d884dacefd2d11c3a66fcbf91d9f52e5.setContent(html_c79a799e240d01976acd8ffddb176622);
-            
-        
-
-        marker_68d58b4366b2827a88607d6bc2623af8.bindPopup(popup_d884dacefd2d11c3a66fcbf91d9f52e5)
-        ;
-
-        
-    
-    
-            marker_68d58b4366b2827a88607d6bc2623af8.bindTooltip(
-                `<div>
-                     
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_edc184978162460a25d9ebb818a7ea98 = L.marker(
-                [37.54171079673201, 126.97086195847555],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_06f9f31736b1d957ce3d6d9ec173132b = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_edc184978162460a25d9ebb818a7ea98.setIcon(icon_06f9f31736b1d957ce3d6d9ec173132b);
-        
-    
-        var popup_033595b88919f4bd1efe3e6d3d65e78b = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_b0b2cb2acc01984b77181da7e9cc9b4c = $(`<div id="html_b0b2cb2acc01984b77181da7e9cc9b4c" style="width: 100.0%; height: 100.0%;">남영역</div>`)[0];
-                popup_033595b88919f4bd1efe3e6d3d65e78b.setContent(html_b0b2cb2acc01984b77181da7e9cc9b4c);
-            
-        
-
-        marker_edc184978162460a25d9ebb818a7ea98.bindPopup(popup_033595b88919f4bd1efe3e6d3d65e78b)
-        ;
-
-        
-    
-    
-            marker_edc184978162460a25d9ebb818a7ea98.bindTooltip(
-                `<div>
-                     남영역
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_8d3151bf67d5444ad83c83e8d2f8adde = L.marker(
-                [37.553823865737, 126.96914488629311],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_3d30cabf65d4787154b95253804e4c47 = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_8d3151bf67d5444ad83c83e8d2f8adde.setIcon(icon_3d30cabf65d4787154b95253804e4c47);
-        
-    
-        var popup_8bd3744b7e0d72776b73c7f704efba22 = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_c8d1c35ad724f2485c795467ac54fafb = $(`<div id="html_c8d1c35ad724f2485c795467ac54fafb" style="width: 100.0%; height: 100.0%;"></div>`)[0];
-                popup_8bd3744b7e0d72776b73c7f704efba22.setContent(html_c8d1c35ad724f2485c795467ac54fafb);
-            
-        
-
-        marker_8d3151bf67d5444ad83c83e8d2f8adde.bindPopup(popup_8bd3744b7e0d72776b73c7f704efba22)
-        ;
-
-        
-    
-    
-            marker_8d3151bf67d5444ad83c83e8d2f8adde.bindTooltip(
-                `<div>
-                     
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var marker_1e14077213a395a51b843fed50b36bc0 = L.marker(
-                [37.554667562205196, 126.96980101345042],
-                {}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
-        
-    
-            var icon_48f71282232dc38ecf840033cdbdb09f = L.AwesomeMarkers.icon(
-                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "orange", "prefix": "glyphicon"}
-            );
-            marker_1e14077213a395a51b843fed50b36bc0.setIcon(icon_48f71282232dc38ecf840033cdbdb09f);
-        
-    
-        var popup_5c06be60e347e53cb54b39ef83833d8d = L.popup({"maxWidth": "100%"});
-
-        
-            
-                var html_8504ca8310e3b84e63f3b1f31071f13f = $(`<div id="html_8504ca8310e3b84e63f3b1f31071f13f" style="width: 100.0%; height: 100.0%;">목적지</div>`)[0];
-                popup_5c06be60e347e53cb54b39ef83833d8d.setContent(html_8504ca8310e3b84e63f3b1f31071f13f);
-            
-        
-
-        marker_1e14077213a395a51b843fed50b36bc0.bindPopup(popup_5c06be60e347e53cb54b39ef83833d8d)
-        ;
-
-        
-    
-    
-            marker_1e14077213a395a51b843fed50b36bc0.bindTooltip(
-                `<div>
-                     목적지
-                 </div>`,
-                {"sticky": true}
-            );
-        
-    
-            var poly_line_6decd665b6625babb7d8d99bca4ff1b7 = L.polyline(
-                [[36.368839332173515, 127.3466342332821], [36.36925425114198, 127.3466976277299], [36.36994809353475, 127.34011684789942], [36.364855393405925, 127.3383657771643], [36.36694052767083, 127.33085962700319], [36.36698565831296, 127.32766102733822], [36.38165644007069, 127.32261951625297], [36.461692265929045, 127.27756333832068], [36.47542032795766, 127.24732880771745], [36.49593858123378, 127.23981920167937], [36.52429635822419, 127.2477935732901], [36.52753018050317, 127.2489794160235], [36.536270817085466, 127.23602961917662], [36.574565783790966, 127.17554039778739], [36.61970233394062, 127.12192277934527], [36.62180572570938, 127.12241320476808], [36.62444533981407, 127.12229383910632], [36.721076361442606, 127.13666627631478], [36.7356581075218, 127.15560429190141], [36.74271764253949, 127.16117053248426], [36.74972273660243, 127.16415149859739], [36.76458461725579, 127.17729672640652], [36.77400831414502, 127.17822663632886], [36.82095855554521, 127.16647113893768], [36.89735452248936, 127.18928189261982], [36.93985455696909, 127.18952791884847], [36.99124362877721, 127.15544978841986], [37.000329956847274, 127.15205738138637], [37.02781728649514, 127.14115330738848], [37.07325275941003, 127.13255533890259], [37.10368969982226, 127.11749280055979], [37.140670280715824, 127.08523169008016], [37.1541386706327, 127.08598134854311], [37.17465622287458, 127.09528352408873], [37.21679031941798, 127.09743966672215], [37.262155894459326, 127.10393355107016], [37.28414163922727, 127.10380826489748], [37.330329694569556, 127.10357587712913], [37.365230875520666, 127.10387207419437], [37.392967266391686, 127.10165597135995], [37.40255524437646, 127.09817562041385], [37.454518537830346, 127.04857721142687], [37.46174348916827, 127.04169207506989], [37.46417576751487, 127.039400194016], [37.481328409274866, 127.02685627449925], [37.48388897460604, 127.02595241351848], [37.50104555606845, 127.01947530255804], [37.50276966377837, 127.0187628462552], [37.50454956142881, 127.00962348989026], [37.502822861609495, 127.00465859645611], [37.51324812824184, 126.99721289786272], [37.51905379443614, 126.99437497614677], [37.53266178167618, 126.98934969158718], [37.53419047676609, 126.98793735358433], [37.53490096035037, 126.9752438568448], [37.542043758691314, 126.97288292318112], [37.541851654850355, 126.97151634127394], [37.54171079673201, 126.97086195847555], [37.553823865737, 126.96914488629311], [37.554667562205196, 126.96980101345042]],
-                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "black", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 1.0, "smoothFactor": 1.0, "stroke": true, "weight": 3}
-            ).addTo(map_919a1dfc56a9a99b9e955d41ad1dfb0c);
         
 </script>
 </html>

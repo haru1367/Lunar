@@ -19,8 +19,9 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 import datetime
-from sqlalchemy import exists
 from datetime import datetime
+from melon import *
+from PIL import Image
 
 
 class HomeState(State):
@@ -63,6 +64,12 @@ class HomeState(State):
     show : bool = False
     popup_video_url:str
     popup_video_title:str
+
+    # music 검색
+    search_music:str
+    music_chart_info : list[dict]
+
+
 
 
     @rx.var
@@ -465,6 +472,19 @@ class HomeState(State):
         self.popup_video_url = video_url
         self.popup_video_title = video_title
 
+    # 실시간 멜론차트 Top100을 불러오는 함수
+    def music_chart(self):
+        chart_data = ChartData(imageSize=500)
+        chart_entries = chart_data.entries
+        for entry in chart_entries:
+            entry_dict = {
+                'artist' : entry.artist,
+                'title': entry.title,
+                'lastPos':entry.lastPos, 
+                'rank': entry.rank,
+                'isNew' : entry.isNew,
+            }
+            self.music_chart_info.append(entry_dict)
 
 
             

@@ -119,15 +119,59 @@ def tabs():
         overflow='auto',
     )
 
+def saved_music(music):
+    return rx.vstack(
+        rx.flex(
+            rx.center(
+                rx.button(
+                    f'{music.music_title[:20] + "..."}',
+                    # style={'white-space': 'normal'},
+                    align='start',
+                    width = '90%',
+                ),
+            ),
+            rx.spacer(),
+            rx.center(
+                rx.button(
+                    rx.icon(tag = 'minus',size = 'sm'),
+                    on_click = HomeState.remove_music_playlist(music.music_title, music.music_album, music.music_artist),
+                ),
+            ),
+            width = '100%',
+        ),
+        rx.container(height='5px'),
+        width = '100%',
+    )
+
 # 오른쪽에 표시되는 사이드바
 def sidebar(HomeState):
     """The sidebar displayed on the right."""
     return rx.vstack(
-        
+        rx.heading('Music Playlist',Font_size='25px',Font_weight='border',bg = 'green.400'),
+        rx.vstack(
+            rx.cond(
+                HomeState.saved_music_results,
+                rx.foreach(
+                    HomeState.saved_music_results,
+                    saved_music
+                ),
+                rx.vstack(
+                    rx.button(
+                        rx.icon(
+                            tag="repeat",
+                            mr=1,
+                        ),
+                        rx.text("load",Font_size = '20px',),
+                        on_click=HomeState.get_saved_music,
+                    ),
+                    p=4,
+                ),
+            ),
+        ),
         align_items="start",
         gap=4,
         h="100%",
-        width = '100%',
+        max_width = '100%',
         py=4,
         overflow='auto',
     )
@@ -137,11 +181,61 @@ def feed_header(HomeState):
     """The header of the feed."""
     return rx.hstack(
         rx.image(src='/find1.png',height='35px',width='35px'),
-        rx.input(on_change=HomeState.set_search_music, placeholder="Search music..!"),
-        rx.button('search', on_click = HomeState.map_search),
+        rx.input(on_change=HomeState.set_search_singer, placeholder="Search singer..!"),
+        rx.button('search', on_click = HomeState.melon_singer_crawling),
         justify="space-between",
         p=4,
         border_bottom="3px solid #000000",
+    )
+
+def singer_search(result):
+    return rx.box(
+        rx.hstack(
+            rx.vstack(
+                rx.button(
+                    rx.flex(
+                        rx.center(
+                            rx.vstack(
+                                rx.heading(
+                                    result['SONG NAME'],
+                                    font_Size = '20px',
+                                    font_weight='border',
+                                ),
+                                rx.text(
+                                    result['ALBUM NAME'],
+                                    font_Size = '15px',
+                                    font_weight='bold',
+                                ),
+                                align_items='start',
+                            ),
+                        ),
+                        rx.spacer(),
+                        rx.center(
+                            rx.text(
+                                result['ARTIST NAME'],
+                                font_Size = '15px',
+                                font_weight='bolder',
+                            ),
+                        ),
+                        width='100%',
+                    ),
+                    border_radius='25px',
+                    width = '100%',
+                    height='auto',
+                ),
+                width = '95%',
+                border_radius = '25px',
+                border = '2px solid #000000',
+                box_shadow = '5px 5px 5px #665e5e',
+            ),
+            rx.button(
+                rx.icon(tag = 'add',size = 'sm'),
+                on_click = HomeState.add_music_playlist(result['SONG NAME'], result['ALBUM NAME'],result['ARTIST NAME']),
+            ),
+            width = '100%',
+        ),
+        rx.container(height='20px'),
+        width = '100%',
     )
 
 # 피드 영역
@@ -151,6 +245,10 @@ def feed(HomeState):
         feed_header(HomeState),
         rx.container(height='10px'),
         rx.vstack(
+            rx.foreach(
+                HomeState.search_singer_result,
+                singer_search,
+            ),
         ),
         rx.container(height='20px'),
         overflow='auto',

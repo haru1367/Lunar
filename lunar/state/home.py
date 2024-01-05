@@ -4,7 +4,7 @@ import tkinter as tk
 import reflex as rx
 from sqlmodel import select
 import os
-from .base import Follows, State, Crater, User,Hotplace,Video_Playlist
+from .base import Follows, State, Crater, User,Hotplace,Video_Playlist,Music_Playlist
 from tkinter import filedialog
 import folium
 from folium.plugins import MiniMap
@@ -21,8 +21,7 @@ from selenium.webdriver.chrome.service import Service
 import datetime
 from datetime import datetime
 from melon import *
-from PIL import Image
-
+from bs4 import BeautifulSoup
 
 class HomeState(State):
     """The state for the home page."""
@@ -66,8 +65,10 @@ class HomeState(State):
     popup_video_title:str
 
     # music 검색
-    search_music:str
+    search_singer:str
+    search_singer_result:list[dict]
     music_chart_info : list[dict]
+    saved_music_results : list[Music_Playlist]
 
 
 
@@ -474,6 +475,7 @@ class HomeState(State):
 
     # 실시간 멜론차트 Top100을 불러오는 함수
     def music_chart(self):
+        self.music_chart_info = []
         chart_data = ChartData(imageSize=500)
         chart_entries = chart_data.entries
         for entry in chart_entries:
@@ -486,7 +488,71 @@ class HomeState(State):
             }
             self.music_chart_info.append(entry_dict)
 
+    # 멜론 가수 크롤링 
+    def melon_singer_crawling(self):
+        url = "https://www.melon.com/search/keyword/index.json"
+        params = {
+                'jscallback' : "jQuery19105357803934720518_1603168193882",
+                'query' : self.search_singer
+        }
+        headers = {
+                'Referer' : "http://www.melon.com/index.htm",
+                "User-Agent" : ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36\
+                                (KHTML, like Gecko) Chrome/86.0.4240.75 Safari/537.36")
+        }
+        response = requests.get(url, headers = headers, params = params)
+        response = response.text
 
+        json_string = response.replace(params['jscallback'] + '(', '').replace(');', '')
+        result_dict = json.loads(json_string)
+        self.search_singer_result = []
+        for song in result_dict['SONGCONTENTS']:
+            data = {'ARTIST NAME' : song['ARTISTNAME'], 'ALBUM NAME' : song['ALBUMNAME'],'SONG NAME' : song['SONGNAME']}
+            self.search_singer_result.append(data)
+
+    # 음악 플레이리스트 추가
+    def add_music_playlist(self, music_title,music_album,music_artist):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to save video.")          
+        with rx.session() as session:
+            existing_playlist = session.query(Music_Playlist).filter_by(
+                user_id=self.user.username,
+                music_title = music_title,
+                music_album = music_album,
+                music_artist = music_artist,
+            ).first()
+
+            if existing_playlist:
+                # Playlist with the same URL and title already exists
+                return rx.window_alert("This Music is already in your playlist.")
+
+            new_playlist = Music_Playlist(
+                user_id = self.user.username,
+                music_title = music_title,
+                music_album = music_album,
+                music_artist = music_artist,
+            )
+            session.add(new_playlist)
+            session.commit()
+        return self.get_saved_music()
+    
+    # 음악 플레이리스트를 불러오는 함수
+    def get_saved_music(self):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to see saved video.")
+        with rx.session() as session:
+            self.saved_music_results = session.query(Music_Playlist).filter(Music_Playlist.user_id == self.user.username).all()[::-1]
+
+    # 음악 플레이리스트에서 제거
+    def remove_music_playlist(self, music_title, music_album, music_artist):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to remove video.")
+        
+        with rx.session() as session:
+            music_playlist_entry = session.query(Music_Playlist).filter_by(user_id=self.user.username, music_title = music_title, music_album = music_album, music_artist = music_artist).first()
             
-
-
+            if music_playlist_entry:
+                # 찾은 동영상을 재생목록에서 제거하고 커밋
+                session.delete(music_playlist_entry)
+                session.commit()
+        return self.get_saved_music()

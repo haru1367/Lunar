@@ -3,6 +3,12 @@ from typing import Optional,List,Union
 from sqlmodel import Field
 import reflex as rx
 
+class Music_Playlist(rx.Model, table = True):
+    user_id : str = Field()
+    music_title : str = Field()
+    music_album : str = Field()
+    music_artist : str = Field()
+
 class Video_Playlist(rx.Model,table = True):
     user_id : str = Field()
     video_url : str = Field()

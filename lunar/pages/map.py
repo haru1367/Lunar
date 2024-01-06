@@ -66,7 +66,7 @@ def tabs():
                     rx.container(width='5px'),
                     rx.vstack(
                         rx.container(height='10px'),
-                        rx.hstack(
+                        rx.vstack(
                             rx.button('Hot place!(24H)',Font_size = '20px',on_click = HomeState.hotplaces,bg = '#ebf564'),
                         ),
                         rx.container(height='5px'),

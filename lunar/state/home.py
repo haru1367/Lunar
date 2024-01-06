@@ -21,7 +21,8 @@ from selenium.webdriver.chrome.service import Service
 import datetime
 from datetime import datetime
 from melon import *
-from bs4 import BeautifulSoup
+import time
+from bs4 import BeautifulSoup as bs
 
 class HomeState(State):
     """The state for the home page."""
@@ -69,6 +70,9 @@ class HomeState(State):
     search_singer_result:list[dict]
     music_chart_info : list[dict]
     saved_music_results : list[Music_Playlist]
+
+    #재난문자 저장
+    weather_message_result : list[dict]
 
 
 
@@ -556,3 +560,18 @@ class HomeState(State):
                 session.delete(music_playlist_entry)
                 session.commit()
         return self.get_saved_music()
+
+    # 재난문자 웹 크롤링
+    def climate_message(self):
+        url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=0&ie=utf8&query=%EC%9E%AC%EB%82%9C%EB%AC%B8%EC%9E%90"
+        response = requests.get(url)
+        html = response.text
+        soup = bs(html, 'html.parser')
+        areas = soup.select(".area")
+        disaster_texts = soup.select(".disaster_text")
+        dates = soup.select(".date")
+        self.weather_message_result = []
+        # 결과 출력
+        for area, disaster_text, date in zip(areas, disaster_texts, dates):
+            data = {'area' : area.get_text(strip=True), 'date' : date.get_text(strip=True), 'text':disaster_text.get_text(strip = True) }
+            self.weather_message_result.append(data)

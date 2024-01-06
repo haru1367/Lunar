@@ -7,3 +7,4 @@ from .findid import findid
 from .map import map
 from .video import video
 from .music import music
+from .weather import weather

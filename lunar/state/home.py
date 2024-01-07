@@ -22,6 +22,7 @@ import datetime
 from datetime import datetime
 from melon import *
 import time
+from PIL import Image
 from bs4 import BeautifulSoup as bs
 
 class HomeState(State):
@@ -74,8 +75,19 @@ class HomeState(State):
     #재난문자 저장
     weather_message_result : list[dict]
 
-
-
+    #날씨 웹 크롤링
+    weather_search:str
+    status_climate:str
+    status_climate_icon_url:str
+    status_temperature:str
+    status_feel_temperature:str
+    today_min_temperature:str
+    today_max_temperature:str
+    status_humidity:str
+    status_atmospheric_pressure:str
+    status_wind_direction:str
+    status_wind_speed:str
+    image:str
 
     @rx.var
     def time_map_iframe(self)->str:
@@ -575,3 +587,24 @@ class HomeState(State):
         for area, disaster_text, date in zip(areas, disaster_texts, dates):
             data = {'area' : area.get_text(strip=True), 'date' : date.get_text(strip=True), 'text':disaster_text.get_text(strip = True) }
             self.weather_message_result.append(data)
+
+    # 날씨 웹 크롤링
+    def climate_websearch(self):
+        key=''
+        with open('weatherapikey.json','r')as f:                                               
+            key = json.load(f)
+        weather_api_key = key['key']
+        url = f"http://api.openweathermap.org/data/2.5/weather?q={self.weather_search}&appid={weather_api_key}&lang=kr&units=metric"
+        result = requests.get(url)
+        data = json.loads(result.text)
+        self.status_climate = data['weather'][0]['description']
+        self.status_temperature = data['main']['temp']
+        self.status_feel_temperature = data['main']['feels_like']
+        self.today_min_temperature = data['main']['temp_min']
+        self.today_max_temperature = data['main']['temp_max']
+        self.status_humidity = data['main']['humidity']
+        self.status_atmospheric_pressure = data['main']['pressure']
+        self.status_wind_direction = data['wind']['deg']
+        self.status_wind_speed = data['wind']['speed']
+        self.status_climate_icon_url=  f"https://openweathermap.org/img/wn/{data['weather'][0]['icon']}@2x.png"
+        self.image = Image.open((requests.get(self.status_climate_icon_url, stream=True).raw))

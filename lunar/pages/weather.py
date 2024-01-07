@@ -2,7 +2,7 @@
 import reflex as rx
 from lunar.state.base import State
 from lunar.state.home import HomeState
-
+from PIL import Image
 # 컴포넌트를 가져옵니다.
 from ..components import container
 
@@ -206,9 +206,8 @@ def feed_header(HomeState):
     """The header of the feed."""
     return rx.hstack(
         rx.image(src='/find1.png',height='35px',width='35px'),
-        rx.input(on_change=HomeState.set_map_search_input, placeholder="Search place..!"),
-        rx.button('search', on_click = HomeState.climate_message),
-        rx.button('clear',on_click = HomeState.map_clear),
+        rx.input(on_change=HomeState.set_weather_search, placeholder="Search place..!"),
+        rx.button('search', on_click = HomeState.climate_websearch),
         justify="space-between",
         p=4,
         border_bottom="3px solid #000000",
@@ -221,13 +220,9 @@ def feed(HomeState):
         feed_header(HomeState),
         rx.container(height='10px'),
         rx.vstack(
-            rx.html(
-                HomeState.time_map_iframe,
-                width = '100%',
-            ),
-            width = '95%',
-            border= '3px solid #000000',
-            box_shadow = '10px 10px 5px #85d647'
+            rx.image(
+                src = HomeState.image,
+            )
         ),
         rx.container(height='20px'),
         rx.box(

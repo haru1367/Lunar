@@ -76,6 +76,7 @@ class HomeState(State):
     weather_message_result : list[dict]
 
     #날씨 웹 크롤링
+    weather_search_show : bool = False
     weather_search:str
     status_climate:str
     status_climate_icon_url:str
@@ -608,3 +609,4 @@ class HomeState(State):
         self.status_wind_speed = data['wind']['speed']
         self.status_climate_icon_url=  f"https://openweathermap.org/img/wn/{data['weather'][0]['icon']}@2x.png"
         self.image = Image.open((requests.get(self.status_climate_icon_url, stream=True).raw))
+        self.weather_search_show=True

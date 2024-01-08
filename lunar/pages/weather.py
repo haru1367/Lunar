@@ -220,18 +220,92 @@ def feed(HomeState):
         feed_header(HomeState),
         rx.container(height='10px'),
         rx.vstack(
-            rx.image(
-                src = HomeState.image,
+            rx.cond(
+                HomeState.weather_search_show,
+                rx.vstack(
+                    rx.hstack(
+                        rx.heading(
+                            HomeState.weather_search,
+                            as_='mark',
+                            font_Size = '50px',
+                        ),
+                        margin_left = '5%',
+                    ),
+                    rx.hstack(
+                        rx.vstack(
+                            rx.text(
+                                f"현재 기온 : {HomeState.status_temperature}'C",
+                                font_Size = '25px',
+                                font_weight='bold',
+                            ),
+                            rx.text(
+                                f'현재 날씨 : {HomeState.status_climate}',
+                                font_Size = '25px',
+                                font_weight='bolder',
+                            ),
+                            rx.text(
+                                f"체감 온도 : {HomeState.status_feel_temperature}'C",
+                                font_Size = '25px',
+                                font_weight='bolder',
+                            ),
+                            rx.text(
+                                f"최저 온도 : {HomeState.today_min_temperature}'C",
+                                font_Size = '25px',
+                                font_weight='bolder',
+                                color = 'blue',
+                            ),
+                            rx.text(
+                                f"최고 온도 : {HomeState.today_max_temperature}'C",
+                                font_Size = '25px',
+                                font_weight='bolder',
+                                color = 'red',
+                            ),
+                            rx.text(
+                                f'현재 습도 : {HomeState.status_humidity}%',
+                                font_Size = '25px',
+                                font_weight='bolder',
+                            ),
+                            rx.text(
+                                f'현재 기압 : {HomeState.status_atmospheric_pressure}hpa',
+                                font_Size = '25px',
+                                font_weight='bolder',
+                            ),
+                            rx.text(
+                                f'풍속 : {HomeState.status_wind_speed}m/s',
+                                font_Size = '25px',
+                                font_weight='bolder',
+                            ),
+                            align_items='start',
+                            margin_left = '5%',
+                        ),
+                        rx.container(width='5%'),
+                        rx.vstack(
+                            rx.image(
+                                src = HomeState.image,
+                                height='400px',
+                                width = 'auto',
+                            )
+                        )
+                    ),
+                    width = '90%',
+                    margin_left = '5%',
+                    align_items='start',
+                    border = '2px solid #000000',
+                    border_radius = '30px',
+                    box_Shadow = '10px 10px 10px #575050',
+                ),
+                rx.vstack(
+                    rx.heading(
+                        'Enter the area where you want to search for weather.',
+                        font_Size = '40px',
+                        font_weight='border',
+                    ),
+                    align_items='start',
+                    width = '100%',
+                )
             )
         ),
         rx.container(height='20px'),
-        rx.box(
-            rx.data_table(
-                data=HomeState.df,
-                font_size = '8px',
-                width='100%',
-            ),
-        ),
         overflow='auto',
     )
 

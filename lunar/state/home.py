@@ -97,7 +97,7 @@ class HomeState(State):
     month:int = datetime.today().month
     search_month:str=month_str[month]
     search_calendar:str
-    daylist:dict
+    daylist:list[str]
 
 
     @rx.var
@@ -626,6 +626,6 @@ class HomeState(State):
         weeklydict = {0:'Monday',1:'Tuesday',2:'Wednesday',3:'Thursday',4:'Friday',5:'Saturday',6:'Sunday'}
         num_days = calendar.monthrange(self.year, self.month)[1]
         for i in range(1,num_days+1):
-            self.daylist[f'{self.year}/{self.month}/{i}']=weeklydict[calendar.weekday(self.year,self.month,i)]
+            self.daylist.append(f'{self.year}/{self.month}/{i}:{weeklydict[calendar.weekday(self.year,self.month,i)]}')
 
         

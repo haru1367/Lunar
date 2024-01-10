@@ -159,6 +159,31 @@ def feed_header(HomeState):
         border_bottom="3px solid #000000",
     )
 
+def daylist(daylist):
+    return rx.box(
+        rx.vstack(
+            rx.hstack(
+                rx.vstack(
+                    rx.text(daylist.split(':')[0]),
+                    rx.text(daylist.split(':')[1]),
+                    width='20%',
+                ),           
+                rx.button(
+                    rx.text('hello'),
+                    width='75%',
+                ),
+                width='100%',
+                height='auto',
+            ),
+            align_items='start',
+            width='100%',
+            border='2px solid #000000',
+            border_radius='20px',
+        ),
+        rx.container(height='5px'),
+        width='100%',
+    )
+
 # 피드 영역
 def feed(HomeState):
     """The feed."""
@@ -183,8 +208,14 @@ def feed(HomeState):
                 ),
             ),
         ),
+        rx.vstack(
+            rx.foreach(
+                HomeState.daylist,
+                daylist,
+            )
+        ),
         width = '100%',
-        overflow='auto',
+        overflow = 'auto',
     )
 
 # 홈 페이지

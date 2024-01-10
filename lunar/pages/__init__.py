@@ -8,3 +8,4 @@ from .map import map
 from .video import video
 from .music import music
 from .weather import weather
+from .diary import diary

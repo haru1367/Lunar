@@ -24,6 +24,7 @@ from melon import *
 import time
 from PIL import Image
 from bs4 import BeautifulSoup as bs
+import calendar
 
 class HomeState(State):
     """The state for the home page."""
@@ -89,6 +90,15 @@ class HomeState(State):
     status_wind_direction:str
     status_wind_speed:str
     image:str
+
+    #달력 변수
+    month_str = {1:'January',2:'February',3:'March',4:'April',5:'May',6:'June',7:'July',8:'August',9:'September',10:'October',11:'November',12:'December'}
+    year:int = datetime.today().year
+    month:int = datetime.today().month
+    search_month:str=month_str[month]
+    search_calendar:str
+    daylist:dict
+
 
     @rx.var
     def time_map_iframe(self)->str:
@@ -610,3 +620,12 @@ class HomeState(State):
         self.status_climate_icon_url=  f"https://openweathermap.org/img/wn/{data['weather'][0]['icon']}@2x.png"
         self.image = Image.open((requests.get(self.status_climate_icon_url, stream=True).raw))
         self.weather_search_show=True
+
+    # 연도별 달력 출력
+    def print_calendar(self):
+        weeklydict = {0:'Monday',1:'Tuesday',2:'Wednesday',3:'Thursday',4:'Friday',5:'Saturday',6:'Sunday'}
+        num_days = calendar.monthrange(self.year, self.month)[1]
+        for i in range(1,num_days+1):
+            self.daylist[f'{self.year}/{self.month}/{i}']=weeklydict[calendar.weekday(self.year,self.month,i)]
+
+        

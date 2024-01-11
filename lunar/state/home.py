@@ -4,7 +4,7 @@ import tkinter as tk
 import reflex as rx
 from sqlmodel import select
 import os
-from .base import Follows, State, Crater, User,Hotplace,Video_Playlist,Music_Playlist
+from .base import Follows, State, Crater, User,Hotplace,Video_Playlist,Music_Playlist,Calendar_Memo
 from tkinter import filedialog
 import folium
 from folium.plugins import MiniMap
@@ -97,7 +97,9 @@ class HomeState(State):
     month:int = datetime.today().month
     search_month:str=month_str[month]
     search_calendar:str
-    daylist:list[str]
+    daylist:list[str] # 날짜와 요일 리스트
+    # memos = list[Calendar_Memo] # 날짜별 메모리스트
+    memo_show:bool = False
 
 
     @rx.var
@@ -628,4 +630,6 @@ class HomeState(State):
         for i in range(1,num_days+1):
             self.daylist.append(f'{self.year}/{self.month}/{i}:{weeklydict[calendar.weekday(self.year,self.month,i)]}')
 
-        
+    # 캘린더에 메모추가시 팝업창 출력
+    def memo_change(self):
+        self.memo_show = not (self.memo_show)

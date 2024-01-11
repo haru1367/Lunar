@@ -164,13 +164,32 @@ def daylist(daylist):
         rx.vstack(
             rx.hstack(
                 rx.vstack(
-                    rx.text(daylist.split(':')[0]),
-                    rx.text(daylist.split(':')[1]),
+                    rx.text(daylist.split(':')[0],color = '#5fa9de',font_Size='20px',font_weight='bold'),
+                    rx.text(daylist.split(':')[1],font_Size='20px',font_weight='bold'),
                     width='20%',
-                ),           
-                rx.button(
-                    rx.text('hello'),
-                    width='75%',
+                ),
+                rx.box(           
+                    rx.button(
+                        rx.text('hello'),
+                        width='95%',
+                        on_click=HomeState.memo_change,
+                    ),
+                    rx.modal(
+                        rx.modal_content(
+                            rx.modal_header("Memo"),
+                            rx.modal_body(
+                                "Add memo!"
+                            ),
+                            rx.modal_footer(
+                                rx.button(
+                                    "Close", on_click=HomeState.memo_change
+                                )
+                            ),
+                        ),
+                        size = '3xl',
+                        is_open=HomeState.memo_show,
+                    ),
+                    width='100%',
                 ),
                 width='100%',
                 height='auto',

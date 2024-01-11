@@ -3,6 +3,11 @@ from typing import Optional,List,Union
 from sqlmodel import Field
 import reflex as rx
 
+class Calendar_Memo(rx.Model,table=True):
+    user_id : str = Field()
+    day:str = Field()
+    memo:str = Field()
+
 class Music_Playlist(rx.Model, table = True):
     user_id : str = Field()
     music_title : str = Field()

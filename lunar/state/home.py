@@ -4,7 +4,7 @@ import tkinter as tk
 import reflex as rx
 from sqlmodel import select
 import os
-from .base import Follows, State, Crater, User,Hotplace,Video_Playlist,Music_Playlist,Calendar_Memo
+from .base import Follows, State, Crater, User,Hotplace,Video_Playlist,Music_Playlist,Calendar_Memo,Dday,GPT
 from tkinter import filedialog
 import folium
 from folium.plugins import MiniMap
@@ -19,12 +19,15 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
 import datetime
-from datetime import datetime
+from datetime import datetime,date
 from melon import *
 import time
 from PIL import Image
 from bs4 import BeautifulSoup as bs
 import calendar
+import pathlib
+import textwrap
+import google.generativeai as genai
 
 class HomeState(State):
     """The state for the home page."""
@@ -98,8 +101,23 @@ class HomeState(State):
     search_month:str=month_str[month]
     search_calendar:str
     daylist:list[str] # 날짜와 요일 리스트
-    # memos = list[Calendar_Memo] # 날짜별 메모리스트
     memo_show:bool = False
+    memo_content:str
+    recorded_memo:list[Calendar_Memo]
+    popup_day:str
+    popup_memo:str
+    checked: bool = False
+    ddaylist:list[Dday]
+    dday_date:str
+    dday_content:str
+    dday_year:int
+    dday_month:int
+    dday_day:int
+    calculate_dday:dict
+
+    #chatgpt
+    aichatting:list[GPT]
+    user_input_chat:str
 
 
     @rx.var
@@ -631,5 +649,126 @@ class HomeState(State):
             self.daylist.append(f'{self.year}/{self.month}/{i}:{weeklydict[calendar.weekday(self.year,self.month,i)]}')
 
     # 캘린더에 메모추가시 팝업창 출력
-    def memo_change(self):
-        self.memo_show = not (self.memo_show)
+    def memo_change(self,daylist):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to see calendar.")
+        if self.memo_show == False:
+            with rx.session() as session:
+                self.recorded_memo = (
+                        session.query(Calendar_Memo)
+                        .filter(
+                            Calendar_Memo.user_id == self.user.username,
+                            Calendar_Memo.day == daylist.split(':')[0],
+                        ).all()
+                    )
+            self.popup_day = daylist.split(':')[0]
+            self.memo_show = True
+            print(self.recorded_memo)
+        else:
+            self.memo_show = False
+
+    # 해당 날짜에 메모 추가함수
+    def add_memo(self,daylist):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to see calendar.")
+        with rx.session() as session:
+            memo = Calendar_Memo(
+                user_id = self.user.username,
+                day = daylist.split(':')[0],
+                memo = self.memo_content,
+            )
+            session.add(memo)
+            session.commit()
+            self.recorded_memo = (
+                    session.query(Calendar_Memo)
+                    .filter(
+                        Calendar_Memo.user_id == self.user.username,
+                        Calendar_Memo.day == daylist.split(':')[0],
+                    ).all()
+                )
+    
+    # 디데이리스트 불러오기
+    def get_ddaylist(self):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to see D-day.")
+        with rx.session() as session:
+            self.ddaylist = (
+                    session.query(Dday)
+                    .filter(
+                        Dday.user_id == self.user.username,
+                    ).all()
+                )
+
+    # 디데이리스트 추가하기
+    def add_ddaylist(self):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to see D-day.")
+        self.dday_date = f'{self.dday_year}/{self.dday_month}/{self.dday_day}'
+        with rx.session() as session:
+            dday = Dday(
+                user_id = self.user.username,
+                dday = self.dday_date,
+                dday_content=self.dday_content,
+            )
+            session.add(dday)
+            session.commit()
+        self.dday_content=''
+        self.dday_day =0
+        return self.get_ddaylist()
+    
+    # 디데이리스트에서 제거
+    def remove_ddaylist(self,remove_dday1, remove_dday2):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to remove D-day.")
+        
+        with rx.session() as session:
+            ddaylist_entry = session.query(Dday).filter_by(user_id=self.user.username, dday=remove_dday1, dday_content = remove_dday2).first()
+            if ddaylist_entry:
+                # 찾은 동영상을 재생목록에서 제거하고 커밋
+                session.delete(ddaylist_entry)
+                session.commit()
+        return self.get_ddaylist()
+    
+    # Gemini기능
+    def chatai(self):
+        if not self.logged_in:                                                            # 로그인되어 있지 않은 경우 알림
+            return rx.window_alert("Please log in first")
+        with open('googlegeminiapikey.json','r')as f:                                               
+            key = json.load(f)
+        googlegeminiapikey = key['key']
+        genai.configure(api_key=googlegeminiapikey)
+        model = genai.GenerativeModel('gemini-pro')
+        gpt_response = model.generate_content(self.user_input_chat)
+        with rx.session() as session:                                                     # 대화 내용을 데이터베이스에 저장
+            gpt = GPT(
+                author=self.user.username,
+                content=self.user_input_chat,
+                created_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            )
+            session.add(gpt)
+            session.commit()
+            self.user_input_chat= ""
+
+        with rx.session() as session:                                                     # KoGPT의 응답을 데이터베이스에 저장
+            gpt = GPT(
+                author = 'Gemini',
+                content=gpt_response.text,
+                created_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            )
+            session.add(gpt)
+            session.commit()
+            
+        return self.get_gpt() 
+    
+    # 데이터베이스에서 GPT 대화내역 가져오기
+    def get_gpt(self):
+        with rx.session() as session:
+            self.aichatting = session.query(GPT).all()[::-1] 
+
+    # chatgpt 대화내용 삭제
+    def clear_gpt(self):
+        self.aichatting = []
+        with rx.session() as session:
+            session.query(GPT).delete()
+            session.commit()
+        return self.get_gpt()

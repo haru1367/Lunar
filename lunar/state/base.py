@@ -3,6 +3,16 @@ from typing import Optional,List,Union
 from sqlmodel import Field
 import reflex as rx
 
+class GPT(rx.Model, table=True):
+    content: str = Field() #유저의 질문내용, KoGPT의 답변을 저장하는 영역
+    author: str = Field() #유저의 아이디, KoGPT를 저장하는 영역
+    created_at : str = Field() #질문 시각을 저장하는 영역
+
+class Dday(rx.Model,table = True):
+    user_id :str = Field()
+    dday:str = Field()
+    dday_content:str = Field()
+
 class Calendar_Memo(rx.Model,table=True):
     user_id : str = Field()
     day:str = Field()

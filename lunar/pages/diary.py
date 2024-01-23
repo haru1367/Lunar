@@ -2,6 +2,7 @@
 import reflex as rx
 from lunar.state.base import State
 from lunar.state.home import HomeState
+from datetime import datetime
 
 # 컴포넌트를 가져옵니다.
 from ..components import container
@@ -21,6 +22,33 @@ def tab_button(imagepath, href):
         py=3,
         px=2,
         href=href,  # 버튼 클릭 시 이동할 경로
+    )
+
+def ddaylist(ddaylist):
+    return rx.box(
+        rx.vstack(
+            rx.heading(ddaylist.dday, font_Size = '20px', font_weight='bold',margin_left = '10px',bg='blue.300'),
+            rx.flex(
+                rx.center(
+                    rx.text(ddaylist.dday_content, font_Size='15px',font_weight='bold',margin_left='10px'),
+                ),
+                rx.spacer(),
+                rx.center(
+                    rx.button(
+                        rx.icon(tag='close',size='sm'),
+                        on_click = HomeState.remove_ddaylist(ddaylist.dday, ddaylist.dday_content),
+                        border_radius='20px',
+                    ),
+                ),
+                width='100%',
+            ),
+            width='90%',
+            border = '2px solid #000000',
+            border_radius ='20px',
+            align_items='start',
+        ),
+        rx.container(height='10px'),
+        width='100%',
     )
 
 # 왼쪽에 표시되는 탭 스위처
@@ -49,8 +77,47 @@ def tabs():
                     ),  # 앱 이름
                 ),
             ),
-            rx.container(
-                rx.text(HomeState.search_calendar),
+            rx.vstack(
+                rx.button(
+                    rx.heading(
+                        "D-day",
+                        font_Size = '30px',
+                        font_weight = 'bolder',
+                    ),
+                    color = '#db5942',
+                    on_click = HomeState.get_ddaylist,
+                ),
+                rx.vstack(
+                    rx.foreach(
+                        HomeState.ddaylist,
+                        ddaylist,  
+                    ),
+                    rx.vstack(
+                        rx.container(height='10px'),
+                        rx.hstack(
+                            rx.input(placeholder='year',on_change=HomeState.set_dday_year),
+                            rx.input(placeholder='month',on_change=HomeState.set_dday_month),
+                            rx.input(placeholder='day',on_change=HomeState.set_dday_day),
+                        ),
+                        rx.hstack(
+                            rx.input(
+                                placeholder = 'add content..',
+                                on_change = HomeState.set_dday_content,
+                            ),
+                            rx.button(
+                                rx.icon(tag='add',size = 'sm'),
+                                on_click = HomeState.add_ddaylist
+                            ),
+                        ),
+                        rx.container(height='10px'),
+                        width='90%',
+                        align_items='start',
+                    ),
+                    align_items='start',
+                    width='100%',
+                ),
+                width='100%',
+                align_items='start',
             ),
             align_items="left",
             gap=4,
@@ -59,86 +126,10 @@ def tabs():
         overflow='auto',
     )
 
-def saved_video(video):
-    return rx.vstack(
-        rx.hstack(
-            rx.video(
-                url = video.video_url,
-                width = '150px',
-                height= '100px',
-            ),
-            rx.button(
-                f'{video.video_title[:20] + "..."}',
-                style={'white-space': 'normal'},
-                align='start',
-                max_width='200px',
-                height='100px',
-                on_click = HomeState.popup_video(video.video_url,video.video_title),
-            ),
-            rx.alert_dialog(
-                rx.alert_dialog_overlay(
-                    rx.alert_dialog_content(
-                        rx.alert_dialog_header("Video"),
-                        rx.alert_dialog_body(
-                            rx.video(
-                                url = HomeState.popup_video_url,
-                                width = '700px',
-                                height= '500px',
-                            ),
-                            rx.heading(
-                                HomeState.popup_video_title,
-                                Font_size='20px',
-                            )
-                        ),
-                        rx.alert_dialog_footer(
-                            rx.button(
-                                "Close",
-                                on_click=HomeState.popup_video(video.video_url,video.video_title),
-                            )
-                        ),
-                    ),
-                ),
-                size = '3xl',
-                is_open=HomeState.show,
-            ),
-        ),
-        rx.button(
-            'Save cancel',
-            width='100%',
-            border_radius = '20px',
-            bg = '#ecf065',
-            _hover={'bg':'orange.400'},
-            on_click = HomeState.remove_video_playlist(video.video_url)
-        ),
-        rx.container(height='5px'),
-        max_width='100%',
-    )
-
 # 오른쪽에 표시되는 사이드바
 def sidebar(HomeState):
     """The sidebar displayed on the right."""
     return rx.vstack(
-        rx.heading('Saved video',Font_size='25px',Font_weight='border',bg = 'green.400'),
-        rx.vstack(
-            rx.cond(
-                HomeState.saved_video_results,
-                rx.foreach(
-                    HomeState.saved_video_results,
-                    saved_video
-                ),
-                rx.vstack(
-                    rx.button(
-                        rx.icon(
-                            tag="repeat",
-                            mr=1,
-                        ),
-                        rx.text("load",Font_size = '20px',),
-                        on_click=HomeState.get_saved_video,
-                    ),
-                    p=4,
-                ),
-            ),
-        ),
         align_items="start",
         gap=4,
         h="100%",
@@ -159,6 +150,26 @@ def feed_header(HomeState):
         border_bottom="3px solid #000000",
     )
 
+def recorded(recorded):
+    return rx.box(
+        rx.vstack(
+            rx.text_area(
+                value=recorded.memo,
+                w='100%',
+                border=2,
+                placeholder="Add memo!", 
+                resize="none",
+                py=4,
+                px=0,
+                _focus={"border": 0, "outline": 0, "boxShadow": "none"},
+            ),
+            width='100%',
+            align_items='start',
+            border='3px solid #000000',
+        ),
+        rx.container(height='10px'),
+    )
+
 def daylist(daylist):
     return rx.box(
         rx.vstack(
@@ -172,18 +183,42 @@ def daylist(daylist):
                     rx.button(
                         rx.text('hello'),
                         width='95%',
-                        on_click=HomeState.memo_change,
+                        on_click=HomeState.memo_change(daylist),
                     ),
                     rx.modal(
                         rx.modal_content(
-                            rx.modal_header("Memo"),
+                            rx.modal_header(
+                                rx.heading(
+                                    HomeState.popup_day,
+                                    color = '#5fa9de',
+                                    font_Size='20px',
+                                    font_weight='bold',
+                                ),
+                            ),
                             rx.modal_body(
-                                "Add memo!"
+                                rx.foreach(
+                                    HomeState.recorded_memo,
+                                    recorded,
+                                ),
+                                rx.text_area(
+                                    value=HomeState.memo_content,
+                                    w='100%',
+                                    border=2,
+                                    placeholder="Add memo!",  # 트윗을 작성하는 입력 상자
+                                    resize="none",
+                                    py=4,
+                                    px=0,
+                                    _focus={"border": 0, "outline": 0, "boxShadow": "none"},
+                                    on_change=HomeState.set_memo_content,
+                                ),
                             ),
                             rx.modal_footer(
                                 rx.button(
-                                    "Close", on_click=HomeState.memo_change
-                                )
+                                    'Save', on_click = HomeState.add_memo(daylist)
+                                ),
+                                rx.button(
+                                    "Close", on_click=HomeState.memo_change(daylist)
+                                ),
                             ),
                         ),
                         size = '3xl',

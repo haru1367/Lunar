@@ -49,12 +49,29 @@ def tabs():
             ),
         ),
         rx.container(height='30px'),
+        rx.vstack(
+            rx.vstack(
+                rx.text(
+                    'conversation notes',
+                    font_Size='25px',
+                    font_Weight='bold',
+                    color = '#42d647',
+                ),
+                align_items='start',
+            ),
+            rx.button(
+                rx.text('Delete all conversations',font_weight='bold',font_Size = '20px'),
+                on_click = HomeState.clear_gpt,
+                bg = 'red.300',
+            ),
+            width = '90%',
+        ),
         py=4,
         overflow = 'auto',
     )
 
 def gpt(gpt):
-    box_color = rx.cond(gpt.author == "Gemini", "#99bed1", "#e2eb3b")
+    box_color = rx.cond(gpt.author == "Gemini", "#b2d5eb", "#f5ec76")
     return rx.vstack(
         rx.box(
             rx.hstack(
@@ -78,6 +95,7 @@ def gpt(gpt):
             width = '97%',
             margin_left='5px',
             border_radius='20px',
+            border = '2px solid #000000',
             background=box_color,
         ),
         rx.container(height='5px'),
@@ -104,11 +122,20 @@ def feed_header(HomeState):
                     on_change=HomeState.set_user_input_chat,
                 ),
                 rx.button(
+                    rx.image(src = '/aichatload.png',height='100%',width='100%'),
+                    on_click = HomeState.get_gpt,
+                    border_radius="1em",
+                    box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",
+                    box_sizing="border-box",
+                    color="white",
+                    opacity="0.6",
+                    _hover={"opacity": 1},
+                ),
+                rx.button(
                     rx.image(src = '/aimessagesend.png',height='100%',width='100%'),
                     on_click = HomeState.chatai,
                     border_radius="1em",
                     box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",
-                    background_image="linear-gradient(144deg,#AF40FF,#5B42F3 50%,#00DDEB)",
                     box_sizing="border-box",
                     color="white",
                     opacity="0.6",
@@ -116,10 +143,11 @@ def feed_header(HomeState):
                 ),
                 justify="space-between",
                 p=4,
-                width = '90%',
+                width = '97%',
                 border_radius = '20px',
                 border = '2px solid #000000',
                 box_shadow = '10px 10px 5px #706666',
+                align_items='start',
             ),
             rx.container(height='10px'),
         ),

@@ -23,6 +23,26 @@ def tab_button(imagepath, href):
         href=href,  # 버튼 클릭 시 이동할 경로
     )
 
+def chat_day(chat_day):
+    return rx.box(
+        rx.hstack(
+            rx.button(
+                chat_day,
+                on_click = HomeState.get_day_chat(chat_day),
+                width='90%',
+                border = '2px solid #000000',
+                border_radius='10px',
+            ),
+            rx.button(
+                rx.icon(tag = 'close', size ='md'),
+                on_click = HomeState.delete_day_chat(chat_day),
+                width='10%',
+            )
+        ),
+        rx.container(height='5px'),
+        width = '100%',
+    )
+
 # 왼쪽에 표시되는 탭 스위처
 def tabs():
     """The tab switcher displayed on the left."""
@@ -52,19 +72,33 @@ def tabs():
         rx.vstack(
             rx.vstack(
                 rx.text(
-                    'conversation notes',
+                    'Conversation history',
                     font_Size='25px',
                     font_Weight='bold',
-                    color = '#42d647',
+                    color = '#000000',
                 ),
+                rx.vstack(
+                    rx.container(height='10px'),
+                    rx.foreach(
+                        HomeState.gpt_chat_daylist,
+                        chat_day
+                    ),
+                    rx.container(height='10px'),
+                    width='100%',
+                    align_items='start',
+                ),
+                width = '100%',
                 align_items='start',
             ),
+            rx.container(height='10px'),
             rx.button(
                 rx.text('Delete all conversations',font_weight='bold',font_Size = '20px'),
                 on_click = HomeState.clear_gpt,
                 bg = 'red.300',
+                width = '100%',
             ),
-            width = '90%',
+            align_items='start',
+            width = '100%',
         ),
         py=4,
         overflow = 'auto',

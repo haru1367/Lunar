@@ -4,6 +4,7 @@ from sqlmodel import Field
 import reflex as rx
 
 class GPT(rx.Model, table=True):
+    user_id:str = Field()
     content: str = Field() #유저의 질문내용, KoGPT의 답변을 저장하는 영역
     author: str = Field() #유저의 아이디, KoGPT를 저장하는 영역
     created_at : str = Field() #질문 시각을 저장하는 영역

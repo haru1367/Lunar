@@ -115,9 +115,10 @@ class HomeState(State):
     dday_day:int
     calculate_dday:dict
 
-    #chatgpt
+    # Gemini
     aichatting:list[GPT]
     user_input_chat:str
+    gpt_chat_daylist:list[str]
 
 
     @rx.var
@@ -741,6 +742,7 @@ class HomeState(State):
         gpt_response = model.generate_content(self.user_input_chat)
         with rx.session() as session:                                                     # 대화 내용을 데이터베이스에 저장
             gpt = GPT(
+                user_id = self.user.username,
                 author=self.user.username,
                 content=self.user_input_chat,
                 created_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -751,6 +753,7 @@ class HomeState(State):
 
         with rx.session() as session:                                                     # KoGPT의 응답을 데이터베이스에 저장
             gpt = GPT(
+                user_id = self.user.username,
                 author = 'Gemini',
                 content=gpt_response.text,
                 created_at=datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -762,13 +765,41 @@ class HomeState(State):
     
     # 데이터베이스에서 GPT 대화내역 가져오기
     def get_gpt(self):
+        if not self.logged_in:                                                            # 로그인되어 있지 않은 경우 알림
+            return rx.window_alert("Please log in first")
         with rx.session() as session:
-            self.aichatting = session.query(GPT).all()[::-1] 
+            self.aichatting = session.query(GPT).filter_by(user_id = self.user.username).all()[::-1]
+        daylist = []
+        for i in range(0,len(self.aichatting)):
+            chatday = datetime.strptime(self.aichatting[i].created_at, "%Y-%m-%d %H:%M:%S")
+            date_only = chatday.strftime("%Y-%m-%d")
+            daylist.append(date_only)
+        daylist_set = set(daylist)
+        self.gpt_chat_daylist = list(daylist_set)
 
-    # chatgpt 대화내용 삭제
+    # gpt 대화내용 전체삭제
     def clear_gpt(self):
         self.aichatting = []
         with rx.session() as session:
-            session.query(GPT).delete()
+            session.query(GPT).filter_by(user_id = self.user.username).delete()
             session.commit()
+        return self.get_gpt()
+    
+    # gpt 특정날짜 대화내역 불러오기
+    def get_day_chat(self,chat_day):
+        if not self.logged_in:
+            return rx.window_alert("Please log in first")
+        with rx.session() as session:
+            self.aichatting = session.query(GPT).filter(GPT.user_id == self.user.username,func.date(GPT.created_at)==chat_day).all()[::-1]
+
+    # gpt 특정날짜 대화내역 삭제하기
+    def delete_day_chat(self,chat_day):
+        if not self.logged_in:
+            return rx.window_alert("Please log in first")
+        with rx.session() as session:
+            delete_chat = session.query(GPT).filter(GPT.user_id == self.user.username,func.date(GPT.created_at)==chat_day).all()[::-1]
+            if delete_chat:
+                for i in range(0,len(delete_chat)):
+                    session.delete(delete_chat[i])
+                session.commit()
         return self.get_gpt()

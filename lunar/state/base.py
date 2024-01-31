@@ -3,6 +3,12 @@ from typing import Optional,List,Union
 from sqlmodel import Field
 import reflex as rx
 
+class message(rx.Model, table = True):
+    send_user:str = Field() # 메시지를 보낸 사람을 저장하는 영역
+    receive_user:str = Field() # 메시지를 받은 사람을 저장하는 영역
+    message:str = Field() # 메시지 내용
+    created_at : str = Field() # 메시지를 보낸 시각
+
 class GPT(rx.Model, table=True):
     user_id:str = Field()
     content: str = Field() #유저의 질문내용, KoGPT의 답변을 저장하는 영역

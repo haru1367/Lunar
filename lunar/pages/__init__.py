@@ -10,3 +10,4 @@ from .music import music
 from .weather import weather
 from .diary import diary
 from .aichat import aichat
+from .chat import chat

@@ -4,7 +4,7 @@ import tkinter as tk
 import reflex as rx
 from sqlmodel import select
 import os
-from .base import Follows, State, Crater, User,Hotplace,Video_Playlist,Music_Playlist,Calendar_Memo,Dday,GPT
+from .base import Follows, State, Crater, User,Hotplace,Video_Playlist,Music_Playlist,Calendar_Memo,Dday,GPT,message
 from tkinter import filedialog
 import folium
 from folium.plugins import MiniMap
@@ -25,8 +25,7 @@ import time
 from PIL import Image
 from bs4 import BeautifulSoup as bs
 import calendar
-import pathlib
-import textwrap
+from sqlalchemy import or_,and_
 import google.generativeai as genai
 
 class HomeState(State):
@@ -119,6 +118,11 @@ class HomeState(State):
     aichatting:list[GPT]
     user_input_chat:str
     gpt_chat_daylist:list[str]
+
+    # message
+    kakaotalk:str=''
+    receive_user:str='User'
+    messages:list[message]= []
 
 
     @rx.var
@@ -240,28 +244,60 @@ class HomeState(State):
             session.add(friend)
             session.commit()
 
-    @rx.var
+    #follow 함수
+    def follow_user(self, username):
+        """Follow a user."""
+        with rx.session() as session:
+            friend = Follows(
+                follower_username=self.user.username, followed_username=username     # Follow모델에 follower_username에 현재 로그인 된 유저이름저장
+            )                                                                        # Follow모델에 followed_username에 팔로잉 한 유저의 이름 저장
+            session.add(friend)                                                      # session에 friend이름으로 생성된 Follow모델 추가
+            session.commit()                                                         # session 저장
+    
+    #unfollow 함수
+    def unfollow_user(self, username):
+        """Unfollow a user."""
+        with rx.session() as session: 
+            follow = (                                                                       # follow한 유저 목록 불러오기
+                session.query(Follows)
+                .filter_by(follower_username=self.user.username, followed_username=username)
+                .first()
+            )
+            if follow:                                                                       
+                session.delete(follow)                                                       # follow가 되어있으면 session에서 삭제
+                session.commit()                                                             # session 저장
+
+                # Refresh the followers list after unfollowing
+                self.followers = (                                                           # 삭제 후 session에 저장되어있는 follow 목록 불러오기
+                    session.query(Follows)                                                   
+                    .filter(Follows.followed_username == self.user.username)
+                    .all()
+                )        
+    
+    # 팔로잉 목록을 불러오는 함수
+    @rx.var                                                                                  # 실시간으로 값의 변화 감지
     def following(self) -> list[Follows]:
         """Get a list of users the current user is following."""
-        if self.logged_in:
+        if self.logged_in:                                                                   # 로그인 되어있을 때
             with rx.session() as session:
-                return session.exec(
-                    select(Follows).where(
-                        Follows.follower_username == self.user.username
-                    )
-                ).all()
+                return (
+                    session.query(Follows)                                                   # session에 저장되어 있는 follow 목록 불러오기
+                    .filter(Follows.follower_username == self.user.username)
+                    .all()
+                )
         return []
 
+    # 팔로워 목록을 불러오는 함수
     @rx.var
-    def followers(self) -> list[Follows]:
+    def followers(self) -> list[Follows]:                                                    
         """Get a list of users following the current user."""
-        if self.logged_in:
+        if self.logged_in:                                                                   # 로그인 되어 있을 시
             with rx.session() as session:
-                return session.exec(
-                    select(Follows).where(
-                        Follows.followed_username == self.user.username
-                    )
-                ).all()
+                return (
+                    session.query(Follows)                                                   # session에 저장된 follower 목록 불러오기
+                    .where(Follows.followed_username == self.user.username)
+                    .all()
+                )
         return []
 
     @rx.var
@@ -803,3 +839,46 @@ class HomeState(State):
                     session.delete(delete_chat[i])
                 session.commit()
         return self.get_gpt()
+    
+    # 메시지를 보내는 함수
+    def sending_message(self):
+        if not self.logged_in:
+            return rx.window_alert("Please log in to send a message")
+        if self.receive_user=='':
+            return rx.window_alert('Please write User!')
+        if len(self.kakaotalk)==0:
+            return rx.window_alert('Please write at least one character!')
+        
+        
+        with rx.session() as session:
+            send_message = message(
+                send_user = self.user.username,
+                receive_user = self.receive_user,
+                message = self.kakaotalk,
+                created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            )
+            session.add(send_message)
+            session.commit()
+            self.kakaotalk = ''
+        return self.get_messages(self.receive_user)
+    
+    # 메시지 내역을 불러오는 함수
+    def get_messages(self,talk_user):
+        self.receive_user = talk_user
+        """Get tweets from the database."""
+        with rx.session() as session:
+            self.messages = (session.query(message)
+                .filter(
+                    or_(
+                        and_(
+                            message.send_user == self.user.username,
+                            message.receive_user == self.receive_user,
+                        ),
+                        and_(
+                            message.send_user == self.receive_user,
+                            message.receive_user == self.user.username,
+                        )
+                    )
+                )
+                .all()                       # session에 저장된 모든 story를 가져옴 
+            )

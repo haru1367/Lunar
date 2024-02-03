@@ -98,8 +98,31 @@ def tabs():
 
 def sidebar():
     return rx.box(
-        rx.container(height = '10px'),
-        
+        rx.container(height = '20px'),
+        rx.text(
+            'Open chat list',
+            font_Size = '25px',
+            font_weight='bolder',
+            color = '#d19330',
+        ),
+        rx.vstack(
+            rx.container(height='400px'),
+            overflow='auto',
+            border = '2px solid #000000',
+            border_radius = '20px',
+        ),
+        rx.container(height='50px'),
+        rx.text(
+            'Participating rooms',
+            font_Size = '25px',
+            font_weight='bolder',
+            color = '#2ee67a',
+        ),
+        rx.vstack(
+            rx.container(height='30px'),
+            border = '2px solid #000000',
+            border_radius = '20px',
+        ),
         py=4,
         overflow='auto',
     )
@@ -167,7 +190,11 @@ def feed(HomeState):
                     width ='95%',
                 ),
                 rx.button(
-                    'send',
+                    rx.image(
+                        src = '/dm.png',
+                        height='auto',
+                        width='auto',
+                    ),
                     on_click = HomeState.sending_message,
                     border_radius="1em",
                     box_shadow="rgba(151, 65, 252, 0.8) 0 15px 30px -10px",

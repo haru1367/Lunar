@@ -235,15 +235,6 @@ class HomeState(State):
         self.search = search
         return self.get_craters()
 
-    def follow_user(self, username):
-        """Follow a user."""
-        with rx.session() as session:
-            friend = Follows(
-                follower_username=self.user.username, followed_username=username
-            )
-            session.add(friend)
-            session.commit()
-
     #follow 함수
     def follow_user(self, username):
         """Follow a user."""
